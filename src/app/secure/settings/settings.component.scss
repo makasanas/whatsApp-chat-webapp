@@ -1,0 +1,60 @@
+.settings{
+  .form{
+    margin: 60px auto;
+    @media screen and (max-width:767px) {
+      margin: 0px auto;
+      padding: 20px 0;
+    }
+    .field-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media screen and (max-width:479px){
+       flex-direction: column;
+      }
+      .form-field{
+        width: calc(50% - 10px);
+        @media screen and (max-width:479px){
+          width: 100%
+        }
+        &.date-field{
+          width: calc(25% - 10px);
+          @media screen and (max-width:479px){
+            width: 100%
+          }
+        }
+      }
+    }
+  }
+  .subscription{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    button{
+      margin-right: 20px;
+    }
+  }
+  .subscription-wrapper{
+    padding: 0 20px ;
+    border: 1px solid #CDD4E3;
+    border-radius: 2px;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .field-list{
+      width: 100%;
+      display: flex;
+      margin: 20px 0;
+      .plan-name{
+        font-weight: 300;
+        margin-left: 10px;
+        color: #000;
+      }
+      &.date-field{
+        width: calc(25% - 10px);
+      }
+    }
+
+  }
+}

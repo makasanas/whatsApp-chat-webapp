@@ -1,18 +1,99 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+//services
+import { AuthService } from './public/auth/auth.service';
+import { DashboradService } from './dashboard/dashborad.service';
+import { SetPasswordService } from './secure/set-password/set-password.service';
+import { LoginService } from './public/login/login.service';
+import { PricingService } from './secure/pricing/pricing.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { AntiAuthGuardService } from './services/anti-auth-guard.service';
+import { ActivePlanService } from './secure/active-plan/active-plan.service';
+import { SettingsService } from './secure/settings/settings.service';
+import { ProductService } from './secure/product/product.service';
+import { SecureService } from './secure/secure.service';
+import { FaqsService } from './secure/faqs/faqs.service';
+
+
+
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+
+
+//component
 import { AppComponent } from './app.component';
+import { InstallComponent } from './public/install/install.component';
+import { AuthComponent } from './public/auth/auth.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SetPasswordComponent } from './secure/set-password/set-password.component';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { LoginComponent } from './public/login/login.component';
+import { PricingComponent } from './secure/pricing/pricing.component';
+import { SettingsComponent } from './secure/settings/settings.component';
+import { LoadingComponent } from './common/loading/loading.component';
+import { ActivePlanComponent } from './secure/active-plan/active-plan.component';
+import { ChartsModule } from 'ng2-charts';
+import { ForgotPasswordComponent } from './public/forgot-password/forgot-password.component';
+import { SetNewPasswordComponent } from './public/set-new-password/set-new-password.component';
+import { PublicComponent } from './public/public.component';
+import { SecureComponent } from './secure/secure.component';
+import { ProductComponent } from './secure/product/product.component';
+import { FaqsComponent } from './secure/faqs/faqs.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InstallComponent,
+    AuthComponent,
+    DashboardComponent,
+    SetPasswordComponent,
+    SidebarComponent,
+    LoginComponent,
+    PricingComponent,
+    SettingsComponent,
+    LoadingComponent,
+    ActivePlanComponent,
+    ForgotPasswordComponent,
+    SetNewPasswordComponent,
+    PublicComponent,
+    SecureComponent,
+    ProductComponent,
+    FaqsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
+    ChartsModule,
+    NgxDatatableModule,
+    NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    DashboradService,
+    SetPasswordService,
+    AuthGuard,
+    AntiAuthGuardService,
+    LoginService,
+    PricingService,
+    ActivePlanService,
+    SettingsService,
+    ProductService,
+    SecureService,
+    FaqsService
+  ],
+  bootstrap: [AppComponent],
 })
+
 export class AppModule { }

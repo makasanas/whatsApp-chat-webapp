@@ -1,0 +1,220 @@
+$brand-color: #3e82b0;
+$brand-hover-color: #276996;
+
+
+.pricing-content {
+    position: relative;
+    height: 100%;
+}
+
+.pricing {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    // margin: 60px 0;
+    flex-wrap: wrap;
+    height: 100%;
+
+    @media screen and (max-width:1365px) {
+        justify-content: flex-start;
+    }
+
+    @media screen and (max-width:1199px) {
+        justify-content: space-around;
+    }
+
+    @media screen and (max-width:979px) {
+        margin: 30px 0;
+    }
+
+    @media screen and (max-width:767px) {
+        flex-direction: column;
+        flex-wrap: initial;
+    }
+
+    .pricing-card {
+        width: calc(25% - 10px);
+        min-width: 265px;
+        background: #fff;
+        border: 1px solid #CDD4E3;
+        border-top: 3px solid $brand-color;
+        border-radius: 5px;
+        margin: 20px 0;
+        position: relative;
+        transition: all 0.2s;
+
+        // @media screen and (max-width:979px) {
+        //      min-width: unset;
+        // }
+
+        @media screen and (max-width:1365px) {
+            margin-right: 20px;
+            margin-top: 0px;
+        }
+
+        @media screen and (max-width:1199px) {
+            margin: 0px;
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+        }
+
+        @media screen and (max-width:767px) {
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .pricing-heading {
+            // background: $brand-color:10;
+            padding: 10px 0;
+
+            h2 {
+                color: $brand-color;
+                margin: 0 15px;
+                font-size: 26px;
+                padding: 15px 0;
+                border-bottom: 1px solid #efeeee;
+            }
+        }
+
+        &.active {
+            box-shadow: 0px 2px 20px #00000020;
+            border-top: 3px solid $brand-color;
+            transform: scale(1.01);
+
+            .pricing-heading {
+                background: $brand-color;
+                padding: 18px 0;
+
+                h2 {
+                    color: white;
+                    border: none;
+                }
+            }
+
+            .upgrade-btn {
+                margin-bottom: 25px;
+            }
+        }
+
+        &:hover {
+            box-shadow: 0px 2px 20px #00000020;
+            transform: scale(1.01);
+
+        }
+    }
+}
+
+.pricing-info {
+    padding: 20px 15px;
+    padding-bottom: 40px;
+
+    @media screen and (max-width:1200px) {
+        padding: 10px 20px;
+    }
+
+    label {
+        font-size: 36px;
+        color: $brand-color;
+        position: relative;
+    }
+
+    span {
+        font-size: 14px;
+        position: absolute;
+        bottom: 5px;
+        margin-left: 2px;
+        color: #999;
+        opacity: 0.6;
+    }
+
+    .pricing-features-list {
+        margin: 20px 0;
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            margin-left: 20px;
+
+            img {
+                margin-right: 6px;
+                width: 15px;
+            }
+
+            p {
+                white-space: nowrap;
+
+                @media screen and (max-width:979px) {
+                    text-align: left;
+                }
+
+            }
+        }
+    }
+
+    .pricing-desc {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 60px;
+        line-height: 1.6;
+        margin-top: 30px;
+    }
+
+    .pricing-btn {
+        position: absolute;
+        bottom: 20px;
+        width: 90%;
+        left: 5%;
+
+        button {
+            width: 100%;
+            background: #CDD4E3;
+            font-size: 18px;
+            color: $brand-color;
+        }
+
+        .active-btn {
+            background: $brand-color;
+            color: #fff;
+        }
+    }
+}
+
+.custom-features-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+
+    .custom-features-list {
+        .custom-features {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @media screen and (max-width:979px) {
+                flex-direction: column;
+            }
+
+            @media screen and (max-width:767px) {
+                flex-direction: row;
+            }
+
+            h2 {
+                margin: 0 10px;
+            }
+
+            p {
+                font-size: 16px;
+                color: #999;
+            }
+        }
+    }
+
+}
+
+.loading-grid {
+    position: relative;
+    height: calc(100vh - 40px);
+    width: 100%;
+}

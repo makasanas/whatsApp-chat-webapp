@@ -1,0 +1,46 @@
+
+<div class="content" *ngIf="loading">
+  <app-loading></app-loading>
+  <p>Please wait a moment we are processing.</p>
+</div>
+
+<div *ngIf="!loading">
+  <div class="header">
+    <a routerLink="/">
+      <img src="assets/Logo.png">
+    </a>
+  </div>
+  <div class="hero">
+    <div class="hero_content">
+      <h1>Don't Let Your Customers Down.</h1>
+      <h3>Enlarge brand with pleasent customer</h3>
+    </div>
+  </div>
+  <div class="hero_form" *ngIf="!existing">
+    <p>To install bargaining bot through shopify</p>
+    <form [formGroup]="installForm" class="form-content">
+      <div class="input-group">
+        <div class="input">
+          <input placeholder="your shop url" formControlName="shopUrl" />
+        </div>
+        <div
+          *ngIf="(installForm.get('shopUrl').dirty || installForm.get('shopUrl').touched) && installForm.get('shopUrl').errors"
+          class="invalid">
+          <div *ngIf="installForm.controls.shopUrl.errors.required">Shop URL is required</div>
+        </div>
+      </div>
+      <button (click)="install()">Submit</button>
+    </form>
+    <div class="secondary-link"> Already have an app ? <a [routerLink]="['/login']">Login </a></div>
+  </div>
+  <div class="redirect" *ngIf="existing">
+    <p>
+      <span>Already installed</span>
+      <span>on</span>
+      <span><strong>{{tmpUrl}}</strong></span>
+    </p>
+    <button class="btn" routerLink="/login">
+      <span>Login</span>
+    </button>
+  </div>
+</div>

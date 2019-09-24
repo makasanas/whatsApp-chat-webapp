@@ -1,0 +1,96 @@
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+.hero {
+    width: 100%;
+    background-repeat: no-repeat;
+    background: linear-gradient(#00000080, #00000080), url('/app/assets/hero-img.png');
+    color: white;
+    text-align: center;
+    .hero_content {
+        padding: 150px 0;
+    }
+}
+
+.hero_form {
+    padding: 50px 20px;
+    max-width: 600px;
+    margin: auto;
+
+
+    p {
+        color: #333;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+}
+
+.form-content {
+    background: none;
+    padding: 0px;
+    border: none;
+    position: relative;
+
+    .input-group {
+        width: 100%;
+        border: 1px solid #CDD4E3;
+        border-radius: 2px;
+        padding: 2px;
+        background: white;
+
+        .input {
+            width: 100%;
+            padding-right: 155px;
+
+            @media screen and (max-width:767px) {
+                padding-right: 85px;
+            }
+        }
+
+        .invalid {
+            position: absolute;
+            font-size: 14px;
+            line-height: 1;
+            top: 100%;
+            margin: 2px 0px;
+        }
+    }
+
+    button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+
+        @media screen and (max-width:767px) {
+            width: 80px;
+        }
+    }
+}
+
+.redirect {
+
+    padding: 70px;
+
+    p {
+        margin-bottom: 40px;
+
+        span {
+            margin-right: 5px;
+        }
+    }
+}
+
+.content {
+    height: 100vh;
+    p {
+        position: absolute;
+        top: calc(50% + 70px);
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 400;
+        color: #5e637b;
+    }
+}

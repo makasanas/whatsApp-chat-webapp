@@ -1,0 +1,44 @@
+.content {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    padding: 25px;
+    height: 100vh;
+
+    @media screen and (max-width:1200px) {
+        padding: 20px;
+        width: calc(100% - 280px);
+        margin-left: 280px;
+    }
+
+    @media screen and (max-width:979px) {
+        width: 100%;
+        margin-left: 0px;
+        padding-top: 80px;
+    }
+
+    &.withoutSide {
+        width: 100%;
+        margin-left: 0px;
+        padding: 0px;
+    }
+}
+
+
+.mobile-logo {
+    padding: 15px;
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    background: white;
+    box-shadow: 0 1px 6px #00000010;
+    z-index: 98;
+
+    @media screen and (max-width:979px) {
+        display: block;
+    }
+
+    img {
+        margin: auto;
+    }
+}

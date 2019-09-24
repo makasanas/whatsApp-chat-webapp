@@ -1,0 +1,32 @@
+<div class="settings">
+  <div class="form">
+    <h2>My Profile</h2>
+    <div class="subscription-wrapper">
+      <div class="field-list">
+        <label>Organisation Name :</label>
+        <div class="plan-name">{{storeName}}</div>
+      </div>
+      <div class="field-list">
+        <label>Email ID :</label>
+        <div class="plan-name">{{emailID}}</div>
+      </div>
+      <div class="field-list">
+        <label>Phone Number :</label>
+        <div class="plan-name">{{phone}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form">
+    <h2>My Subscription</h2>
+    <div class="subscription-wrapper">
+      <div class="field-list">
+        <label>Subscription Name :</label>
+        <div class="plan-name">{{planName}}</div>
+      </div>
+    </div>
+    <div class="subscription">
+      <button [routerLink]="['/pricing']">Upgrade</button>
+      <button (click)="deactivePlan()">Cancle Plan</button>
+    </div>
+  </div>
+</div>
