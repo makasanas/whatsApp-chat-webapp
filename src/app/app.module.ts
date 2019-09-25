@@ -12,9 +12,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 //services
 import { AuthService } from './public/auth/auth.service';
+import { BothAuthGuard } from './services/both-auth-guard.service';
 import { DashboradService } from './dashboard/dashborad.service';
-import { SetPasswordService } from './secure/set-password/set-password.service';
-import { LoginService } from './public/login/login.service';
 import { PricingService } from './secure/pricing/pricing.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AntiAuthGuardService } from './services/anti-auth-guard.service';
@@ -34,16 +33,12 @@ import { AppComponent } from './app.component';
 import { InstallComponent } from './public/install/install.component';
 import { AuthComponent } from './public/auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SetPasswordComponent } from './secure/set-password/set-password.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
-import { LoginComponent } from './public/login/login.component';
 import { PricingComponent } from './secure/pricing/pricing.component';
 import { SettingsComponent } from './secure/settings/settings.component';
 import { LoadingComponent } from './common/loading/loading.component';
 import { ActivePlanComponent } from './secure/active-plan/active-plan.component';
 import { ChartsModule } from 'ng2-charts';
-import { ForgotPasswordComponent } from './public/forgot-password/forgot-password.component';
-import { SetNewPasswordComponent } from './public/set-new-password/set-new-password.component';
 import { PublicComponent } from './public/public.component';
 import { SecureComponent } from './secure/secure.component';
 import { ProductComponent } from './secure/product/product.component';
@@ -55,15 +50,11 @@ import { FaqsComponent } from './secure/faqs/faqs.component';
     InstallComponent,
     AuthComponent,
     DashboardComponent,
-    SetPasswordComponent,
     SidebarComponent,
-    LoginComponent,
     PricingComponent,
     SettingsComponent,
     LoadingComponent,
     ActivePlanComponent,
-    ForgotPasswordComponent,
-    SetNewPasswordComponent,
     PublicComponent,
     SecureComponent,
     ProductComponent,
@@ -82,16 +73,15 @@ import { FaqsComponent } from './secure/faqs/faqs.component';
   providers: [
     AuthService,
     DashboradService,
-    SetPasswordService,
     AuthGuard,
     AntiAuthGuardService,
-    LoginService,
     PricingService,
     ActivePlanService,
     SettingsService,
     ProductService,
     SecureService,
-    FaqsService
+    FaqsService,
+    BothAuthGuard
   ],
   bootstrap: [AppComponent],
 })

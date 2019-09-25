@@ -26,9 +26,6 @@ export class InstallComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.removeItem("shopUrl");
-    localStorage.removeItem("token");
-
     this.route.queryParams.subscribe(params => {
       if (params['shop']) {
         this.shopUrl = this.route.snapshot.queryParamMap.get('shop');

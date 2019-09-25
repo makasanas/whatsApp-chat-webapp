@@ -31,16 +31,5 @@
       </div>
       <button (click)="install()">Submit</button>
     </form>
-    <div class="secondary-link"> Already have an app ? <a [routerLink]="['/login']">Login </a></div>
-  </div>
-  <div class="redirect" *ngIf="existing">
-    <p>
-      <span>Already installed</span>
-      <span>on</span>
-      <span><strong>{{tmpUrl}}</strong></span>
-    </p>
-    <button class="btn" routerLink="/login">
-      <span>Login</span>
-    </button>
   </div>
 </div>

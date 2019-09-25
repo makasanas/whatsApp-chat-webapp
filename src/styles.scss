@@ -699,8 +699,6 @@ table {
   position: fixed;
   height: 100vh;
   width: calc(100% - 300px);
-  /* margin-left: -25px; */
-  /* margin-top: -25px; */
   top: 0;
   left: 300px;
   background: #00000050;
@@ -768,7 +766,6 @@ table {
 
 
 .datatable-header {
-  background: #CDD4E3;
   font-weight: 500;
   color: #343A57;
   font-size: 14px;

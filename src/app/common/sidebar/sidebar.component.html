@@ -10,12 +10,6 @@
     </div>
   </div>
   <ul>
-    <!-- <li>
-      <a [routerLink]="['/dashboard']" (click)="menuOpen()">
-        <img src="assets/menu-icon-dashboard.png">
-        <p>Dashboard</p>
-      </a>
-    </li> -->
     <li routerLinkActive="active" [routerLink]="['/dashboard']" (click)="openPopup(false)">
       <a (click)="menuOpen()">
         <img src="assets/menu-icon-list.png">
@@ -26,12 +20,6 @@
       <a (click)="menuOpen()">
         <img src="assets/menu-icon-verified.png">
         <p>Product</p>
-      </a>
-    </li>
-    <li routerLinkActive="active" [routerLink]="['/analyticOrders']" (click)="openPopup(false)">
-      <a (click)="menuOpen()">
-        <img src="assets/menu-icon-order.png">
-        <p>Bot Orders</p>
       </a>
     </li>
     <li routerLinkActive="active" [routerLink]="['/pricing']" (click)="openPopup(false)">

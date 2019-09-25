@@ -18,14 +18,11 @@
     padding: 50px 20px;
     max-width: 600px;
     margin: auto;
-
-
     p {
         color: #333;
         text-align: left;
         margin-bottom: 10px;
     }
-
 }
 
 .form-content {
@@ -33,23 +30,19 @@
     padding: 0px;
     border: none;
     position: relative;
-
     .input-group {
         width: 100%;
         border: 1px solid #CDD4E3;
         border-radius: 2px;
         padding: 2px;
         background: white;
-
         .input {
             width: 100%;
             padding-right: 155px;
-
             @media screen and (max-width:767px) {
                 padding-right: 85px;
             }
         }
-
         .invalid {
             position: absolute;
             font-size: 14px;
@@ -58,12 +51,10 @@
             margin: 2px 0px;
         }
     }
-
     button {
         position: absolute;
-        top: 3px;
+        top: 4px;
         right: 3px;
-
         @media screen and (max-width:767px) {
             width: 80px;
         }
@@ -71,12 +62,9 @@
 }
 
 .redirect {
-
     padding: 70px;
-
     p {
         margin-bottom: 40px;
-
         span {
             margin-right: 5px;
         }

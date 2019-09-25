@@ -21,10 +21,11 @@ export class AuthComponent implements OnInit {
 	ngOnInit() {
 		this.route.queryParams.subscribe(params => {
 			if(params['hmac']){
-				// console.log(params);
 				this.hmac = this.route.snapshot.queryParamMap.get('hmac');
 				this.shop = this.route.snapshot.queryParamMap.get('shop');
 				this.getAccessToken(this.route.snapshot['_routerState'].url);
+			}else{
+				this.router.navigate(['/install']);
 			}
 		})
 	}
@@ -34,14 +35,9 @@ export class AuthComponent implements OnInit {
 		this.authService.getAccessToken(query).subscribe((res) => {
 			localStorage.setItem("token", res.data.token);
 			localStorage.setItem("shopUrl", res.data.shopUrl);
-			if (res.data.passwordSet) {
-				this.router.navigate(['/dashboard']);
-			} else {
-				this.router.navigate(['/password'], { queryParams: { shopUrl: res.data.domain, email: res.data.email } });
-			}
+			this.router.navigate(['/dashboard']);
 		}, err => {
 			this.router.navigate(['/install']);
-			// console.log(err);
 		});
 	}
 
