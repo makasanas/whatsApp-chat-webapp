@@ -21,16 +21,16 @@ export class ProductService {
     return this.http.get(environment.apiUrl + 'products?'+query+'&limit='+page.limit+'&page='+(page.offset+1), { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  getCollection() {
+  addInQueue(data){
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.get(environment.apiUrl + 'collections' , { headers: headers }).pipe(map((response: any) => response.json()));
+    return this.http.post(environment.apiUrl + 'queue/add',  data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  getDescription(data) {
+  getCredit(){
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.post(environment.apiUrl + 'product/description',  data, { headers: headers }).pipe(map((response: any) => response.json()));
+    return this.http.get(environment.apiUrl + 'credit', { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
 }

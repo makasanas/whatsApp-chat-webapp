@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TableColumn, ColumnMode } from '@swimlane/ngx-datatable';
 import { ProductService } from './product.service';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from "@angular/router";
+import { SecureService } from "./../secure.service"
 
 @Component({
 	selector: 'app-product',
@@ -15,15 +19,28 @@ export class ProductComponent implements OnInit {
 	public collections = [];
 	public loading = false;
 	public query = '';
-	public searchLoading : false;
-
+	public selected = [];
 	public columns = [
+		{
+			prop: 'selected',
+			name: '',
+			sortable: false,
+			canAutoResize: false,
+			draggable: false,
+			resizable: false,
+			headerCheckboxable: true,
+			checkboxable: true,
+			width: 30
+		},
 		{ prop: 'title', name: 'Product Title', width: 450 },
 		{ prop: 'id', name: 'Product Id' },
 		{ prop: 'product_type', name: 'Product Type' },
 		{ prop: 'variants.length', name: 'Variants' },
 	];
-
+	public credit;
+	public generatedProduct = 0;
+	public totalProduct = 0;
+	public exceedLimit: boolean = false;
 	public page = {
 		count: 0,
 		limit: 0,
@@ -31,28 +48,56 @@ export class ProductComponent implements OnInit {
 		pageSize: 0
 	}
 
+	public pageOffset = this.page.offset;
+	public allSelected: boolean = false;
+
 	constructor(
 		private productService: ProductService,
 		private router: Router,
 		private formBuilder: FormBuilder,
+		private route: ActivatedRoute,
+		private secureService: SecureService
 	) {
-		this.page.offset = 0;
-		this.page.limit = 10;
-	
+
+		this.route.params.subscribe(params => {
+			this.page.offset = parseInt(params.id) - 1;
+			this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
+		});
+
 		this.filters = this.formBuilder.group({
 			title: [''],
 			collection_id: [''],
 			created_at_min: [''],
 			created_at_max: [''],
 			published_status: [''],
+			fields: ['id,image,title,body_html,handle'],
 		});
 
 	}
 
-	ngOnInit() {
-		this.getProduct(this.page , this.query);
-		this.getCollection();
+	pageLimit() {
+		this.getProduct(this.page, this.query);
+
+		localStorage.setItem('pageLimit', this.page.limit.toString());
 	}
+
+	ngOnInit() {
+		this.query = this.serialize(this.filters.value);
+		this.getProduct(this.page, this.query);
+
+		this.collections = this.secureService.getCollection();
+		if(this.collections.length == 0){
+			this.secureService.collections.subscribe((data) => {
+				this.collections = data;
+			});
+		}
+
+
+		console.log(this.collections);
+		this.getCredit();
+	}
+
+
 
 	getProduct(page, query) {
 		this.loading = true;
@@ -61,46 +106,37 @@ export class ProductComponent implements OnInit {
 			this.page.count = res.data.count;
 			this.productlist = res.data.products;
 			this.page.offset = page.offset;
+			this.pageOffset = this.page.offset;
+			this.selected = [];
+			this.allSelected = false;
+			this.generatedProduct = res.data.productCount;
+			this.totalProduct = res.data.count;
+		}, err => {
+		});
+	}
+
+	getCredit() {
+		this.productService.getCredit().subscribe((res) => {
+			this.credit = res.data.credit;
 		}, err => {
 		});
 	}
 
 
 	generateDiscription(item) {
-		let dis = item.body_html.replace(/<[^>]*>/g, '');
-		var paragraphs = dis.replace(/\n\r/g, "\n").replace(/\r/g, "\n").split(/\n{2,}/g);
-		var lines = dis.split(/[\r\n]+/);
-
-		paragraphs = lines.map(function (element) {
-			if (!~[".", "!", "?", ";"].indexOf(element[element.length - 1])) element += ".";
-			return element.trim();
-		});
-
-		var description = paragraphs.join(" ");
-		let data = {
-			input: description,
-			product: item
-		}
-
-		if (data.input.length > 200) {
-			this.productService.getDescription(data).subscribe((res) => {
-			}, err => {
-				console.log(err);
-			});
+		if (this.credit > 0) {
+			// wreite logic here
 		} else {
-			if (data.input == '.') {
-			} else {
-			}
+			this.exceedLimit = true;
 		}
 	}
 
-	getCollection() {
-		if (this.collections.length == 0) {
-			this.productService.getCollection().subscribe((res) => {
-				this.collections = res.data.collections;
-				console.log(this.collections);
-			}, err => {
-			});
+	getRowClass = (row) => {
+		if (row.added || row.queue) {
+			return "disable";
+
+		} else {
+			return;
 		}
 	}
 
@@ -126,7 +162,7 @@ export class ProductComponent implements OnInit {
 			limit: 10,
 			offset: 0,
 			pageSize: 0
-		
+
 		}
 		this.getProduct(this.page, this.query);
 	}
@@ -140,4 +176,59 @@ export class ProductComponent implements OnInit {
 		return str.join("&");
 	}
 
+	close() {
+		this.exceedLimit = false;
+	}
+
+	selectAll(event) {
+		this.selected = [];
+		if (event.currentTarget.checked) {
+			this.allSelected = true;
+			this.productlist.forEach(product => {
+				if (!product.added && !product.queue) {
+					product['isSelected'] = true;
+					this.selected.push(product);
+				}
+			})
+		} else {
+			this.allSelected = false;
+			this.productlist.forEach(product => {
+				if (!product.added && !product.queue) {
+					product['isSelected'] = false;
+					this.selected = [];
+				}
+			})
+		}
+	}
+
+	onSelect(event, selected, rowIndex) {
+		if (event.currentTarget.checked) {
+			this.productlist[rowIndex]['isSelected'] = true;
+			this.selected.push(selected);
+
+			var productlistCount = this.productlist.filter(function (product) {
+				return !product.added && !product.queue;
+			}).length;
+
+			console.log(productlistCount, this.selected.length);
+			if (productlistCount == this.selected.length) {
+				this.allSelected = true;
+			}
+
+		} else {
+			let index = this.selected.findIndex(item => { return item.id == selected.id; });
+			this.productlist[rowIndex]['isSelected'] = false;
+			this.selected.splice(index, 1);
+			this.allSelected = false;
+		}
+		console.log(this.selected);
+	}
+
+	addInQueue() {
+		if (this.credit >= this.selected.length) {
+			// write add Quere logic here
+		} else {
+			this.exceedLimit = true;
+		}
+	}
 }

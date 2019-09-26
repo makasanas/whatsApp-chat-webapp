@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SecureService } from "./secure.service";
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -9,8 +9,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 })
 export class SecureComponent implements OnInit {
 
-
-  constructor(private router: Router, private secureService: SecureService) { 
+  constructor(private router: Router, private secureService: SecureService) {
     this.secureService.checkToken().subscribe((res) => {
     }, err => {
       localStorage.removeItem('token');
@@ -20,7 +19,10 @@ export class SecureComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.secureService.fetchCollection().subscribe((res) => {
+      this.secureService.setCollection(res.data.collections);
+    }, err => {
+      console.log(err);
+    });
   }
-
 }

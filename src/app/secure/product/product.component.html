@@ -3,103 +3,168 @@
   <div class="loading-grid" *ngIf="loading">
     <app-loading></app-loading>
   </div>
-  
   <div *ngIf="!loading">
-      <div [formGroup]="filters">
-        <div class="filters">
-            <div class="filter">
-                <select  formControlName="collection_id" (focus)="getCollection()">
-                  <option value="">Select collection</option>
-                  <option *ngFor="let collection of collections; let i = index" [value]="collection.id">{{collection.title}}</option>
-                </select>
-            </div>
-            <div class="filter date">
-                <div class="input-group">
-                    <input  formControlName="created_at_min" class="form-control" placeholder="start date" name="dp"  ngbDatepicker #startdate="ngbDatepicker">
-                    <svg id="Layer_1" (click)="startdate.toggle()" style="enable-background:new 0 0 80 75;" version="1.1" viewBox="0 0 80 75" xml:space="preserve"><g id="Layer_2"><g id="Layer_3"><path d="M53.4,10.4V4.7h-3v5.7h-8.5V4.7h-3v5.7h-9.1V4.7h-3v5.7H5.4v59.9h69.1V10.4H53.4z M26.8,13.4V19h3v-5.7H39V19h3v-5.7h8.5    V19h3v-5.7h18.1v44.2H8.4V13.4H26.8z M8.4,67.3v-6.7h63.1v6.7L8.4,67.3z"/><rect height="5.7" width="5.7" x="22.6" y="30"/><rect height="5.7" width="5.7" x="37.1" y="30"/><rect height="5.7" width="5.7" x="51.7" y="30"/><rect height="5.7" width="5.7" x="22.6" y="44.6"/><rect height="5.7" width="5.7" x="37.1" y="44.6"/><rect height="5.7" width="5.7" x="51.7" y="44.6"/></g></g></svg>
-                </div>
-            </div>
-            <div class="filter date">
-                <div class="input-group">
-                    <input  formControlName="created_at_max" class="form-control" placeholder="end date" name="dp"  ngbDatepicker #enddate="ngbDatepicker">
-                    <svg id="Layer_1" (click)="enddate.toggle()" style="enable-background:new 0 0 80 75;" version="1.1" viewBox="0 0 80 75" xml:space="preserve"><g id="Layer_2"><g id="Layer_3"><path d="M53.4,10.4V4.7h-3v5.7h-8.5V4.7h-3v5.7h-9.1V4.7h-3v5.7H5.4v59.9h69.1V10.4H53.4z M26.8,13.4V19h3v-5.7H39V19h3v-5.7h8.5    V19h3v-5.7h18.1v44.2H8.4V13.4H26.8z M8.4,67.3v-6.7h63.1v6.7L8.4,67.3z"/><rect height="5.7" width="5.7" x="22.6" y="30"/><rect height="5.7" width="5.7" x="37.1" y="30"/><rect height="5.7" width="5.7" x="51.7" y="30"/><rect height="5.7" width="5.7" x="22.6" y="44.6"/><rect height="5.7" width="5.7" x="37.1" y="44.6"/><rect height="5.7" width="5.7" x="51.7" y="44.6"/></g></g></svg>
-                </div>
-            </div>
-            <div class="filter">
-                <select  formControlName="published_status">
-                    <option value="">Product Status</option>
-                    <option value="published">published</option>
-                    <option value="unpublished">unpublished</option>
-                  </select>
-            </div>
+    <div class="meta-container">
+      <div class="item">Credit : {{credit}}</div>
+      <div class="item">Total Product : {{totalProduct}}</div>
+      <div class="item">Generated Product : {{generatedProduct}}</div>
+      <div class="item">Remaining Product : {{totalProduct - generatedProduct}}</div>
+    </div>
+    <div class="msg-popup" *ngIf="exceedLimit">
+      <div class="msg-popup-msg">
+        <p>Your current Credit {{credit}}. You need to buy more credit for to run this action</p>
+        <div class="popup-footer">
+          <button class="popup-btn active" [routerLink]="['/pricing']">Buy Credit</button>
+          <button class="popup-btn" (click)="close()">Cancle</button>
         </div>
+      </div>
+    </div>
 
-        <div class="search-content">
-            <div class="form-content">
-              <input placeholder="Serach Product"  formControlName="title"  />
-              <button class="btn" (click)="productlist=[]; filterProduct() ">
-                <div *ngIf="!searchLoading">
-                  Search
-                </div>
-                <div *ngIf="searchLoading">
-                  <div class="loader"></div>
-                </div>
-              </button>
+    <div [formGroup]="filters">
+      <div class="filters">
+        <div class="filter">
+          <select formControlName="collection_id" >
+            <option value="">Select collection</option>
+            <option *ngFor="let collection of collections; let i = index" [value]="collection.id">{{collection.title}}
+            </option>
+          </select>
+        </div>
+        
+        <div class="filter">
+          <select formControlName="published_status">
+            <option value="">Product Status</option>
+            <option value="published">published</option>
+            <option value="unpublished">unpublished</option>
+          </select>
+        </div>
+        <div class="filter date">
+            <div class="input-group">
+              <input formControlName="created_at_min" class="form-control" placeholder="Product Created After" name="dp"
+                ngbDatepicker #startdate="ngbDatepicker">
+              <svg id="Layer_1" (click)="startdate.toggle()" style="enable-background:new 0 0 80 75;" version="1.1"
+                viewBox="0 0 80 75" xml:space="preserve">
+                <g id="Layer_2">
+                  <g id="Layer_3">
+                    <path
+                      d="M53.4,10.4V4.7h-3v5.7h-8.5V4.7h-3v5.7h-9.1V4.7h-3v5.7H5.4v59.9h69.1V10.4H53.4z M26.8,13.4V19h3v-5.7H39V19h3v-5.7h8.5    V19h3v-5.7h18.1v44.2H8.4V13.4H26.8z M8.4,67.3v-6.7h63.1v6.7L8.4,67.3z" />
+                    <rect height="5.7" width="5.7" x="22.6" y="30" />
+                    <rect height="5.7" width="5.7" x="37.1" y="30" />
+                    <rect height="5.7" width="5.7" x="51.7" y="30" />
+                    <rect height="5.7" width="5.7" x="22.6" y="44.6" />
+                    <rect height="5.7" width="5.7" x="37.1" y="44.6" />
+                    <rect height="5.7" width="5.7" x="51.7" y="44.6" />
+                  </g>
+                </g>
+              </svg>
             </div>
           </div>
-     </div>
-
-    <ngx-datatable class="material" [rows]="productlist" [columns]="columns" [headerHeight]="50" [footerHeight]="50"
-    [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset"  [count]="page.count" (page)="getProduct($event, query)">
-      <ngx-datatable-column [resizeable]="false" [width]="70" >
-        <ng-template let-column="column" ngx-datatable-header-template>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <img src={{row.image.src}} alt="!">
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false" [width]="450">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Title
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.title}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Product Id
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.id}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Product Type
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.product_type}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Variants
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.variants.length}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Action
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <div class="secondary-btn">
-            <button  (click)="generateDiscription(row)">Run AI</button>
+          <div class="filter date">
+            <div class="input-group">
+              <input formControlName="created_at_max" class="form-control" placeholder="Product Created Before" name="dp" ngbDatepicker
+                #enddate="ngbDatepicker">
+              <svg id="Layer_1" (click)="enddate.toggle()" style="enable-background:new 0 0 80 75;" version="1.1"
+                viewBox="0 0 80 75" xml:space="preserve">
+                <g id="Layer_2">
+                  <g id="Layer_3">
+                    <path
+                      d="M53.4,10.4V4.7h-3v5.7h-8.5V4.7h-3v5.7h-9.1V4.7h-3v5.7H5.4v59.9h69.1V10.4H53.4z M26.8,13.4V19h3v-5.7H39V19h3v-5.7h8.5    V19h3v-5.7h18.1v44.2H8.4V13.4H26.8z M8.4,67.3v-6.7h63.1v6.7L8.4,67.3z" />
+                    <rect height="5.7" width="5.7" x="22.6" y="30" />
+                    <rect height="5.7" width="5.7" x="37.1" y="30" />
+                    <rect height="5.7" width="5.7" x="51.7" y="30" />
+                    <rect height="5.7" width="5.7" x="22.6" y="44.6" />
+                    <rect height="5.7" width="5.7" x="37.1" y="44.6" />
+                    <rect height="5.7" width="5.7" x="51.7" y="44.6" />
+                  </g>
+                </g>
+              </svg>
+            </div>
           </div>
-        </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
+      </div>
+
+      <div class="search-content">
+        <div class="form-content">
+          <input placeholder="Serach Product" formControlName="title" />
+          <button class="btn" (click)="productlist=[]; filterProduct() ">
+            <div *ngIf="!searchLoading">
+              Search
+            </div>
+            <div *ngIf="searchLoading">
+              <div class="loader"></div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="multi-select" *ngIf="selected.length > 0">
+      <p>Total {{selected.length}} Product selected</p>
+      <div class="btn" (click)="addInQueue()">Add in Queue</div>
+    </div>
+    <div class="row-per-page">
+      <p>Row per page</p>
+      <select name="ipp" id="ipp" (change)="pageLimit()" [(ngModel)]="page.limit" >
+        <option [value]="100">Items per page</option>
+        <option [value]="10">10</option>
+        <option [value]="25">25</option>
+        <option [value]="50">50</option>
+        <option [value]="100">100</option>
+        <option [value]="250">250</option>
+      </select>
+    </div>
+
+    <div class="table-responsive">
+        <ngx-datatable class="material" [rows]="productlist" [rowClass]="getRowClass" [columns]="columns"
+        [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'"
+        [limit]="page.limit" [offset]="page.offset" [count]="page.count" (page)="getProduct($event, query)">
+        <ngx-datatable-column [width]="70" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+          [resizeable]="false">
+          <ng-template ngx-datatable-header-template>
+            <input type="checkbox" [checked]="allSelected" (change)="selectAll($event)" />
+          </ng-template>
+          <ng-template ngx-datatable-cell-template  let-row="row" let-rowIndex="rowIndex">
+            <input type="checkbox" *ngIf="!row.added && !row.queue" [checked]="row.isSelected" (change)="onSelect($event, row, rowIndex)" />
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column  [width]="70" [canAutoResize]="false"  [resizeable]="false" >
+          <ng-template let-column="column" ngx-datatable-header-template>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <img *ngIf="row.image" src={{row.image.src}} alt="!">
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [resizeable]="false"  [width]="300" [canAutoResize]="false"  >
+          <ng-template let-column="column" ngx-datatable-header-template>
+            Title
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.title}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [resizeable]="false" >
+          <ng-template let-column="column" ngx-datatable-header-template>
+            Meta description
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.meta_description}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [resizeable]="false" [width]="120" [canAutoResize]="false"  >
+          <ng-template let-column="column" ngx-datatable-header-template>
+            Action
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div class="secondary-btn" *ngIf="!row.added && !row.queue">
+              <button (click)="generateDiscription(row)">Generate</button>
+            </div>
+            <div class="secondary-btn disabled" *ngIf="row.queue">
+              In Queue
+            </div>
+            <div class="secondary-btn disabled" *ngIf="row.added && !row.queue">
+              Generated
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
   </div>
 </div>

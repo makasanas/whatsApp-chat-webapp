@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -44,6 +44,18 @@ import { SecureComponent } from './secure/secure.component';
 import { ProductComponent } from './secure/product/product.component';
 import { FaqsComponent } from './secure/faqs/faqs.component';
 
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("825133742036-5aj1qk5sdfni90g5175pma62kssgb52e.apps.googleusercontent.com")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +80,8 @@ import { FaqsComponent } from './secure/faqs/faqs.component';
     HttpModule,
     ChartsModule,
     NgxDatatableModule,
-    NgbModule
+    NgbModule,
+    SocialLoginModule
   ],
   providers: [
     AuthService,
@@ -81,7 +94,11 @@ import { FaqsComponent } from './secure/faqs/faqs.component';
     ProductService,
     SecureService,
     FaqsService,
-    BothAuthGuard
+    BothAuthGuard,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   bootstrap: [AppComponent],
 })
