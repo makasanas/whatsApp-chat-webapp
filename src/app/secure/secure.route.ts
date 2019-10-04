@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { PricingComponent } from './pricing/pricing.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ActivePlanComponent } from './active-plan/active-plan.component';
-import { DashboardComponent } from './../dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
 import { FaqsComponent } from './faqs/faqs.component';
 

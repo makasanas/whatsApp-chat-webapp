@@ -1,7 +1,9 @@
-<app-sidebar></app-sidebar>
-<div class="mobile-logo">
-    <img src="assets/logo-blue.png">
-</div>
-<div class="content">
-    <router-outlet></router-outlet>
+<div *ngIf="user">
+    <app-sidebar></app-sidebar>
+    <div class="mobile-logo">
+        <img src="assets/logo-color.png">
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>

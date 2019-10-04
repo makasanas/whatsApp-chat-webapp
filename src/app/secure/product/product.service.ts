@@ -27,10 +27,5 @@ export class ProductService {
     return this.http.post(environment.apiUrl + 'queue/add',  data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  getCredit(){
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.get(environment.apiUrl + 'credit', { headers: headers }).pipe(map((response: any) => response.json()));
-  }
 
 }

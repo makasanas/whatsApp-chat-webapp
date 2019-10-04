@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.queryParams.subscribe(params => {
-			if(params['hmac']){
+			if(params['hmac'] || params['token']){
 				this.hmac = this.route.snapshot.queryParamMap.get('hmac');
 				this.shop = this.route.snapshot.queryParamMap.get('shop');
 				this.getAccessToken(this.route.snapshot['_routerState'].url);

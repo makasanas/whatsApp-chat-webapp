@@ -4,12 +4,6 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="!loading">
-    <div class="meta-container">
-      <div class="item">Credit : {{credit}}</div>
-      <div class="item">Total Product : {{totalProduct}}</div>
-      <div class="item">Generated Product : {{generatedProduct}}</div>
-      <div class="item">Remaining Product : {{totalProduct - generatedProduct}}</div>
-    </div>
     <div class="msg-popup" *ngIf="exceedLimit">
       <div class="msg-popup-msg">
         <p>Your current Credit {{credit}}. You need to buy more credit for to run this action</p>

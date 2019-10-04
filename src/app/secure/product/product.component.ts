@@ -37,9 +37,6 @@ export class ProductComponent implements OnInit {
 		{ prop: 'product_type', name: 'Product Type' },
 		{ prop: 'variants.length', name: 'Variants' },
 	];
-	public credit;
-	public generatedProduct = 0;
-	public totalProduct = 0;
 	public exceedLimit: boolean = false;
 	public page = {
 		count: 0,
@@ -91,10 +88,6 @@ export class ProductComponent implements OnInit {
 				this.collections = data;
 			});
 		}
-
-
-		console.log(this.collections);
-		this.getCredit();
 	}
 
 
@@ -109,26 +102,16 @@ export class ProductComponent implements OnInit {
 			this.pageOffset = this.page.offset;
 			this.selected = [];
 			this.allSelected = false;
-			this.generatedProduct = res.data.productCount;
-			this.totalProduct = res.data.count;
 		}, err => {
 		});
 	}
-
-	getCredit() {
-		this.productService.getCredit().subscribe((res) => {
-			this.credit = res.data.credit;
-		}, err => {
-		});
-	}
-
 
 	generateDiscription(item) {
-		if (this.credit > 0) {
-			// wreite logic here
-		} else {
-			this.exceedLimit = true;
-		}
+		// if (this.credit > 0) {
+		// 	// wreite logic here
+		// } else {
+		// 	this.exceedLimit = true;
+		// }
 	}
 
 	getRowClass = (row) => {
@@ -225,10 +208,10 @@ export class ProductComponent implements OnInit {
 	}
 
 	addInQueue() {
-		if (this.credit >= this.selected.length) {
-			// write add Quere logic here
-		} else {
-			this.exceedLimit = true;
-		}
+		// if (this.credit >= this.selected.length) {
+		// 	// write add Quere logic here
+		// } else {
+		// 	this.exceedLimit = true;
+		// }
 	}
 }

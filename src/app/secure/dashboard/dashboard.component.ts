@@ -3,8 +3,6 @@ import { DashboradService } from './dashborad.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
-import { AuthService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 
 @Component({
@@ -13,7 +11,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+      
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -58,16 +56,9 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor(private dashboradService: DashboradService, private authService: AuthService) { }
+  constructor(private dashboradService: DashboradService) { }
 
   ngOnInit() {
-
-
-    this.authService.authState.subscribe((user) => {
-      console.log(user);
-    });
-
-
     let data = {
       shop: localStorage.getItem('shop'),
       accessToken: localStorage.getItem('token'),
@@ -96,8 +87,4 @@ export class DashboardComponent implements OnInit {
     this.barChartData[0].data = data;
   }
 
-  signInWithGoogle() {
-    let installUrl =  "https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/content&response_type=code&access_type=offline&redirect_uri=http://localhost:4200/app/dashboard&client_id=825133742036-5aj1qk5sdfni90g5175pma62kssgb52e.apps.googleusercontent.com"
-    document.location.href = installUrl;
-  }
 }

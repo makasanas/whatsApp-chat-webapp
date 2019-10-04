@@ -13,7 +13,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 //services
 import { AuthService } from './public/auth/auth.service';
 import { BothAuthGuard } from './services/both-auth-guard.service';
-import { DashboradService } from './dashboard/dashborad.service';
+import { DashboradService } from './secure/dashboard/dashborad.service';
 import { PricingService } from './secure/pricing/pricing.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AntiAuthGuardService } from './services/anti-auth-guard.service';
@@ -32,7 +32,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { AppComponent } from './app.component';
 import { InstallComponent } from './public/install/install.component';
 import { AuthComponent } from './public/auth/auth.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './secure/dashboard/dashboard.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { PricingComponent } from './secure/pricing/pricing.component';
 import { SettingsComponent } from './secure/settings/settings.component';
