@@ -1,0 +1,24 @@
+<!-- <form class="form-group form">
+    <div class="form-field">
+        <label>Merchant id</label>
+        <input type="text" [(ngModel)]='merchantId' name="merchantId" placeholder="Add your merchant id" />
+    </div>
+    <div class="btn" (click)="setMerchantId()">Submit</div>
+</form> -->
+
+<div class="setup" *ngIf="!loading">
+    <div class="btn" (click)="signInWithGoogle()" *ngIf="showGoogleButton">
+        Sign in Google
+    </div>
+    <div class="setup-ready" *ngIf="!showGoogleButton">
+        <h2>Your setup is done you are ready to give now</h2>
+        <a class="btn" [routerLink]="['/product']">
+            Go to Product
+        </a>
+    </div>
+
+</div>
+
+<div class="loading-grid" *ngIf="loading">
+    <app-loading></app-loading>
+</div>

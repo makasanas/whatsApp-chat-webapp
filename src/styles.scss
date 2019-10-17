@@ -202,28 +202,27 @@ a {
 }
 
 button {
-  width: 150px;
-  border-radius: 2px;
+  border-radius: 3px;
   background: $brand-color;
-  padding: 10px 0;
+  padding: 10px 15px;
   color: white;
-  border: none;
-  font-size: 16px;
   cursor: pointer;
-  &:hover{
+  text-align: center;
+  display: inline-block;
+  &:hover {
     background-color: $brand-hover-color;
   }
 }
 
 .btn {
-  width: 150px;
-  border-radius: 2px;
+  border-radius: 3px;
   background: $brand-color;
-  padding: 10px 0;
+  padding: 10px 15px;
   color: white;
   cursor: pointer;
   text-align: center;
-  &:hover{
+  display: inline-block;
+  &:hover {
     background-color: $brand-hover-color;
   }
 }
@@ -832,4 +831,25 @@ ngx-datatable {
   z-index: 2;
   position: absolute;
   background: white;
+}
+
+
+.data-table{
+  ngx-datatable{
+    margin: 0px;
+    border: 1px solid #ececec;
+    datatable-footer{
+      background: #cdd4e3;
+    }
+    datatable-body{
+      margin-bottom: -8px;
+    }
+  }
+  .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+    background: #cdd4e3;
+  }
+  .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell:first-child{
+    justify-content: flex-start;
+    text-align: left;
+  }
 }

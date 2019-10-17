@@ -9,6 +9,8 @@ export class SecureService {
 
     public collections = new Subject<any>();
     public collectionData = [];
+    public user = [];
+
 
 
     constructor(private http: Http) { }
@@ -37,4 +39,19 @@ export class SecureService {
     getCollection(){
         return this.collectionData;
     }
+
+    fetchUser() {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(environment.apiUrl + 'user/profile', { headers: headers }).pipe(map((response: any) => response.json()));
+    }
+
+    setUser(data){
+        this.user = data;
+    }
+
+    getUser(){
+        return this.user;
+    }
+
 }

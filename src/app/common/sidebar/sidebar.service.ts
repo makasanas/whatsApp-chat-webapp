@@ -13,6 +13,7 @@ export class SidebarsService {
     createAuthorizationHeader(headers: Headers) {
         headers.append('Authorization', localStorage.getItem('token').replace(/\"/g, ""));
     }
+    
     getUser() {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);

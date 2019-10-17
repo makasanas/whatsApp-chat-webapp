@@ -22,7 +22,7 @@ import { SettingsService } from './secure/settings/settings.service';
 import { ProductService } from './secure/product/product.service';
 import { SecureService } from './secure/secure.service';
 import { FaqsService } from './secure/faqs/faqs.service';
-
+import { SetupService } from './secure/setup/setup.service';
 
 
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -43,6 +43,7 @@ import { PublicComponent } from './public/public.component';
 import { SecureComponent } from './secure/secure.component';
 import { ProductComponent } from './secure/product/product.component';
 import { FaqsComponent } from './secure/faqs/faqs.component';
+import { SetupComponent } from './secure/setup/setup.component';
 
 
 let config = new AuthServiceConfig([
@@ -70,7 +71,8 @@ export function provideConfig() {
     PublicComponent,
     SecureComponent,
     ProductComponent,
-    FaqsComponent
+    FaqsComponent,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +96,7 @@ export function provideConfig() {
     ProductService,
     SecureService,
     FaqsService,
+    SetupService,
     BothAuthGuard,
     {
       provide: AuthServiceConfig,

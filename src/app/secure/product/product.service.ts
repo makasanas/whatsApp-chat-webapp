@@ -27,5 +27,28 @@ export class ProductService {
     return this.http.post(environment.apiUrl + 'queue/add',  data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
+  create(data){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(environment.apiUrl + 'product',  data, { headers: headers }).pipe(map((response: any) => response.json()));
+  }
 
+
+  productStatuses(data){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(environment.apiUrl + 'productstatuses', data, { headers: headers }).pipe(map((response: any) => response.json()));
+  }
+
+  accountStatuses(data){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(environment.apiUrl + 'accountstatuses', data, { headers: headers }).pipe(map((response: any) => response.json()));
+  }
+
+  singleProductStatuses(productId){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(environment.apiUrl + 'productstatuses/'+productId , { headers: headers }).pipe(map((response: any) => response.json()));
+  }
 }
