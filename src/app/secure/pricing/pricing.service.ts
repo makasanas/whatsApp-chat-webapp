@@ -31,4 +31,10 @@ export class PricingService {
         this.createAuthorizationHeader(headers);
         return this.http.delete(environment.apiUrl + 'recurring/plan/deactive', { headers: headers }).pipe(map((response: any) => response.json()));
     }
+
+    getProductCount() {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(environment.apiUrl + 'getproductcount', { headers: headers }).pipe(map((response: any) => response.json()));
+    }
 }

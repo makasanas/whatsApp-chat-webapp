@@ -176,6 +176,7 @@ body {
   font-family: 'poppins';
   margin: 0px;
   font-weight: 100;
+  font-size: 16px;
   // height: 100vh;
   // overflow: hidden;
 }
@@ -209,6 +210,7 @@ button {
   cursor: pointer;
   text-align: center;
   display: inline-block;
+  font-size: 16px;
   &:hover {
     background-color: $brand-hover-color;
   }
@@ -222,6 +224,7 @@ button {
   cursor: pointer;
   text-align: center;
   display: inline-block;
+  font-size: 16px;
   &:hover {
     background-color: $brand-hover-color;
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PricingService } from './pricing.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { SecureService } from "./../secure.service";
 
 @Component({
   selector: 'app-pricing',
@@ -17,15 +17,51 @@ export class PricingComponent implements OnInit {
     recurring_application_charge: {
     }
   };
+  public user: any;
 
-  constructor(private pricingService: PricingService, private router: Router, ) { }
+  constructor(private pricingService: PricingService, private secureService: SecureService, private router: Router, ) { }
 
   ngOnInit() {
-    this.getPlan();
+    this.user = this.secureService.getUser();
+    this.checkPlan();
   }
+
+  checkPlan() {
+    this.loading = true;
+    console.log(this.user);
+    if (this.user.recurringPlanType === 'Free') {
+      this.pricingService.getProductCount().subscribe((res) => {
+        console.log(res.data.count);
+        let count = res.data.count;
+        let plan: any = {}
+
+        if (count < 1000) {
+          plan['name'] = "Basic";
+          plan['price'] = 4.99;
+        } else if (count > 1000 && count < 2000) {
+          plan['name'] = "Silver";
+          plan['price'] = 9.99;
+        } else if (count > 2000 && count < 10000) {
+          plan['name'] = "Gold";
+          plan['price'] = 14.99;
+        } else {
+          plan['name'] = "Platinum";
+          plan['price'] = 19.99;
+        }
+
+        this.acceptPlan(plan.name, plan.price);
+      }, err => {
+        // console.log(err);
+      });
+    } else {
+      this.getPlan();
+    }
+  }
+
   getPlan() {
     this.loading = true;
     this.pricingService.getPlan().subscribe((res) => {
+      console.log(res.data);
       this.loading = false;
       this.planName = res.data.planName;
     }, err => {
@@ -41,11 +77,7 @@ export class PricingComponent implements OnInit {
     } else {
       this.recurringCharge.recurring_application_charge.test = true;
     }
-    // console.log(this.recurringCharge.recurring_application_charge.test);
     this.pricingService.acceptPlan(this.recurringCharge).subscribe((res) => {
-      // window.location.href = 'res.data.recurring_application_charge.confirmation_url';
-      // console.log(res)
-
       var installUrl = res.data.recurring_application_charge.confirmation_url;
       document.location.href = installUrl;
     }, err => {

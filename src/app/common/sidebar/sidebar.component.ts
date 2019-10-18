@@ -23,9 +23,11 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.getUser()
   }
+  
   menuOpen() {
     this.ismenuOpen = !this.ismenuOpen;
   }
+
   openPopup(status) {
     this.isPopupOpen = status;
   }

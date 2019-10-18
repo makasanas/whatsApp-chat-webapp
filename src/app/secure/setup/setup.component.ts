@@ -1,6 +1,7 @@
 import { Component, OnInit, Query } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SetupService } from './setup.service';
+import { SecureService } from "./../secure.service";
 
 
 @Component({
@@ -13,31 +14,36 @@ export class SetupComponent implements OnInit {
   public loading = false;
   public showGoogleButton = false;
   public merchantId;
+  public user;
 
-  constructor(private route: ActivatedRoute, private setupService: SetupService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private secureService: SecureService, private setupService: SetupService, private router: Router) { }
 
   ngOnInit() {
-    this.getUser();
+    this.user = this.secureService.getUser();
+
+    this.checkToken();
   }
 
-  getUser() {
-    this.setupService.getUser().subscribe((res) => {
-      if (!res.data.access_token || !res.data.refresh_token || !res.data.merchantId) {
-        this.showGoogleButton = true;
-        this.checkCode();
-      }
-    }, err => {
-    });
+  checkToken() {
+    if (!this.user.refresh_token || !this.user.merchantId) {
+      this.showGoogleButton = true;
+      this.loading = false;
+      this.checkCode();
+    } else {
+      this.showGoogleButton = false;
+      this.loading = false;
+    }
   }
 
   checkCode() {
+    console.log(this.showGoogleButton);
     this.route.queryParams.subscribe(params => {
       if (params['code']) {
         let query = 'code=' + params['code'];
         query += '&redirect_uri=' + location.origin + location.pathname;
         this.loading = true;
         this.setupService.generateaAuthToken(query).subscribe((res) => {
-          console.log(res.data);
+          this.secureService.setUser(res.data);
           this.showGoogleButton = false;
           this.loading = false;
         }, err => {
@@ -49,17 +55,17 @@ export class SetupComponent implements OnInit {
     })
   }
 
-  setMerchantId() {
-    console.log(this.merchantId);
-    let data = {
-      merchantId: this.merchantId
-    }
-    this.setupService.setMerchantId(data).subscribe((res) => {
-      console.log(res.data);
-      this.showGoogleButton = false;
-    }, err => {
-    });
-  }
+  // setMerchantId() {
+  //   console.log(this.merchantId);
+  //   let data = {
+  //     merchantId: this.merchantId
+  //   }
+  //   this.setupService.setMerchantId(data).subscribe((res) => {
+  //     console.log(res.data);
+  //     this.showGoogleButton = false;
+  //   }, err => {
+  //   });
+  // }
 
   signInWithGoogle() {
     let scope = 'https://www.googleapis.com/auth/content';

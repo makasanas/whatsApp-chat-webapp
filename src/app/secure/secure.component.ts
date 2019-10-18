@@ -26,10 +26,10 @@ export class SecureComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
-  fetchCollection(){
+  fetchCollection() {
     this.secureService.fetchCollection().subscribe((res) => {
       this.secureService.setCollection(res.data.collections);
     }, err => {
@@ -37,12 +37,25 @@ export class SecureComponent implements OnInit {
     });
   }
 
-  getUser(){
+  getUser() {
     this.secureService.fetchUser().subscribe((res) => {
       this.secureService.setUser(res.data);
       this.fetchUser = true;
+      if (!this.router.url.includes('activeplan')) {
+        if (res.data.recurringPlanType === 'Free') {
+          this.router.navigate(['/pricing']);
+        } else if (!res.data.refresh_token || !res.data.merchantId) {
+          if (!this.router.url.includes('setup')) {
+            this.router.navigate(['/setup']);
+          }
+        }
+      }
     }, err => {
       console.log(err);
     });
+  }
+
+  setUser() {
+
   }
 }

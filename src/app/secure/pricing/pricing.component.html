@@ -3,26 +3,23 @@
     <app-loading></app-loading>
   </div>
   <div class="pricing" *ngIf="!loading">
-    <div [ngClass]="planName == 'Free' ? 'pricing-card active' : 'pricing-card'">
+    <div [ngClass]="planName == 'Basic' ? 'pricing-card active' : 'pricing-card'">
       <div class="pricing-heading">
         <h2>Basic</h2>
       </div>
       <div class="pricing-info">
         <label class="pricing-lable">
-          Free
+          $4.99<span>/Month</span>
         </label>
         <div class="pricing-features-list">
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>5 Product Setup</p>
+            <p>7-day free trial</p>
           </div>
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>Unlimited Bot Chat</p>
+            <p>UP TO 1000 PRODUCTS</p>
           </div>
-        </div>
-        <div class="pricing-desc">
-          <p>Free and demo plan for new Customer</p>
         </div>
         <div class="pricing-btn">
           <!-- <button *ngIf="planName != 'Free'" (click)="acceptPlan('Free' , '100')">Get Started</button>
@@ -36,24 +33,22 @@
       </div>
       <div class="pricing-info">
         <label class="pricing-lable">
-          $20<span>/Month</span>
+          $9.99<span>/Month</span>
         </label>
         <div class="pricing-features-list">
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>50 Product Setup</p>
+            <p>7-day free trial</p>
           </div>
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>Unlimited Bot Chat</p>
+            <p> 1000-2000 PRODUCTS</p>
           </div>
-        </div>
-        <div class="pricing-desc">
-          <p>Best Plan for Small enterprise and limited Product range.</p>
+
         </div>
         <div class="pricing-btn">
-          <button *ngIf="planName != 'Silver'" (click)="acceptPlan('Silver' , '20')">Upgrade</button>
-          <button class="active-btn" *ngIf="planName == 'Silver'" (click)="activeBasicPlan();">Deactive Plan</button>
+          <!-- <button *ngIf="planName != 'Silver'" (click)="acceptPlan('Silver' , '20')">Upgrade</button>
+          <button class="active-btn" *ngIf="planName == 'Silver'" (click)="activeBasicPlan();">Deactive Plan</button> -->
         </div>
       </div>
     </div>
@@ -63,25 +58,21 @@
       </div>
       <div class="pricing-info">
         <label class="pricing-lable">
-          $40<span>/Month</span>
+          $14.99<span>/Month</span>
         </label>
         <div class="pricing-features-list">
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>100 Product Setup</p>
+            <p>7-day free trial</p>
           </div>
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>Unlimited Bot Chat</p>
+            <p> 2000-10000 PRODUCTS</p>
           </div>
         </div>
-        <div class="pricing-desc">
-          <p>Recommened for Campanies with large product range.</p>
-        </div>
-
         <div class="pricing-btn">
-          <button *ngIf="planName != 'Gold'" (click)="acceptPlan('Gold' , '40')">Upgrade</button>
-          <button class="active-btn" *ngIf="planName == 'Gold'" (click)="activeBasicPlan();">Deactive Plan</button>
+          <!-- <button *ngIf="planName != 'Gold'" (click)="acceptPlan('Gold' , '40')">Upgrade</button>
+          <button class="active-btn" *ngIf="planName == 'Gold'" (click)="activeBasicPlan();">Deactive Plan</button> -->
         </div>
       </div>
     </div>
@@ -91,25 +82,21 @@
       </div>
       <div class="pricing-info">
         <label class="pricing-lable">
-          $100<span>/Month</span>
+          $19.99<span>/Month</span>
         </label>
         <div class="pricing-features-list">
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>250 Product Setup</p>
+            <p>7-day free trial</p>
           </div>
           <div class="feature">
             <img src="assets/rightmark.png">
-            <p>Unlimited Bot Chat</p>
+            <p> 10000-20000 PRODUCTS</p>
           </div>
         </div>
-        <div class="pricing-desc">
-          <p>Enjoy our unlimited bot Service for your all products. </p>
-        </div>
-
         <div class="pricing-btn">
-          <button *ngIf="planName != 'Platinum'" (click)="acceptPlan('Platinum' , '100')">Upgrade</button>
-          <button class="active-btn" *ngIf="planName == 'Platinum'" (click)="activeBasicPlan();">Deactive Plan</button>
+          <!-- <button *ngIf="planName != 'Platinum'" (click)="acceptPlan('Platinum' , '100')">Upgrade</button>
+          <button class="active-btn" *ngIf="planName == 'Platinum'" (click)="activeBasicPlan();">Deactive Plan</button> -->
         </div>
       </div>
     </div>

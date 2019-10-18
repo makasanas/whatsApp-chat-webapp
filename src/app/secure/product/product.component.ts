@@ -54,10 +54,11 @@ export class ProductComponent implements OnInit {
 	public productInfo = {
 		totalProduct: 0,
 		submitted: 0,
-		approved: 0,
-		Penning: 0,
-		Disapproved: 0
+		active: 0,
+		pending: 0,
+		disapproved: 0
 	}
+
 	public pageOffset = this.page.offset;
 	public allSelected: boolean = false;
 	public defaultValue;
@@ -143,9 +144,6 @@ export class ProductComponent implements OnInit {
 		this.commonOption.controls['targetCountry'].setValue(this.user.country_code);
 		this.commonOption.controls['currency'].setValue(this.user.currency);
 		this.commonOption.controls['contentLanguage'].setValue(this.user.language);
-		// this.getCredit();
-
-		console.log(this.user);
 
 		this.accountStatuses();
 	}
@@ -164,10 +162,12 @@ export class ProductComponent implements OnInit {
 		}
 
 		this.productService.accountStatuses(data).subscribe((res) => {
+			console.log(res.data.entries[0].accountStatus.products);
 			if(res.data.entries[0].accountStatus.products){
 				let active = parseInt(res.data.entries[0].accountStatus.products[0].statistics.active);
 				let disapproved = parseInt(res.data.entries[0].accountStatus.products[0].statistics.disapproved);
 				let pending = parseInt(res.data.entries[0].accountStatus.products[0].statistics.pending);
+				console.log(active);
 				this.productInfo['submitted'] = active + disapproved + pending;
 				this.productInfo['active'] = active;
 				this.productInfo['disapproved'] = disapproved;
@@ -190,6 +190,7 @@ export class ProductComponent implements OnInit {
 			this.selected = [];
 			this.allSelected = false;
 			this.productInfo.totalProduct = res.data.count;
+			console.log(this.productInfo);
 			this.getProductStatus(this.user, this.productlist);
 
 		}, err => {
@@ -224,14 +225,6 @@ export class ProductComponent implements OnInit {
 			console.log(err);
 		});
 	}
-
-
-	// getCredit() {
-	// 	this.productService.getCredit().subscribe((res) => {
-	// 		//this.credit = res.data.credit;
-	// 	}, err => {
-	// 	});
-	// }
 
 	getRowClass = (row) => {
 		if (row.added || row.queue) {
