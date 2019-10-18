@@ -61,6 +61,7 @@ export class ProductComponent implements OnInit {
 
 	public pageOffset = this.page.offset;
 	public allSelected: boolean = false;
+	public searchLoading: false;
 	public defaultValue;
 	public commonOption;
 	public country;
