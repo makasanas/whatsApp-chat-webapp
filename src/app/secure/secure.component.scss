@@ -25,7 +25,6 @@
 
 
 .mobile-logo {
-    padding: 15px;
     width: 100%;
     display: none;
     position: fixed;
@@ -40,5 +39,6 @@
 
     img {
         margin: auto;
+        max-width: 56px;
     }
 }

@@ -1,6 +1,11 @@
 .header {
     text-align: center;
     padding: 20px;
+    a{
+        display: block;
+        max-width: 60px;
+        margin: 0px auto;
+    }
 }
 
 .hero {

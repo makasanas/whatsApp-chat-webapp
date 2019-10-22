@@ -15,59 +15,28 @@ export class FaqsComponent implements OnInit {
 
   public faqs= [
     {
-      title:"Is this App has trial days to access?",
-      ans: "Yes, This app provides you to give free 5 credit to generate meta description.",
+      title:"How can I link my account with Google Merchant Center?",
+      ans: "It's very simple. Just sign in to your Google Merchant Center, then go to Settings > Linked Accounts > Google My Business.Link a Google My Business account to this Merchant Center account. A request will be sent to Google My Business account manager. They can approve the request from their Google My Business portal.",
       open:false
     },
     {
-      title:"How to buy Credits?",
-      ans: "You can easily buy credits from pricing as per your requirements.",
+      title:"Is it necessary to connect a Google Ads account?",
+      ans: "No, It's not necessary. But We suggest connecting for the Shopping campaign and Your product advertising.",
       open:false
     },
     {
-      title:"How to generate meta description for set?",
-      ans: "For generating meta description you just need to click on generate button, The AI will generate it very shortly.",
+      title:"This app have free plan?",
+      ans: "Shopping Feed For Google has 7 days of the free trial. So you can connect your store with Google Merchant and install our app to your Shopify store to test.",
       open:false
     },
     {
-      title:"Can I generate meta description for multiple products at the same time?",
-      ans: "Yes, you can select multiple product and hit the add in queue button it will generate meta description for the selected products.",
+      title:"Why my product is not updated in Google Shopping?",
+      ans: "Google Content API for Shopping will take time to update. Google suggested 2 hours but we suggest it updates less than a half-hour.",
       open:false
     },
     {
-      title:" How much time it takes to generate meta description for multiple products?",
-      ans: "Generally the AI should takes approx 1s to generate the meta for single products, So it will depends on how much products you have selected.",
-      open:false
-    },
-    {
-      title:"How do I know my current credit and the remaining products to generate meta description?",
-      ans: "You can see the current status of your credit and remaining products in the product list menu of an app.",
-      open:false
-    },
-    {
-      title:"How do I find specific products?",
-      ans: "There are many filters available to find products like collection wise, Date wise and also you can directly find it by its name.",
-      open:false
-    },
-    {
-      title:"What is the charge for installing this app?",
-      ans: "The installation of this app is completely free and it will also give you 5 credit on installation for experience the future.",
-      open:false
-    },
-    {
-      title:"Do you offer live chat support?",
-      ans: "No, We do not have offer live chat support but our support team will be solve your any query within just 24 hours.",
-      open:false
-    },
-    {
-      title:"How do I remove the app?",
-      ans: "You can uninstall the app from your shoplift store admin just by clicking on trash icon on the app list page.",
-      open:false
-    },
-
-    {
-      title:"how can I contact the support?",
-      ans: "You can easily contact with us on the provided contact email 24x7 and the support team will reach you ASAP.",
+      title:"Can I Submit bulk Product?",
+      ans: "Yes, you can select multiple products and hit the add-in queue button and Submit with common option.",
       open:false
     }
   ];

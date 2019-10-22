@@ -109,62 +109,6 @@ $brand-hover-color: #276996;
     }
 }
 
-.popup{
-    position: fixed;
-    top: 0px;
-    left: 300px;
-    height: 100%;
-    background: #000000b0;
-    width: calc(100% - 300px);
-    max-width: initial;
-    z-index: 100;
-    display: none;
-    .content{
-        width: 80%;
-        display: block;
-        background: #fff;
-        height: 80%;
-        position: absolute;
-        top: 10%;
-        left: 10%;
-        overflow: auto;
-        .header{
-            padding: 15px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            h1{
-                font-size: 16px;
-                font-weight: bold;
-            }
-            .close{
-                cursor: pointer;
-                width: 24px;
-                height: 24px;
-                svg{
-                    width: 24px;
-                    height: 24px;
-                }
-            }
-        }
-        .detail{
-            padding: 15px;
-            h1{
-                margin-bottom: 0px;
-                a{
-                    color:$brand-color;
-                    &:hover{
-                        color: $brand-hover-color;
-                    }
-                }
-            }
-        }
-    }
-    &.active{
-        display: block;
-    }
-}
 
 .form .form-field{
     label{
@@ -206,3 +150,33 @@ $brand-hover-color: #276996;
     }
   }
   
+  .btns{
+      .btn{
+          margin-right: 10px;
+          &:last-child{
+              margin-right: 0px;
+          }
+      }
+  }
+
+  .secondary-btn{
+      button{
+          margin-bottom: 5px;
+          &:last-child{
+              margin-bottom: 0px;
+          }
+      }
+  }
+
+  .form .form-field textarea{
+      height: 100px;
+  }
+
+.table-responsive{
+    a{
+        color: $brand-color;
+        &:hover{
+            color: $brand-hover-color;
+        }
+    }
+}

@@ -12,7 +12,7 @@ export class BothAuthGuard implements CanActivate {
             this.router.navigate(['/install']);
             return false;
         } else {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/product']);
             return false;
         }
     }

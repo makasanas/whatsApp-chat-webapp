@@ -5,7 +5,6 @@ import { ActivePlanComponent } from './active-plan/active-plan.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
 import { FaqsComponent } from './faqs/faqs.component';
-import { SetupComponent } from './setup/setup.component';
 
 export const SECURE_ROUTES: Routes = [
     {
@@ -32,10 +31,6 @@ export const SECURE_ROUTES: Routes = [
     {
         path: 'faq',
         component: FaqsComponent
-    },
-    {
-        path: 'setup',
-        component: SetupComponent
     }
 ];
 

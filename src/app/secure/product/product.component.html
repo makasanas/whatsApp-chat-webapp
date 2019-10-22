@@ -3,19 +3,11 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="!loading">
-    <div class="meta-container">
-      <div class="item">Total Product : {{productInfo.totalProduct}}</div>
-      <div class="item">Submitted Product : {{productInfo.submitted}}</div>
-      <div class="item">Approved Product : {{productInfo.active}}</div>
-      <div class="item">Penning Product : {{productInfo.pending}}</div>
-      <div class="item">Disapproved Product : {{productInfo.disapproved}}</div>
-    </div>
-
-    <div class="popup" [ngClass]="commonPopup ? 'active' : ''">
+    <div class="popup ">
       <div class="content">
         <div class="header">
-          <h1>Select common Option</h1>
-          <div class="close" (click)="closeCommonPopup()">
+          <h1>popup</h1>
+          <div class="close">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
               x="0px" y="0px" width="357px" height="357px" viewBox="0 0 357 357"
               style="enable-background:new 0 0 357 357;" xml:space="preserve">
@@ -28,247 +20,10 @@
             </svg>
           </div>
         </div>
-        <div class="detail">
-          <form class="form-group form" [formGroup]="commonOption">
-            <div class="form-field">
-              <label>Identifier Exists</label>
-              <select formControlName="identifierExists">
-                <option value="false">No</option>
-                <option value="ture">Yes</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('identifierExists').dirty || commonOption.get('identifierExists').touched) && commonOption.get('identifierExists').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.identifierExists.errors.required">identifier Exists Is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Is Bundle </label>
-              <select formControlName="isBundle">
-                <option value="false">No</option>
-                <option value="ture">Yes</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('isBundle').dirty || commonOption.get('isBundle').touched) && commonOption.get('isBundle').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.isBundle.errors.required">Is bundle is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Target Country </label>
-              <select formControlName="targetCountry">
-                <option *ngFor="let item of country; let i = index" [value]="item.code">{{item.name}}</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('targetCountry').dirty || commonOption.get('targetCountry').touched) && commonOption.get('targetCountry').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.targetCountry.errors.required">Target Country is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Content Language</label>
-              <input type="text" formControlName="contentLanguage">
-              <div
-                *ngIf="(commonOption.get('contentLanguage').dirty || commonOption.get('contentLanguage').touched) && commonOption.get('contentLanguage').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.contentLanguage.errors.required">Content Language
-                  required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Currency </label>
-              <input type="text" formControlName="currency">
-              <div
-                *ngIf="(commonOption.get('currency').dirty || commonOption.get('currency').touched) && commonOption.get('currency').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.currency.errors.required">Currency is required</div>
-              </div>
-            </div>
-
-
-            <div class="form-field">
-              <label>Channel </label>
-              <select formControlName="channel">
-                <option value="online">online</option>
-                <option value="local">local</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('channel').dirty || commonOption.get('channel').touched) && commonOption.get('channel').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.channel.errors.required">Channel is required</div>
-              </div>
-            </div>
-
-
-            <div class="form-field">
-              <label>Adult </label>
-              <select formControlName="adult">
-                <option value="false">No</option>
-                <option value="ture">Yes</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('adult').dirty || commonOption.get('adult').touched) && commonOption.get('adult').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.adult.errors.required">Adult is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Age Group </label>
-              <select formControlName="ageGroup">
-                <option value="newborn">Newborn - Up to 3 months old</option>
-                <option value="infant">infant - Between 3-12 months old</option>
-                <option value="toddler">toddler - Between 1-5 years old</option>
-                <option value="kids">kids - Between 5-13 years old</option>
-                <option value="adult">adult - Typically teens or older</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('ageGroup').dirty || commonOption.get('ageGroup').touched) && commonOption.get('ageGroup').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.ageGroup.errors.required">Age Group is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Availability </label>
-              <select formControlName="availability">
-                <option value="in stock">in stock</option>
-                <option value="out of stock">out of stock</option>
-                <option value="preorder">preorder</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('availability').dirty || commonOption.get('availability').touched) && commonOption.get('availability').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.availability.errors.required">Availability is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Condition </label>
-              <select formControlName="condition">
-                <option value="new">new</option>
-                <option value="refurbished">refurbished</option>
-                <option value="used">used</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('condition').dirty || commonOption.get('condition').touched) && commonOption.get('condition').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.condition.errors.required">Condition is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Gender</label>
-              <select formControlName="gender">
-                <option value="male">male</option>
-                <option value="female">female</option>
-                <option value="unisex">unisex</option>
-              </select>
-              <div
-                *ngIf="(commonOption.get('gender').dirty || commonOption.get('gender').touched) && commonOption.get('gender').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.gender.errors.required">Gender is required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Google product category. <a href="https://support.google.com/merchants/answer/6324436?hl=en"
-                  target="_blank"> Click Here</a></label>
-              <input type="text" formControlName="googleProductCategory">
-              <div
-                *ngIf="(commonOption.get('googleProductCategory').dirty || commonOption.get('googleProductCategory').touched) && commonOption.get('googleProductCategory').errors"
-                class="invalid">
-                <div *ngIf="commonOption.controls.googleProductCategory.errors.required">Google Product Category is
-                  required</div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <div class="btn" (click)="submitForm();">Submit</div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="popup" [ngClass]="disapprovedPopup ? 'active' : ''">
-      <div class="content">
-        <div class="header">
-          <h1>Why Product is Disapproved</h1>
-          <div class="close" (click)="closedisapprovedPopup()">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px" y="0px" width="357px" height="357px" viewBox="0 0 357 357"
-              style="enable-background:new 0 0 357 357;" xml:space="preserve">
-              <g>
-                <g id="close">
-                  <polygon points="357,35.7 321.3,0 178.5,142.8 35.7,0 0,35.7 142.8,178.5 0,321.3 35.7,357 178.5,214.2 321.3,357 357,321.3 
-                   214.2,178.5" />
-                </g>
-              </g>
-            </svg>
-          </div>
-        </div>
-        <div class="loading-grid" *ngIf="disapprovedProductLoading">
+        <div class="loading-grid">
           <app-loading></app-loading>
         </div>
-        <div class="detail" *ngIf="!disapprovedProductLoading">
-          <div class="productDetail">
-            <div class="info">
-              <h1> <a [href]="disapprovedProduct.link" target="_blank">
-                  {{disapprovedProduct.title}}</a></h1>
-            </div>
-          </div>
-          <div class="data-table">
-            <ngx-datatable class="material" [rows]="disapprovedProduct.itemLevelIssues" [headerHeight]="50"
-              [footerHeight]="50" [rowHeight]="'auto'" [columnMode]="'force'" [limit]="itemLevelIssues.limit"
-              [offset]="itemLevelIssues.offset" [count]="itemLevelIssues.count">
-              <ngx-datatable-column [resizeable]="false" [canAutoResize]="false">
-                <ng-template let-column="column" ngx-datatable-header-template>
-                  Description
-                </ng-template>
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row.attributeName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column [resizeable]="false" [width]="250">
-                <ng-template let-column="column" ngx-datatable-header-template>
-                  Detail
-                </ng-template>
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row.detail}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column [resizeable]="false">
-                <ng-template let-column="column" ngx-datatable-header-template>
-                  Destination
-                </ng-template>
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row.destination}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column [resizeable]="false">
-                <ng-template let-column="column" ngx-datatable-header-template>
-                  Servability
-                </ng-template>
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row.servability}}
-                </ng-template>
-              </ngx-datatable-column>
-            </ngx-datatable>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="msg-popup" *ngIf="exceedLimit">
-      <div class="msg-popup-msg">
-        <p>Your current Credit {{credit}}. You need to buy more credit for to run this action</p>
-        <div class="popup-footer">
-          <button class="popup-btn active" [routerLink]="['/pricing']">Buy Credit</button>
-          <button class="popup-btn" (click)="close()">Cancle</button>
+        <div class="detail">
         </div>
       </div>
     </div>
@@ -336,7 +91,7 @@
 
       <div class="search-content">
         <div class="form-content">
-          <input placeholder="Serach Product" formControlName="title" />
+          <input placeholder="Search Product with full title only work" formControlName="title" />
           <button class="btn" (click)="productlist=[]; filterProduct() ">
             <div *ngIf="!searchLoading">
               Search
@@ -347,18 +102,22 @@
           </button>
         </div>
       </div>
-      
+
     </div>
 
     <div class="multi-select" *ngIf="selected.length > 0">
       <p>Total {{selected.length}} Product selected</p>
-      <div class="btn" (click)="addInQueue()">Add in Queue</div>
+      <div class="btns">
+        <div class="btn" (click)="submitInBulk()">Submit in Bulk</div>
+        <div class="btn" (click)="updateInBulk()">Edit in Bulk</div>
+        <div class="btn" (click)="deleteInBulk(selected)">Delete in Bulk</div>
+      </div>
     </div>
     <div class="row-per-page">
       <p>Row per page</p>
       <select name="ipp" id="ipp" (change)="pageLimit()" [(ngModel)]="page.limit">
-        <option [value]="100">Items per page</option>
-        <option [value]="10">10</option>
+        <option>Items per page</option>
+        <option [value]="2">10</option>
         <option [value]="25">25</option>
         <option [value]="50">50</option>
         <option [value]="100">100</option>
@@ -373,12 +132,10 @@
         <ngx-datatable-column [width]="70" [sortable]="false" [canAutoResize]="false" [draggable]="false"
           [resizeable]="false">
           <ng-template ngx-datatable-header-template>
-            <input type="checkbox" [checked]="allSelected" (change)="selectAll($event)" />
+            <input type="checkbox" [checked]="allSelected" (change)="selectAll($event.currentTarget.checked)" />
           </ng-template>
           <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
-            <p *ngIf="row.status && row.status.errors">
-              <input type="checkbox" [checked]="row.isSelected" (change)="onSelect($event, row, rowIndex)" />
-            </p>
+            <input type="checkbox" [checked]="row.isSelected" (change)="onSelect($event, row, rowIndex)" />
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column [width]="70" [canAutoResize]="false" [resizeable]="false">
@@ -393,7 +150,7 @@
             Title
           </ng-template>
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.title}}
+            <a [href]="'https://'+shopUrl+'/products/'+row.handle" target="_blank">{{row.title}}</a>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column [resizeable]="false">
@@ -422,15 +179,30 @@
             Action
           </ng-template>
           <ng-template let-row="row" ngx-datatable-cell-template>
-            <div class="secondary-btn" *ngIf="row.status && row.status.errors">
-              <button (click)="generate(row)">Submit</button>
-            </div>
-            <div class="secondary-btn"
-              *ngIf="row.status && row.status.productStatus && row.status.productStatus.destinationStatuses[0].status == 'disapproved'">
-              <button (click)="fixErrors(row)">Fix Errors</button>
+            <div class="secondary-btn" *ngIf="row.status">
+              <button *ngIf="row.status.errors" (click)="singleAdd(row);bulkType='Submit'">Submit</button>
+              <button *ngIf="!row.status.errors" (click)="singleAdd(row);fixErrors(row);bulkType='Update'">Edit</button>
+              <button *ngIf="!row.status.errors" (click)="deleteSingle(row)">Delete</button>
             </div>
           </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+            let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-isVisible="isVisible">
+            <div class="page-count">
+              <span *ngIf="selectedMessage">
+                Total {{selectedCount.toLocaleString()}} {{selectedMessage}} /
+              </span>
+              Total {{rowCount.toLocaleString()}} {{totalMessage}}
+            </div>
+            <div class="pagination">
+              <p [ngClass]="!pagination.previous ? 'disabled' : '' "
+                (click)="pagination.previous ? getProductByLink(pagination.previous) : false">Previous</p>
+              <p [ngClass]="!pagination.next ? 'disabled' :''"
+                (click)="pagination.next ? getProductByLink(pagination.next) : false">Next</p>
+            </div>
+          </ng-template>
+        </ngx-datatable-footer>
       </ngx-datatable>
     </div>
   </div>

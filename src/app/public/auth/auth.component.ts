@@ -35,7 +35,7 @@ export class AuthComponent implements OnInit {
 		this.authService.getAccessToken(query).subscribe((res) => {
 			localStorage.setItem("token", res.data.token);
 			localStorage.setItem("shopUrl", res.data.shopUrl);
-			this.router.navigate(['/dashboard']);
+			this.router.navigate(['/product']);
 		}, err => {
 			this.router.navigate(['/install']);
 		});

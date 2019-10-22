@@ -29,7 +29,7 @@ export class PricingComponent implements OnInit {
   checkPlan() {
     this.loading = true;
     console.log(this.user);
-    if (this.user.recurringPlanType === 'Free') {
+    if (!this.user.recurringPlanType || this.user.recurringPlanType === 'Free') {
       this.pricingService.getProductCount().subscribe((res) => {
         console.log(res.data.count);
         let count = res.data.count;
@@ -71,6 +71,7 @@ export class PricingComponent implements OnInit {
   acceptPlan(planName, planPrice) {
     this.recurringCharge.recurring_application_charge.name = planName;
     this.recurringCharge.recurring_application_charge.price = planPrice;
+    this.recurringCharge.recurring_application_charge.trial_days = 7;
     this.recurringCharge.recurring_application_charge.return_url = window.location.origin + "/app/activeplan";
     if (localStorage.getItem('shopUrl') == 'dev-srore.myshopify.com' || localStorage.getItem('shopUrl') == 'webrex-test-store.myshopify.com') {
       this.recurringCharge.recurring_application_charge.test = true;

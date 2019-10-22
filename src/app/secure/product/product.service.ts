@@ -18,37 +18,57 @@ export class ProductService {
   getProduct(query, page) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.get(environment.apiUrl + 'products?'+query+'&limit='+page.limit+'&page='+(page.offset+1), { headers: headers }).pipe(map((response: any) => response.json()));
+    return this.http.get(environment.apiUrl + 'products?' + query + '&limit=' + page.limit, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  addInQueue(data){
+  getProductByLink(link) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.post(environment.apiUrl + 'queue/add',  data, { headers: headers }).pipe(map((response: any) => response.json()));
+    if (link.includes("newquery")) {
+      return this.http.get(environment.apiUrl + 'products?' + link, { headers: headers }).pipe(map((response: any) => response.json()));
+    } else {
+      link = encodeURIComponent(link)
+      return this.http.get(environment.apiUrl + 'products?link=' + link, { headers: headers }).pipe(map((response: any) => response.json()));
+
+    }
   }
 
-  create(data){
+  addInQueue(data) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.post(environment.apiUrl + 'product',  data, { headers: headers }).pipe(map((response: any) => response.json()));
+    return this.http.post(environment.apiUrl + 'queue/add', data, { headers: headers }).pipe(map((response: any) => response.json()));
+  }
+
+  create(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(environment.apiUrl + 'product', data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
 
-  productStatuses(data){
+  productStatuses(data) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
     return this.http.post(environment.apiUrl + 'productstatuses', data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  accountStatuses(data){
+  accountStatuses(data) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
     return this.http.post(environment.apiUrl + 'accountstatuses', data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  singleProductStatuses(productId){
+  singleProductStatuses(productId) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.get(environment.apiUrl + 'productstatuses/'+productId , { headers: headers }).pipe(map((response: any) => response.json()));
+    return this.http.get(environment.apiUrl + 'productstatuses/' + productId, { headers: headers }).pipe(map((response: any) => response.json()));
+  }
+
+
+  bulkDelete(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(environment.apiUrl + 'productdelete', data, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 }
+

@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { SidebarsService } from './sidebar.service'
+import { SecureService } from "./../../secure/secure.service";
+
 
 @Component({
   selector: 'app-sidebar',
@@ -12,9 +14,10 @@ export class SidebarComponent implements OnInit {
   public isPopupOpen: boolean = false;
   public storeName: String;
 
-  constructor(private sidebarsService: SidebarsService, private eRef: ElementRef) { }
+  constructor(private sidebarsService: SidebarsService, private secureService:SecureService, private eRef: ElementRef) { }
 
   public state = false;
+  public user:any;
 
   toggle() {
     this.state = !this.state;
@@ -37,10 +40,9 @@ export class SidebarComponent implements OnInit {
   }
 
   getUser() {
-    this.sidebarsService.getUser().subscribe((res) => {
-      this.storeName = res.data.storeName;
-    }, err => {
-    });
+    this.user = this.secureService.getUser();
+    this.storeName = this.user.storeName;
+    
   }
 
   logout() {
