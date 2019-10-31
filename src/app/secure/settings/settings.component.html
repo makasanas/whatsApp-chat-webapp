@@ -29,4 +29,15 @@
       <button (click)="deactivePlan()">Cancle Plan</button>
     </div>
   </div>
+  <div class="form">
+    <h2>Sync</h2>
+    <div class="subscription">
+      <button (click)="syncProducts()">Sync Products</button>
+      <div class="loading-grid" *ngIf="loading">
+        <label for="">Please Wait until products are synced</label>
+        <app-loading></app-loading>
+      </div>
+    </div>
+  </div>
+  
 </div>

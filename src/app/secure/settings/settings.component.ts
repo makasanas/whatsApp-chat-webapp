@@ -14,6 +14,7 @@ export class SettingsComponent implements OnInit {
   public storeName: String;
   public emailID: String;
   public phone: String;
+  public loading = false;
 
   constructor(private settingsService: SettingsService, ) { }
 
@@ -42,6 +43,19 @@ export class SettingsComponent implements OnInit {
   deactivePlan() {
     this.settingsService.deactivePlan(this.planId).subscribe((res) => {
       this.getPlan()
+    }, err => {
+      // console.log(err);
+    });
+  }
+
+  syncProducts(){
+    this.loading = true;
+    this.settingsService.syncProducts().subscribe((res) => {
+      console.log(res.message); 
+      if(res.message == 'OK'){
+        this.loading = false;
+      }
+      // this.getPlan()
     }, err => {
       // console.log(err);
     });
