@@ -1,9 +1,7 @@
-
 <div class="content" *ngIf="loading">
   <app-loading></app-loading>
   <p>Please wait a moment we are processing.</p>
 </div>
-
 <div *ngIf="!loading">
   <div class="header">
     <a routerLink="/">
@@ -17,19 +15,23 @@
     </div>
   </div>
   <div class="hero_form" *ngIf="!existing">
-    <p>To install Shopping feed for google through shopify</p>
-    <form [formGroup]="installForm" class="form-content">
-      <div class="input-group">
+    <form [formGroup]="installForm">
+      <div class="single-input">
         <div class="input">
-          <input placeholder="your shop url" formControlName="shopUrl" />
-        </div>
-        <div
+          <label>To install Shopping feed for google through shopify</label>
+          <div class="install-input">
+            <input placeholder="your shop url" formControlName="shopUrl" />
+            <button (click)="install()">Submit</button>
+          </div>
+          <div
           *ngIf="(installForm.get('shopUrl').dirty || installForm.get('shopUrl').touched) && installForm.get('shopUrl').errors"
           class="invalid">
           <div *ngIf="installForm.controls.shopUrl.errors.required">Shop URL is required</div>
         </div>
+        </div>
       </div>
-      <button (click)="install()">Submit</button>
     </form>
   </div>
+
+
 </div>

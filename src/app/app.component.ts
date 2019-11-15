@@ -12,20 +12,6 @@ import { Location } from "@angular/common";
 export class AppComponent {
   public route: string = '';
 
-  constructor(private router: Router, private secureService: SecureService, private location: Location) {
-    console.log(this.route)
-    console.log(location.path() != this.route )
-
-    if (this.route != location.path()) {
-      this.route = location.path();
-      console.log(this.route)
-      console.log(location.path())
-
-      // this.router.events.subscribe((event) => {
-      //   if (event instanceof NavigationStart) {
-      //     this.secureService.sendRoute(this.secureService.getUser());
-      //   }
-      // });
-    }
-  }
+  constructor(private router: Router, private secureService: SecureService, private location: Location) {}
+  
 }

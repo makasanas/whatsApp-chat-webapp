@@ -41,6 +41,7 @@ import { PublicComponent } from './public/public.component';
 import { SecureComponent } from './secure/secure.component';
 import { ProductComponent } from './secure/product/product.component';
 import { FaqsComponent } from './secure/faqs/faqs.component';
+import { ThemeComponent } from './secure/theme/theme.component';
 
 
 let config = new AuthServiceConfig([
@@ -68,7 +69,8 @@ export function provideConfig() {
     PublicComponent,
     SecureComponent,
     ProductComponent,
-    FaqsComponent
+    FaqsComponent,
+    ThemeComponent
   ],
   imports: [
     BrowserModule,

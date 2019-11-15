@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from './../../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InstallServiceService } from './install-service.service';
+import { InstallServiceService } from './install.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
