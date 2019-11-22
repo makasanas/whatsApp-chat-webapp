@@ -173,7 +173,7 @@ a {
 button, .btn {
   border-radius: 3px;
   background: $brand-color;
-  padding: 10px 20px;
+  padding: 9px 18px;
   color: white;
   cursor: pointer;
   text-align: center;
@@ -399,8 +399,8 @@ ngx-datatable {
 
 form {
   width: 100%;
-  max-width: 900px;
-  margin: 0px auto;
+  // max-width: 900px;
+  // margin: 0px auto;
   .input {
     width: 100%;
     margin-bottom: 20px;
@@ -451,6 +451,22 @@ form {
         width: 100%;
       }
     }
+    .input-with-icon{
+      position:relative;
+      input{
+        padding: 10px 10px 10px 30px;
+      }
+    }
+    .icon{
+      position:absolute;
+      height:20px;
+      width:20px;
+      top: 50%;
+      left: 5px;
+      svg{
+        vertical-align: middle;
+      }
+    }
   }
   .three-input{
     display: flex;
@@ -460,6 +476,22 @@ form {
       width: calc(33.33% - 14px);
       @media screen and (max-width: 767px) {
         width: 100%;
+      }
+    }
+    .input-with-icon{
+      position:relative;
+      input{
+        padding: 10px 10px 10px 30px;
+      }
+    }
+    .icon{
+      position:absolute;
+      height:20px;
+      width:20px;
+      top: 50%;
+      left: 5px;
+      svg{
+        vertical-align: middle;
       }
     }
   }
