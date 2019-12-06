@@ -20,7 +20,6 @@ export class SecureComponent implements OnInit {
   constructor(private router: Router, private secureService: SecureService,  private renderer: Renderer2) {
     this.secureService.checkToken().subscribe((res) => {
       this.user = true;
-      this.fetchCollection();
       this.getUser();
 
     }, err => {
@@ -33,14 +32,6 @@ export class SecureComponent implements OnInit {
 
   ngOnInit() {
 
-  }
-
-  fetchCollection() {
-    this.secureService.fetchCollection().subscribe((res) => {
-      this.secureService.setCollection(res.data.collections);
-    }, err => {
-      console.log(err);
-    });
   }
 
   getUser() {

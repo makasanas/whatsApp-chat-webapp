@@ -14,11 +14,30 @@ export class ThemeComponent implements OnInit {
     "danger":true,
     "warning":true
   }
-  public testtab:any={
-    "tab1":true,
-    "tab2":false,
-    "tab3":false
+  // public testtab:any={
+  //   "tab1":true,
+  //   "tab2":false,
+  //   "tab3":false
+  // }
+
+  public tabs = {
+    list: [
+      {
+        tab: 'home',
+        label: 'Home'
+      },
+      {
+        tab: 'products',
+        label: 'Products'
+      }
+      , {
+        tab: 'collections',
+        label: 'Collections'
+      }
+    ],
+    activeTab: 'products'
   }
+
   constructor() { }
 
   ngOnInit() {
@@ -32,9 +51,8 @@ export class ThemeComponent implements OnInit {
     this.changePopup();
   }
 
-  changetab(tabcontainer,tab){
-    Object.keys(this.testtab).forEach((element) => this.testtab[element] = false);
-    this[tabcontainer][tab]=true;
+  changeTab(tab) {
+    this.tabs.activeTab = tab;
   }
 
   closeNotification(alert,link){

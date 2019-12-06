@@ -32,7 +32,7 @@ $brand-hover-color: #276996;
   }
 
   .pricing-card {
-    width: calc(25% - 10px);
+    width: calc(20% - 10px);
     min-width: 265px;
     background: #fff;
     border: 1px solid #cdd4e3;
@@ -41,7 +41,7 @@ $brand-hover-color: #276996;
     margin: 20px 0;
     position: relative;
     transition: all 0.2s;
-    display: none;
+    text-align: center;
     @media screen and (max-width: 1365px) {
       margin-right: 20px;
       margin-top: 0px;
@@ -67,12 +67,16 @@ $brand-hover-color: #276996;
         border-bottom: 1px solid #efeeee;
       }
     }
+    &:hover {
+      box-shadow: 0px 2px 20px #00000020;
+      transform: scale(1.01);
+    }
     &.active {
       box-shadow: 0px 2px 20px #00000020;
       border-top: 3px solid $brand-color;
-      transform: scale(1.01);
-      display: block;
-
+      transform: scale(1.2);
+      z-index: 10;
+      text-align: center;
       .pricing-heading {
         background: $brand-color;
         padding: 18px 0;
@@ -87,18 +91,11 @@ $brand-hover-color: #276996;
         margin-bottom: 25px;
       }
     }
-
-    &:hover {
-      box-shadow: 0px 2px 20px #00000020;
-      transform: scale(1.01);
-    }
   }
 }
 
 .pricing-info {
   padding: 20px 15px;
-  padding-bottom: 40px;
-
   @media screen and (max-width: 1200px) {
     padding: 10px 20px;
   }
@@ -151,21 +148,8 @@ $brand-hover-color: #276996;
   }
 
   .pricing-btn {
-    position: absolute;
-    bottom: 20px;
-    width: 90%;
-    left: 5%;
-
     button {
       width: 100%;
-      background: #cdd4e3;
-      font-size: 18px;
-      color: $brand-color;
-    }
-
-    .active-btn {
-      background: $brand-color;
-      color: #fff;
     }
   }
 }

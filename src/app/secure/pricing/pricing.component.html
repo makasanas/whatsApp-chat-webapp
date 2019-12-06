@@ -2,139 +2,108 @@
   <div class="loading-grid" *ngIf="loading">
     <app-loading></app-loading>
   </div>
-  <div class="pricing" *ngIf="!loading">
-    <div [ngClass]="planName == 'Basic' ? 'pricing-card active' : 'pricing-card'">
-      <div class="pricing-heading">
-        <h2>Basic</h2>
-      </div>
-      <div class="pricing-info">
-        <label class="pricing-lable">
-          $4.99<span>/Month</span>
-        </label>
-        <div class="pricing-features-list">
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p>7-day free trial</p>
+  <div *ngIf="!loading">
+    <p>Your plan is based on your product count.</p>
+    <div class="pricing">
+      <div [ngClass]="planName == 'Basic' ? 'pricing-card active' : 'pricing-card'">
+        <div class="pricing-heading">
+          <h2>Basic</h2>
+        </div>
+        <div class="pricing-info">
+          <label class="pricing-lable">
+            $9.99<span>/Month</span>
+          </label>
+          <div class="pricing-features-list">
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p>14-day free trial</p>
+            </div>
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p>UP TO 500 PRODUCTS</p>
+            </div>
           </div>
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p>UP TO 1000 PRODUCTS</p>
+          <div class="pricing-btn">
+            <button *ngIf="planName != 'Basic' && planName != 'Silver' && planName != 'Gold' && planName != 'Platinum'"
+              (click)="acceptPlan('Basic' , 4.99)">Upgrade</button>
+            <!-- <button class="active-btn" *ngIf="planName == 'Free'" (click)="activeBasicPlan();">Deactive Plan</button> -->
           </div>
         </div>
-        <div class="pricing-btn">
-          <!-- <button *ngIf="planName != 'Free'" (click)="acceptPlan('Free' , '100')">Get Started</button>
-          <button class="active-btn" *ngIf="planName == 'Free'" (click)="activeBasicPlan();">Deactive Plan</button> -->
+      </div>
+      <div [ngClass]="planName == 'Silver' ? 'pricing-card active' : 'pricing-card'">
+        <div class="pricing-heading">
+          <h2>Silver</h2>
         </div>
-      </div>
-    </div>
-    <div [ngClass]="planName == 'Silver' ? 'pricing-card active' : 'pricing-card'">
-      <div class="pricing-heading">
-        <h2>Silver</h2>
-      </div>
-      <div class="pricing-info">
-        <label class="pricing-lable">
-          $9.99<span>/Month</span>
-        </label>
-        <div class="pricing-features-list">
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p>7-day free trial</p>
-          </div>
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p> 1000-2000 PRODUCTS</p>
-          </div>
+        <div class="pricing-info">
+          <label class="pricing-lable">
+            $19.99<span>/Month</span>
+          </label>
+          <div class="pricing-features-list">
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p>14-day free trial</p>
+            </div>
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p> 500-1000 PRODUCTS</p>
+            </div>
 
-        </div>
-        <div class="pricing-btn">
-          <!-- <button *ngIf="planName != 'Silver'" (click)="acceptPlan('Silver' , '20')">Upgrade</button>
-          <button class="active-btn" *ngIf="planName == 'Silver'" (click)="activeBasicPlan();">Deactive Plan</button> -->
-        </div>
-      </div>
-    </div>
-    <div [ngClass]="planName == 'Gold' ? 'pricing-card active' : 'pricing-card'">
-      <div class=" pricing-heading">
-        <h2>Gold</h2>
-      </div>
-      <div class="pricing-info">
-        <label class="pricing-lable">
-          $14.99<span>/Month</span>
-        </label>
-        <div class="pricing-features-list">
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p>7-day free trial</p>
           </div>
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p> 2000-10000 PRODUCTS</p>
+          <div class="pricing-btn">
+            <button *ngIf="planName != 'Silver' && planName != 'Gold' && planName != 'Platinum'"
+              (click)="acceptPlan('Silver' , 9.99)">Upgrade</button>
+            <!-- <button class="active-btn" *ngIf="planName == 'Silver'" (click)="activeBasicPlan();">Deactive Plan</button> -->
           </div>
         </div>
-        <div class="pricing-btn">
-          <!-- <button *ngIf="planName != 'Gold'" (click)="acceptPlan('Gold' , '40')">Upgrade</button>
-          <button class="active-btn" *ngIf="planName == 'Gold'" (click)="activeBasicPlan();">Deactive Plan</button> -->
+      </div>
+      <div [ngClass]="planName == 'Gold' ? 'pricing-card active' : 'pricing-card'">
+        <div class=" pricing-heading">
+          <h2>Gold</h2>
+        </div>
+        <div class="pricing-info">
+          <label class="pricing-lable">
+            $29.99<span>/Month</span>
+          </label>
+          <div class="pricing-features-list">
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p>14-day free trial</p>
+            </div>
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p> 1000-5000 PRODUCTS</p>
+            </div>
+          </div>
+          <div class="pricing-btn">
+            <button *ngIf="planName != 'Gold' && planName != 'Platinum'"
+              (click)="acceptPlan('Gold' , 14.99)">Upgrade</button>
+            <!-- <button class="active-btn" *ngIf="planName == 'Gold'" (click)="activeBasicPlan();">Deactive Plan</button> -->
+          </div>
         </div>
       </div>
-    </div>
-    <div [ngClass]="planName == 'Platinum' ? 'pricing-card active' : 'pricing-card'">
-      <div class="pricing-heading">
-        <h2>Platinum</h2>
-      </div>
-      <div class="pricing-info">
-        <label class="pricing-lable">
-          $19.99<span>/Month</span>
-        </label>
-        <div class="pricing-features-list">
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p>7-day free trial</p>
-          </div>
-          <div class="feature">
-            <img src="assets/rightmark.png">
-            <p> 10000-20000 PRODUCTS</p>
-          </div>
+      <div [ngClass]="planName == 'Platinum' ? 'pricing-card active' : 'pricing-card'">
+        <div class="pricing-heading">
+          <h2>Platinum</h2>
         </div>
-        <div class="pricing-btn">
-          <!-- <button *ngIf="planName != 'Platinum'" (click)="acceptPlan('Platinum' , '100')">Upgrade</button>
-          <button class="active-btn" *ngIf="planName == 'Platinum'" (click)="activeBasicPlan();">Deactive Plan</button> -->
+        <div class="pricing-info">
+          <label class="pricing-lable">
+            $49.99<span>/Month</span>
+          </label>
+          <div class="pricing-features-list">
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p>14-day free trial</p>
+            </div>
+            <div class="feature">
+              <img src="assets/rightmark.png">
+              <p> Unlimited</p>
+            </div>
+          </div>
+          <div class="pricing-btn">
+            <button *ngIf="planName != 'Platinum'" (click)="acceptPlan('Platinum' , 19.99)">Upgrade</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <div class="pricing-card active">
-    <div class="pricing-heading">
-      <h2>Standard</h2>
-    </div>
-    <div class="pricing-info">
-      <label class="pricing-lable">
-        $20<span>/Month</span>
-      </label>
-      <div class="custom-features-grid">
-        <img src="assets/minus.png">
-        <div class="custom-features-list">
-          <div class="custom-features">
-            <h2>50</h2>
-            <p>Product Setup</p>
-          </div>
-          <div class="custom-features">
-            <p>&</p>
-            <h2>1000</h2>
-            <p>Braggaing Bot</p>
-          </div>
-        </div>
-
-        <img src="assets/plus.png">
-      </div>
-      <div class="upgrade-btn">
-        <button>Upgrade</button>
-      </div>
-      <div class="pricing-desc">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. </p>
-      </div>
-      <div class="pricing-btn">
-        <button>Buy Now</button>
-      </div>
-    </div>
-  </div> -->

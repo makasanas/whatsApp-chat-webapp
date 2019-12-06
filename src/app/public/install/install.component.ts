@@ -21,7 +21,7 @@ export class InstallComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _inService: InstallServiceService, private router: Router) {
     this.installForm = this.formBuilder.group({
-      shopUrl: ['', Validators.required]
+      shopUrl: [environment.store, Validators.required]
     });
   }
 

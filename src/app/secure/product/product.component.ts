@@ -19,14 +19,15 @@ export class ProductComponent implements OnInit {
 	}
 	public query;
 	public collections = [];
-	public user:any = {};
-	public pagination:any = {};
+	public user: any = {};
+	public pagination: any = {};
 	public loading = false;
-	public productlist  = [];
+	public productlist = [];
 	public selected = [];
 	public allSelected = false;
 	public exceedLimit = false;
 	public shopUrl;
+	public products: any = [];
 
 	constructor(
 		private productService: ProductService,
@@ -35,7 +36,7 @@ export class ProductComponent implements OnInit {
 	) {
 
 		this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
-		
+
 		this.filters = this.formBuilder.group({
 			title: [''],
 			collection_id: [''],
@@ -48,7 +49,7 @@ export class ProductComponent implements OnInit {
 
 	pageLimit() {
 		localStorage.setItem('pageLimit', this.page.limit.toString());
-		this.query = this.serialize(this.filters.value)+"&newquery=true&limit="+this.page.limit;
+		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
 		this.getProductByLink(this.query);
 	}
 
@@ -56,15 +57,9 @@ export class ProductComponent implements OnInit {
 		this.secureService.sendRoute(this.secureService.getUser());
 		this.shopUrl = localStorage.getItem('shopUrl')
 		
-		this.collections = this.secureService.getCollection();
-		if (this.collections.length == 0) {
-			this.secureService.collections.subscribe((data) => {
-				this.collections = data;
-			});
-		}
 		this.user = this.secureService.getUser();
 
-		this.query = this.serialize(this.filters.value)+"&newquery=true&limit="+this.page.limit;
+		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
 		this.getProductByLink(this.query);
 	}
 
@@ -75,7 +70,7 @@ export class ProductComponent implements OnInit {
 			console.log(res.data);
 			this.pagination = res.data.pagination ? res.data.pagination : {};
 			this.loading = false;
-			this.page.count = res.data.count || res.data.count == 0? res.data.count : this.page.count;
+			this.page.count = res.data.count || res.data.count == 0 ? res.data.count : this.page.count;
 			this.productlist = res.data.products;
 			this.selected = [];
 			this.allSelected = false;
@@ -84,7 +79,7 @@ export class ProductComponent implements OnInit {
 		});
 	}
 
-	
+
 	getRowClass = (row) => {
 		if (row.added || row.queue) {
 			return "disable";
@@ -109,7 +104,7 @@ export class ProductComponent implements OnInit {
 		this.filters.value.created_at_min = created_at_min;
 		this.filters.value.created_at_max = created_at_max;
 
-		this.query = this.serialize(this.filters.value)+"&newquery=true&limit="+this.page.limit;
+		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
 		this.getProductByLink(this.query);
 	}
 
