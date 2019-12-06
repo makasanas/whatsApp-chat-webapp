@@ -1333,3 +1333,31 @@ blockquote {
 .img-raised {
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3);
 }
+
+.d-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.d-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.no-data {
+  padding: 40px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  span {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}

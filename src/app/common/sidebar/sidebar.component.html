@@ -16,6 +16,12 @@
         <p>Dashboard</p>
       </a>
     </li> -->
+    <li routerLinkActive="active" [routerLink]="['/theme']" (click)="openPopup(false)">
+      <a (click)="menuOpen()">
+        <img src="assets/menu-icon-verified.png">
+        <p>Theme</p>
+      </a>
+    </li>
     <li routerLinkActive="active" [routerLink]="['/product']" (click)="openPopup(false)">
       <a (click)="menuOpen()">
         <img src="assets/menu-icon-verified.png">

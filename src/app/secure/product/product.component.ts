@@ -34,87 +34,31 @@ export class ProductComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private secureService: SecureService
 	) {
-
 		this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
-
 		this.filters = this.formBuilder.group({
 			title: [''],
-			collection_id: [''],
-			created_at_min: [''],
-			created_at_max: [''],
-			published_status: [''],
-			fields: ['id,image,title,body_html,handle'],
 		});
 	}
 
-	pageLimit() {
-		localStorage.setItem('pageLimit', this.page.limit.toString());
-		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
-		this.getProductByLink(this.query);
-	}
 
 	ngOnInit() {
 		this.secureService.sendRoute(this.secureService.getUser());
 		this.shopUrl = localStorage.getItem('shopUrl')
-		
 		this.user = this.secureService.getUser();
-
-		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
-		this.getProductByLink(this.query);
+		this.getProducts();
 	}
 
-	getProductByLink(link) {
-		console.log(link);
+	getProducts() {
 		this.loading = true;
-		this.productService.getProductByLink(link).subscribe((res) => {
-			console.log(res.data);
-			this.pagination = res.data.pagination ? res.data.pagination : {};
+		this.productService.getProduct().subscribe((res) => {
 			this.loading = false;
-			this.page.count = res.data.count || res.data.count == 0 ? res.data.count : this.page.count;
-			this.productlist = res.data.products;
-			this.selected = [];
-			this.allSelected = false;
+			console.log(res.data);
+			this.products = res.data.products;
+			this.page.count = res.data.count;
+			console.log(this.products);
 		}, err => {
-			console.log(err);
+			this.loading = false;
 		});
-	}
-
-
-	getRowClass = (row) => {
-		if (row.added || row.queue) {
-			return "disable";
-
-		} else {
-			return;
-		}
-	}
-
-	filterProduct() {
-		let created_at_min = this.filters.value.created_at_min;
-		let created_at_max = this.filters.value.created_at_max;
-
-		if (created_at_min) {
-			created_at_min = new Date(created_at_min.year, created_at_min.month, created_at_min.day).toISOString();
-		}
-
-		if (created_at_max) {
-			created_at_max = new Date(created_at_max.year, created_at_max.month, created_at_max.day).toISOString();
-		}
-
-		this.filters.value.created_at_min = created_at_min;
-		this.filters.value.created_at_max = created_at_max;
-
-		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
-		this.getProductByLink(this.query);
-	}
-
-	serialize = function (obj) {
-		var str = [];
-		for (var p in obj)
-			if (obj.hasOwnProperty(p) && obj[p] != '') {
-				str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-			}
-		return str.join("&");
 	}
 
 	close() {
@@ -162,4 +106,26 @@ export class ProductComponent implements OnInit {
 		console.log(this.selected);
 	}
 
+	sync() {
+		this.loading = true;
+		this.productService.sync().subscribe((res) => {
+			this.loading = false;
+		}, err => {
+			this.loading = false;
+		});
+	}
+
+	serialize = function (obj) {
+		var str = [];
+		for (var p in obj)
+			if (obj.hasOwnProperty(p) && obj[p] != '') {
+				str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			}
+		return str.join("&");
+	}
+
+	getByPage(event) {
+		this.page = event;
+		this.getProducts();
+	}
 }

@@ -1,8 +1,8 @@
 <div class="content">
   <div class="table-responsive" *ngIf="products.length != 0">
-    <ngx-datatable class="material new-styled" [rows]="list.all" [rowClass]="getRowClass" [columns]="columns"
+    <ngx-datatable class="material new-styled" [rows]="products" [rowClass]="getRowClass" [columns]="columns"
       [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'"
-      [limit]="page.all.limit" [offset]="page.all.offset" [count]="page.all.count" (page)="getall(scanType,$event)">
+      [limit]="page.limit" [offset]="page.offset" [count]="page.count" (page)="getByPage($event)">
       <ngx-datatable-column [resizeable]="false" [width]="300" [canAutoResize]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           Title
@@ -67,10 +67,11 @@
     </ngx-datatable>
   </div>
   <div class="no-data" *ngIf="products.length == 0">
-    <div class="d-flex-center flex-column" *ngIf="!products.all">
-      <span>No {{scanType}} found, Sync {{scanType}}</span>
-      <button class="btn" (click)="sync(scanType);">
+    <div class="d-flex-center flex-column" *ngIf="!products">
+      <span>No Product found, Sync Product</span>
+      <button class="btn" (click)="getProducts();">
         <span>Sync {{scanType}}</span>
       </button>
     </div>
   </div>
+</div>
