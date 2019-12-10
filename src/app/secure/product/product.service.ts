@@ -27,6 +27,12 @@ export class ProductService {
     return this.http.get(environment.apiUrl + 'products', { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
-  
+  syncProducts() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(environment.apiUrl + 'sync/products', { headers: headers }).pipe(map((response: any) => response.json()));
+  }
+
+
 }
 

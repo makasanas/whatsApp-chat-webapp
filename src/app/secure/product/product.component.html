@@ -1,3 +1,9 @@
+<div class="flex align-items-center justify-content-end">
+  <button class="btn" (click)="syncProduct()">
+    <span>Sync Product</span>
+  </button>
+</div>
+
 <div class="content">
   <div class="table-responsive" *ngIf="products.length != 0">
     <ngx-datatable class="material new-styled" [rows]="products" [rowClass]="getRowClass" [columns]="columns"
@@ -71,6 +77,21 @@
       <span>No Product found, Sync Product</span>
       <button class="btn" (click)="getProducts();">
         <span>Sync {{scanType}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" [ngClass]="{active: planError == true}">
+  <div class="popup" *ngIf="planError == true">
+    <h3>Upgrade Plan to countinue</h3>
+    <a class="close" (click)="changeBoolean('planError',false);">&times;</a>
+    <div class="content">
+      You need to Upgrade your plan to continue using our app.
+    </div>
+    <div class="flex align-items-center justify-content-center">
+      <button class="btn" [routerLink]="['/pricing']">
+        <span>Goto Pricing</span>
       </button>
     </div>
   </div>

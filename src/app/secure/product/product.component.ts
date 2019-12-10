@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
 	public exceedLimit = false;
 	public shopUrl;
 	public products: any = [];
+	public planError: boolean = false;
 
 	constructor(
 		private productService: ProductService,
@@ -58,6 +59,15 @@ export class ProductComponent implements OnInit {
 			console.log(this.products);
 		}, err => {
 			this.loading = false;
+		});
+	}
+
+	syncProduct() {
+		this.productService.syncProducts().subscribe((res) => {
+			console.log(res.data);
+		}, err => {
+			console.log(err);
+			this.changeBoolean('planError', true);
 		});
 	}
 
@@ -127,5 +137,9 @@ export class ProductComponent implements OnInit {
 	getByPage(event) {
 		this.page = event;
 		this.getProducts();
+	}
+
+	changeBoolean(variable: string, value: boolean) {
+		this[variable] = value;
 	}
 }

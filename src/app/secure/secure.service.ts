@@ -17,7 +17,7 @@ export class SecureService {
     createAuthorizationHeader(headers: Headers) {
         headers.append('Authorization', localStorage.getItem('token').replace(/\"/g, ""));
     }
-  
+
     checkToken() {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
