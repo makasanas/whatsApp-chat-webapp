@@ -3,6 +3,9 @@
     margin-left: 300px;
     padding: 25px;
     height: 100vh;
+    padding-top: 85px;
+    position: relative;
+    z-index: 1;
 
     @media screen and (max-width:1200px) {
         padding: 20px;
@@ -41,4 +44,14 @@
         margin: auto;
         max-width: 56px;
     }
+}
+
+.header-container {
+    position: fixed;
+    width: calc(100% - 300px);
+    left: 300px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 5px #0000000d;
+    z-index: 5;
 }

@@ -621,6 +621,15 @@ form {
       padding-bottom: 20px;
     }
   }
+
+  .overlay {
+    left: 300px;
+    width: calc(100vw - 300px);
+
+    .popup {
+      width: 45%;
+    }
+  }
 }
 
 /* Button Style */
@@ -980,6 +989,7 @@ blockquote {
       color: #333;
       font-family: Tahoma, Arial, sans-serif;
       margin-bottom: 20px;
+      padding-right: 40px;
     }
 
     .close {
@@ -1444,4 +1454,8 @@ blockquote {
 
 .justify-content-between {
   justify-content: space-between;
+}
+
+.ml-5 {
+  margin-left: 5px;
 }
