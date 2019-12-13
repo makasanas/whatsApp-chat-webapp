@@ -32,6 +32,12 @@ export class SettingsService {
     syncProducts() {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
-        return this.http.get(environment.apiUrl + 'syncProducts', { headers: headers }).pipe(map((response: any) => response.json()));
+        return this.http.get(environment.apiUrl + 'sync/products', { headers: headers }).pipe(map((response: any) => response.json()));
+    }
+
+    getSyncDetails() {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(environment.apiUrl + 'syncDetails', { headers: headers }).pipe(map((response: any) => response.json()));
     }
 }
