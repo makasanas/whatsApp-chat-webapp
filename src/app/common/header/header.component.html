@@ -1,5 +1,15 @@
 <div class="header d-flex-between">
-    <div class="left"></div>
+    <div class="left">
+        <div class="switch-btn">
+            <form [formGroup]="appForm">
+                <div class="switch" [ngClass]="{'disableBtn':appForm.controls.appEnabled.value == false }">
+                    <input type="checkbox" id="switch" formControlName="appEnabled"
+                        (change)="statusChanged($event);" /><label for="switch">Toggle</label>
+                    <p>Recover Visitor with Live Tab</p>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="right">
         <div class="store-details">
             <div class="d-flex-between menu-title" (click)="changeMenu('header');">

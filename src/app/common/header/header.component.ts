@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { SecureService } from '../../secure/secure.service';
+
 
 @Component({
   selector: 'app-header',
@@ -12,12 +15,16 @@ export class HeaderComponent implements OnInit {
   public menu: any = {
     header: false
   };
-  
-  constructor(private router: Router) {
+  public appForm: FormGroup;
+
+  constructor(private router: Router, private fb: FormBuilder, private secureService: SecureService) {
     this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         this.menu['header'] = false;
       }
+    });
+    this.appForm = this.fb.group({
+      "appEnabled": new FormControl("false")
     });
   }
 
@@ -31,5 +38,26 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('shopUrl');
+  }
+
+  statusChanged(event: any) {
+    this.secureService.changeAppStatus({ "shopUrl": localStorage.getItem('shopUrl'), "appEnabled": this.appForm.controls.appEnabled.value }).subscribe((res) => {
+      // console.log(res);
+      this.getAppStatus();
+    }, err => {
+      this.getAppStatus();
+      console.log(err);
+    });
+
+  }
+
+  getAppStatus() {
+    let user = this.secureService.getUser();
+    // this.enableForm = user.appEnabled;
+    this.secureService.fetchUser().subscribe((res) => {
+      this.appForm.controls.appEnabled.setValue(res['data']['appEnabled']);
+    }, err => {
+      console.log(err);
+    });
   }
 }

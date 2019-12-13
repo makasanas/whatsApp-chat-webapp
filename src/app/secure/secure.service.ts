@@ -38,6 +38,7 @@ export class SecureService {
         return this.user;
     }
 
+
     sendRoute(user) {
         if (!this.router.url.includes('activeplan')) {
             if (!user.recurringPlanType || user.recurringPlanType === 'Free') {
@@ -46,5 +47,11 @@ export class SecureService {
 
             }
         }
+    }
+
+    changeAppStatus(data) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.put(environment.apiUrl + 'appStatus', data, { headers: headers }).pipe(map((response: any) => response.json()));
     }
 }

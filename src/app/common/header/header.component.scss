@@ -101,3 +101,83 @@
         }
     }
 }
+
+.switch-btn {
+    // text-align: right;
+    // padding-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+
+    .switch {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: #71bbec;
+        border-radius: 3px;
+
+        p {
+            padding: 0 10px;
+            color: #fff;
+        }
+
+        input[type=checkbox] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 70px;
+            height: 35px;
+            // background: grey;
+            background: #80a5bb;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            margin-bottom: 0px;
+        }
+
+        label:after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 25px;
+            height: 25px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        input:checked+label {
+            background: #3e82b0;
+        }
+
+        input:checked+label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label:active:after {
+            width: 20px;
+        }
+
+        // centering
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        &.disableBtn {
+            background: #b4cbda;
+
+            input:checked+label {
+                background: #8b9fad;
+            }
+        }
+    }
+}
