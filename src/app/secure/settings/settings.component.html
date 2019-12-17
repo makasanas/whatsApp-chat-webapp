@@ -54,7 +54,74 @@
       </div>
     </div>
     <div class="tab-content" *ngIf="tabs.activeTab === 'sync'">
-      <div class="heading d-flex-between">
+      <div class="notification sync-block">
+        <div class="row">
+          <div class="data">
+            <div class="data-row">
+              <label>Count</label>
+              <div class="text">
+                <span *ngIf="syncData">
+                  <span *ngIf="syncData.productSync">
+                    <span *ngIf="syncData.productSync.count">
+                      {{syncData.productSync.count}}
+                    </span>
+                    <span *ngIf="!syncData.productSync.count"> - </span>
+                  </span>
+                  <span *ngIf="!syncData.productSync">
+                    <span class="no-data-text"> - No data </span>
+                  </span>
+                </span>
+                <span *ngIf="!syncData">
+                  <span class="no-data-text"> - No data </span>
+                </span>
+              </div>
+            </div>
+            <div class="data-row">
+              <label>Last sync</label>
+              <div class="text">
+                <span *ngIf="syncData">
+                  <span *ngIf="syncData.productSync">
+                    <span *ngIf="syncData.productSync.lastSync">
+                      {{syncData.productSync.lastSync  | date:'medium'}}
+                    </span>
+                    <span *ngIf="!syncData.productSync.lastSync"> - </span>
+                  </span>
+                  <span *ngIf="!syncData.productSync">
+                    <span class="no-data-text"> - No data </span>
+                  </span>
+                </span>
+                <span *ngIf="!syncData">
+                  <span class="no-data-text"> - No data </span>
+                </span>
+              </div>
+            </div>
+            <div class="data-row">
+              <label>Status</label>
+              <span *ngIf="syncData">
+                <span *ngIf="syncData.productSync">
+                  <span *ngIf="syncData.productSync.status">
+                    {{syncData.productSync.status}}
+                  </span>
+                  <span *ngIf="!syncData.productSync.status"> - </span>
+                </span>
+                <span *ngIf="!syncData.productSync">
+                  <span class="no-data-text"> - No data </span>
+                </span>
+              </span>
+              <span *ngIf="!syncData">
+                <span class="no-data-text"> - No data </span>
+              </span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="btn" (click)="sync('products');" [ngClass]="{'is-loading' : syncProcess.products}">
+              <span>Sync Product</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="heading d-flex-between">
         <h2>Sync</h2>
         <div class="subscription">
           <button (click)="syncProducts()">Sync Products</button>
@@ -83,7 +150,7 @@
             <app-loading></app-loading>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

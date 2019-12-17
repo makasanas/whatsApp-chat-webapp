@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from './settings.service'
+import { SettingsService } from './settings.service';
+import { SecureService } from '../secure.service';
 
 @Component({
   selector: 'app-settings',
@@ -30,13 +31,16 @@ export class SettingsComponent implements OnInit {
     ],
     activeTab: 'details'
   };
+  public syncProcess: any = {
+    products: false
+  };
 
-  constructor(private settingsService: SettingsService, ) { }
+  constructor(private settingsService: SettingsService, private secureService: SecureService) { }
 
   ngOnInit() {
     this.getPlan();
     this.getUser();
-    this.getSyncDetails();
+    this.getSyncData();
   }
 
   getPlan() {
@@ -60,8 +64,8 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  getSyncDetails() {
-    this.settingsService.getSyncDetails().subscribe((res) => {
+  getSyncData() {
+    this.settingsService.getSyncData().subscribe((res) => {
       console.log(res.data);
       this.syncData = res.data;
     }, err => {
@@ -98,5 +102,18 @@ export class SettingsComponent implements OnInit {
   changeBoolean(variable: string, value: boolean) {
     this[variable] = value;
   }
+
+  sync(type: string) {
+    this.syncProcess[type] = true;
+    this.secureService.sync(type).subscribe((res) => {
+      console.log(res);
+      this.syncProcess[type] = false;
+      this.getSyncData();
+    }, err => {
+      this.syncProcess[type] = false;
+      console.log(err);
+    });
+  }
+
 
 }

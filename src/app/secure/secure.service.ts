@@ -38,6 +38,11 @@ export class SecureService {
         return this.user;
     }
 
+    sync(syncType: string) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(environment.apiUrl + 'sync/' + syncType, { headers: headers }).pipe(map((response: any) => response.json()));
+      }
 
     sendRoute(user) {
         if (!this.router.url.includes('activeplan')) {

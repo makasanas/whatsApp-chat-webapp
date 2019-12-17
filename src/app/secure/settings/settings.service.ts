@@ -35,7 +35,7 @@ export class SettingsService {
         return this.http.get(environment.apiUrl + 'sync/products', { headers: headers }).pipe(map((response: any) => response.json()));
     }
 
-    getSyncDetails() {
+    getSyncData() {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
         return this.http.get(environment.apiUrl + 'syncDetails', { headers: headers }).pipe(map((response: any) => response.json()));

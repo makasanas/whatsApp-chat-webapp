@@ -703,6 +703,25 @@ form {
     color: #f96332;
     border: 0;
   }
+
+  &.is-loading {
+    pointer-events: none;
+    position: relative;
+
+    &:after {
+      content: url(assets/loading.svg);
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #ffffff66;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 4px;
+    }
+  }
 }
 
 /* Link Style */
@@ -838,6 +857,7 @@ blockquote {
     background-color: #f96332;
   }
 }
+
 
 /* Pagination */
 .pagination {
@@ -1459,4 +1479,62 @@ blockquote {
 
 .ml-5 {
   margin-left: 5px;
+}
+
+//box with box-shadow
+.notification {
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px 0 #0b107520;
+  margin: 20px 0px;
+  padding: 20px;
+  text-align: left;
+}
+
+//sync details block with details and button
+.sync-block {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 0px;
+
+    .data {
+
+      // width: calc(100% - 220px);
+      .data-row {
+        display: flex;
+        margin-bottom: 10px;
+
+        &:last-of-type {
+          margin-bottom: 0px;
+        }
+
+        label {
+          margin-right: 15px;
+          font-weight: 400;
+          min-width: 90px;
+          text-align: right;
+        }
+
+        .text {
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .actions {
+      width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0px;
+    }
+  }
+}
+
+.no-data-text {
+  color: #ccc;
 }
