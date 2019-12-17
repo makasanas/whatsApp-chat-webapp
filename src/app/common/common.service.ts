@@ -12,6 +12,6 @@ export class CommonService {
   constructor() { }
 
   changeNoDataMsg(message: string) {
-    this.noDataMsg.next(message)
+    this.noDataMsg.next(message);
   }
 }

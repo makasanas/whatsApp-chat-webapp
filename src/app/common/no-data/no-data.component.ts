@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-no-data',
@@ -7,11 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NoDataComponent implements OnInit {
 
-  @Input() message: string;
+  public message: string;
 
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
+    this.commonService.noDataCurrentMsg.subscribe(message => this.message = message);
     console.log(this.message);
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from './product.service';
 import { SecureService } from "./../secure.service";
+import { CommonService } from 'src/app/common/common.service';
 
 @Component({
 	selector: 'app-product',
@@ -29,12 +30,12 @@ export class ProductComponent implements OnInit {
 	public shopUrl;
 	public products: any = [];
 	public planError: boolean = false;
-	public message: "No Product Data Found";
 
 	constructor(
 		private productService: ProductService,
 		private formBuilder: FormBuilder,
-		private secureService: SecureService
+		private secureService: SecureService,
+		private commonService: CommonService
 	) {
 		this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
 		this.filters = this.formBuilder.group({
@@ -58,6 +59,7 @@ export class ProductComponent implements OnInit {
 			this.products = res.data.products;
 			this.page.count = res.data.count;
 			console.log(this.products);
+			this.products.length == 0 ? this.newMessage("No Products Found"): '';
 		}, err => {
 			this.loading = false;
 		});
@@ -143,4 +145,10 @@ export class ProductComponent implements OnInit {
 	changeBoolean(variable: string, value: boolean) {
 		this[variable] = value;
 	}
+
+	newMessage(msg: string) {
+		this.commonService.changeNoDataMsg(msg);
+	}
+
+
 }
