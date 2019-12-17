@@ -8,9 +8,23 @@
   <div class="content">
     <div class="tab-content" *ngIf="tabs.activeTab === 'details'">
       <div class="settings">
+        <div class="form mobile-view">
+          <h2>App Status</h2>
+          <div class="notification subscription-wrapper">
+            <div class="switch-btn">
+              <form [formGroup]="appForm">
+                <div class="switch" [ngClass]="{'disableBtn':appForm.controls.appEnabled.value == false }">
+                  <input type="checkbox" id="switch" formControlName="appEnabled"
+                    (change)="statusChanged($event);" /><label for="switch">Toggle</label>
+                  <p>Recover Visitor with Live Tab</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
         <div class="form">
           <h2>My Profile</h2>
-          <div class="subscription-wrapper">
+          <div class="notification subscription-wrapper">
             <div class="field-list">
               <label>Organisation Name :</label>
               <div class="plan-name">{{storeData.storeName}}</div>
@@ -39,15 +53,15 @@
         </div>
         <div class="form">
           <h2>My Subscription</h2>
-          <div class="subscription-wrapper">
+          <div class="notification subscription-wrapper">
             <div class="field-list">
               <label>Subscription Name :</label>
               <div class="plan-name">{{storeData.recurringPlanName}}</div>
             </div>
-          </div>
-          <div class="subscription">
-            <button [routerLink]="['/pricing']">Upgrade</button>
-            <button (click)="deactivePlan()">Cancle Plan</button>
+            <div class="subscription">
+              <button [routerLink]="['/pricing']">Upgrade</button>
+              <button (click)="deactivePlan()">Cancle Plan</button>
+            </div>
           </div>
         </div>
 

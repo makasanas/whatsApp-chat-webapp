@@ -43,6 +43,11 @@
         cursor: pointer;
         min-width: 150px;
         padding: 0px 20px;
+
+        @media screen and (max-width:479px) {
+            min-width: initial;
+            padding: 0;
+        }
     }
 
     .menu-content {
@@ -110,6 +115,10 @@
     display: flex;
     justify-content: flex-end;
 
+    @media screen and (max-width:767px) {
+        display: none;
+    }
+
     .switch {
         display: flex;
         align-items: center;
@@ -117,9 +126,18 @@
         background: #71bbec;
         border-radius: 3px;
 
+        @media screen and (max-width:979px) {
+            padding: 0px;
+            background: none;
+        }
+
         p {
             padding: 0 10px;
             color: #fff;
+
+            @media screen and (max-width:979px) {
+                color: #3e82b0;
+            }
         }
 
         input[type=checkbox] {
@@ -177,9 +195,14 @@
         &.disableBtn {
             background: #b4cbda;
 
+            @media screen and (max-width:979px) {
+                background: none;
+            }
+
             input:checked+label {
                 background: #8b9fad;
             }
         }
     }
+
 }

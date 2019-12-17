@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from './settings.service';
 import { SecureService } from '../secure.service';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -34,13 +35,19 @@ export class SettingsComponent implements OnInit {
   public syncProcess: any = {
     products: false
   };
+  public appForm: FormGroup;
 
-  constructor(private settingsService: SettingsService, private secureService: SecureService) { }
+  constructor(private settingsService: SettingsService, private secureService: SecureService, private fb: FormBuilder) {
+    this.appForm = this.fb.group({
+      "appEnabled": new FormControl("false")
+    });
+  }
 
   ngOnInit() {
     this.getPlan();
     this.getUser();
     this.getSyncData();
+    this.getAppStatus();
   }
 
   getPlan() {
@@ -81,19 +88,19 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  syncProducts() {
-    this.loading = true;
-    this.settingsService.syncProducts().subscribe((res) => {
-      console.log(res.message);
-      if (res.message == 'OK') {
-        this.loading = false;
-      }
-      // this.getPlan()
-    }, err => {
-      // console.log(err);
-      this.changeBoolean('planError', true);
-    });
-  }
+  // syncProducts() {
+  //   this.loading = true;
+  //   this.settingsService.syncProducts().subscribe((res) => {
+  //     console.log(res.message);
+  //     if (res.message == 'OK') {
+  //       this.loading = false;
+  //     }
+  //     // this.getPlan()
+  //   }, err => {
+  //     // console.log(err);
+  //     this.changeBoolean('planError', true);
+  //   });
+  // }
 
   changeTab(tab) {
     this.tabs.activeTab = tab;
@@ -112,8 +119,32 @@ export class SettingsComponent implements OnInit {
     }, err => {
       this.syncProcess[type] = false;
       console.log(err);
+      if (err.status == 402) {
+        this.changeBoolean('planError', true);
+      }
     });
   }
 
+  statusChanged(event: any) {
+    this.secureService.changeAppStatus({ "shopUrl": localStorage.getItem('shopUrl'), "appEnabled": this.appForm.controls.appEnabled.value }).subscribe((res) => {
+      // console.log(res);
+      this.getAppStatus();
+    }, err => {
+      this.getAppStatus();
+      console.log(err);
+    });
+
+  }
+
+  getAppStatus() {
+    let user = this.secureService.getUser();
+    // this.enableForm = user.appEnabled;
+    this.secureService.fetchUser().subscribe((res) => {
+      console.log(res['data']['appEnabled']);
+      this.appForm.controls.appEnabled.setValue(res['data']['appEnabled']);
+    }, err => {
+      console.log(err);
+    });
+  }
 
 }

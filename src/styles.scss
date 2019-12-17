@@ -625,10 +625,23 @@ form {
   .overlay {
     left: 300px;
     width: calc(100vw - 300px);
-    top: 70px;
+    top: 75px;
+
+    @media screen and (max-width:1200px) {
+      left: 280px;
+      width: calc(100vw - 280px);
+
+    }
+
+
+    @media screen and (max-width:979px) {
+      left: 0px;
+      width: 100vw;
+      top: 60px;
+    }
 
     .popup {
-      width: 45%;
+      width: 100%;
     }
   }
 }
@@ -766,6 +779,10 @@ h1 {
 
 h2 {
   font-size: 40px;
+
+  @media screen and (max-width:767px) {
+    font-size: 24px;
+  }
 }
 
 h3 {
@@ -998,7 +1015,8 @@ blockquote {
     border-radius: 5px;
     width: 30%;
     position: relative;
-    transition: all 5s ease-in-out;
+    transition: all .4s ease-in-out;
+    max-width: 480px;
 
     @media screen and (max-width: 700px) {
       width: 70%;
@@ -1531,10 +1549,24 @@ blockquote {
       align-items: center;
       justify-content: flex-end;
       padding: 0px;
+
+      @media screen and (max-width:767px) {
+        justify-content: center;
+        width: 100%;
+        padding: 20px 0px 0px;
+      }
     }
   }
 }
 
 .no-data-text {
   color: #ccc;
+}
+
+.mobile-view {
+  display: none;
+
+  @media screen and (max-width:767px) {
+    display: block;
+  }
 }

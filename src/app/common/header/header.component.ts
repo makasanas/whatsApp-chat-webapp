@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAppStatus();
   }
 
   changeMenu(name) {
@@ -55,6 +56,7 @@ export class HeaderComponent implements OnInit {
     let user = this.secureService.getUser();
     // this.enableForm = user.appEnabled;
     this.secureService.fetchUser().subscribe((res) => {
+      console.log(res['data']['appEnabled']);
       this.appForm.controls.appEnabled.setValue(res['data']['appEnabled']);
     }, err => {
       console.log(err);

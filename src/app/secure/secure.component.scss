@@ -8,7 +8,7 @@
     z-index: 1;
 
     @media screen and (max-width:1200px) {
-        padding: 20px;
+        // padding: 20px;
         width: calc(100% - 280px);
         margin-left: 280px;
     }
@@ -16,6 +16,11 @@
     @media screen and (max-width:979px) {
         width: 100%;
         margin-left: 0px;
+        padding-top: 80px;
+    }
+
+    @media screen and (max-width:479px) {
+        padding: 10px;
         padding-top: 80px;
     }
 
@@ -28,13 +33,11 @@
 
 
 .mobile-logo {
-    width: 100%;
     display: none;
     position: fixed;
-    top: 0;
-    background: white;
-    box-shadow: 0 1px 6px #00000010;
+    top: 3px;
     z-index: 98;
+    left: 60px;
 
     @media screen and (max-width:979px) {
         display: block;
@@ -43,6 +46,11 @@
     img {
         margin: auto;
         max-width: 56px;
+        width: 100%;
+
+        @media screen and (max-width:767px) {
+            max-width: 50px;
+        }
     }
 }
 
@@ -54,4 +62,17 @@
     padding: 10px 20px;
     box-shadow: 0px 0px 10px 5px #0000000d;
     z-index: 5;
+
+    @media screen and (max-width:1200px) {
+        width: calc(100% - 280px);
+        left: 280px;
+    }
+
+    @media screen and (max-width:979px) {
+        left: 0px;
+        width: 100%;
+        padding: 12px 20px;
+        padding-left: 130px;
+    }
+
 }

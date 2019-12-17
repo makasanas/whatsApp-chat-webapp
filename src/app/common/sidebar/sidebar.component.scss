@@ -10,15 +10,18 @@ $brand-hover-color: #276996;
   transition: all 0.5s ease-in-out;
   z-index: 99;
   overflow: auto;
+
   @media screen and (max-width:1200px) {
     width: 280px;
   }
+
   @media screen and (max-width:979px) {
     transform: translateX(-100%);
     background: transparent;
+
     &.active {
       transform: translateX(0%);
-      background:  $brand-color;
+      background: $brand-color;
     }
   }
 }
@@ -164,7 +167,7 @@ $brand-hover-color: #276996;
   display: none;
   position: fixed;
   top: 15px;
-  left: 18px;
+  left: 20px;
   z-index: 999;
 
   @media screen and (max-width:979px) {
