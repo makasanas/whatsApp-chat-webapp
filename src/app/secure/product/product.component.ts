@@ -29,6 +29,7 @@ export class ProductComponent implements OnInit {
 	public shopUrl;
 	public products: any = [];
 	public planError: boolean = false;
+	public message: "No Product Data Found";
 
 	constructor(
 		private productService: ProductService,

@@ -43,6 +43,7 @@ import { ProductComponent } from './secure/product/product.component';
 import { FaqsComponent } from './secure/faqs/faqs.component';
 import { ThemeComponent } from './secure/theme/theme.component';
 import { HeaderComponent } from './common/header/header.component';
+import { NoDataComponent } from './common/no-data/no-data.component';
 
 
 let config = new AuthServiceConfig([
@@ -72,7 +73,8 @@ export function provideConfig() {
     ProductComponent,
     FaqsComponent,
     ThemeComponent,
-    HeaderComponent
+    HeaderComponent,
+    NoDataComponent
   ],
   imports: [
     BrowserModule,

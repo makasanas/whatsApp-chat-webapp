@@ -73,12 +73,8 @@
     </ngx-datatable>
   </div>
   <div class="no-data" *ngIf="products.length == 0">
-    <div class="d-flex-center flex-column" *ngIf="!products">
-      <span>No Product found, Sync Product</span>
-      <button class="btn" (click)="getProducts();">
-        <span>Sync {{scanType}}</span>
-      </button>
-    </div>
+    <span>No Products found</span>
+    <!-- <app-no-data [message]="message"></app-no-data> -->
   </div>
 </div>
 

@@ -14,9 +14,9 @@
             <div class="switch-btn">
               <form [formGroup]="appForm">
                 <div class="switch" [ngClass]="{'disableBtn':appForm.controls.appEnabled.value == false }">
-                  <input type="checkbox" id="switch" formControlName="appEnabled"
-                    (change)="statusChanged($event);" /><label for="switch">Toggle</label>
-                  <p>Recover Visitor with Live Tab</p>
+                  <input type="checkbox" id="1switch" formControlName="appEnabled"
+                    (change)="statusChanged($event);" /><label for="1switch">Toggle</label>
+                  <p>App status</p>
                 </div>
               </form>
             </div>

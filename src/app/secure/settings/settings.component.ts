@@ -127,7 +127,7 @@ export class SettingsComponent implements OnInit {
 
   statusChanged(event: any) {
     this.secureService.changeAppStatus({ "shopUrl": localStorage.getItem('shopUrl'), "appEnabled": this.appForm.controls.appEnabled.value }).subscribe((res) => {
-      // console.log(res);
+      console.log(res);
       this.getAppStatus();
     }, err => {
       this.getAppStatus();
@@ -142,9 +142,11 @@ export class SettingsComponent implements OnInit {
     this.secureService.fetchUser().subscribe((res) => {
       console.log(res['data']['appEnabled']);
       this.appForm.controls.appEnabled.setValue(res['data']['appEnabled']);
+      console.log(this.appForm.controls.appEnabled.value);
     }, err => {
       console.log(err);
     });
   }
 
 }
+
