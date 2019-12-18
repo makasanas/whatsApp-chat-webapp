@@ -17,8 +17,7 @@ export class ProductComponent implements OnInit {
 	public page = {
 		count: 0,
 		limit: 0,
-		offset: 0,
-		pageSize: 0
+		offset: 0
 	}
 	public query;
 	public collections = [];
@@ -55,22 +54,22 @@ export class ProductComponent implements OnInit {
 		this.secureService.sendRoute(this.secureService.getUser());
 		this.shopUrl = localStorage.getItem('shopUrl')
 		this.user = this.secureService.getUser();
+		this.loading = true;
 		this.getProducts(this.page);
 		this.getProductTypes();
-		this.filters.controls.text.valueChanges.pipe(debounceTime(100)).subscribe(newValue => this.filter());
-		this.filters.controls.type.valueChanges.pipe(debounceTime(100)).subscribe(newValue => this.filter());
+		this.filters.controls.text.valueChanges.pipe(debounceTime(100)).subscribe(newValue => this.filter({ limit: this.page.limit, offset: 0 }));
+		this.filters.controls.type.valueChanges.pipe(debounceTime(100)).subscribe(newValue => this.filter({ limit: this.page.limit, offset: 0 }));
 	}
 
 	getProducts(event) {
 		this.dataLoading = true;
 		this.productService.getProduct(event.limit, event.offset + 1).subscribe((res) => {
-			console.log(res.data);
 			this.products = res.data.result.product;
 			this.page.count = res.data.result.count;
 			this.page.count = res.data.result.count;
 			this.dataLoading = false;
+			this.loading = false;
 			this.page.offset = event.offset;
-			console.log(this.products);
 			if (this.products.length == 0) {
 				this.newMessage("No Products Found");
 			}
@@ -92,10 +91,9 @@ export class ProductComponent implements OnInit {
 		});
 	}
 
-
 	syncProduct() {
 		this.productService.syncProducts().subscribe((res) => {
-			console.log(res.data);
+			// console.log(res.data);
 		}, err => {
 			console.log(err);
 			this.changeBoolean('planError', true);
@@ -133,7 +131,6 @@ export class ProductComponent implements OnInit {
 				return !product.added && !product.queue;
 			}).length;
 
-			console.log(productlistCount, this.selected.length);
 			if (productlistCount == this.selected.length) {
 				this.allSelected = true;
 			}
@@ -144,7 +141,6 @@ export class ProductComponent implements OnInit {
 			this.selected.splice(index, 1);
 			this.allSelected = false;
 		}
-		console.log(this.selected);
 	}
 
 	sync() {
@@ -180,13 +176,12 @@ export class ProductComponent implements OnInit {
 
 	filter(event) {
 		this.dataLoading = true;
-		this.productService.searchProduct({ limit: 10, page: 1 }, this.filters.value).subscribe((res) => {
+		this.productService.searchProduct(event.limit, event.offset + 1, this.filters.value).subscribe((res) => {
 			this.products = res.data.result.product;
 			this.page.count = res.data.result.count;
-			this.page.count = res.data.result.count;
 			this.dataLoading = false;
-			this.page.offset = 1;
-			console.log(this.products);
+			this.page.offset = 0;
+
 			if (this.products.length == 0) {
 				let msg = "No results found";
 				this.newMessage(msg);
@@ -199,6 +194,5 @@ export class ProductComponent implements OnInit {
 			console.log(err);
 		});
 	}
-
 
 }

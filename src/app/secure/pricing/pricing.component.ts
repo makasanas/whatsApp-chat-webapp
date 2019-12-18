@@ -18,7 +18,8 @@ export class PricingComponent implements OnInit {
     }
   };
   public user: any;
-
+  public trial: Object = {};
+  public freeTrialDays: number = 7;
   constructor(private pricingService: PricingService, private secureService: SecureService, private router: Router, ) { }
 
   ngOnInit() {
@@ -26,9 +27,21 @@ export class PricingComponent implements OnInit {
     this.checkPlan();
   }
 
+  checkTrial() {
+    console.log(this.trial);
+    let dt2 = new Date();
+    let dt1 = new Date(this.trial['start']);
+    // let dt2 = new Date("2019-12-23T00:00:00.000Z");
+    // let dt1 = new Date("2019-12-15T00:00:00.000Z");
+    this.trial['days'] = this.freeTrialDays - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) > 0 ? 7 - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) : 0;
+  }
+
   checkPlan() {
     this.loading = true;
     console.log(this.user);
+    this.trial['days'] = this.user.trial_days;
+    this.trial['start'] = this.user.trial_start;
+    this.checkTrial();
     if (!this.user.recurringPlanType || this.user.recurringPlanType === 'Free') {
       let count = this.user.productCount;
       let plan: any = {}

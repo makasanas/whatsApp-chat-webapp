@@ -26,12 +26,12 @@ export class ProductService {
     this.createAuthorizationHeader(headers);
     return this.http.get(environment.apiUrl + 'products?limit=' + limit + '&page=' + page, { headers: headers }).pipe(map((response: any) => response.json()));
   }
-  searchProduct(page, filter) {
+  searchProduct(limit, page, filter) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
     filter.text = filter.type == 'all' ? '' : filter.text;
     filter.type = filter.type == 'all' ? '' : filter.type;
-    return this.http.get(environment.apiUrl + 'products?limit=' + page.limit + '&page=' + page.page + '&search=' + filter.text + '&type=' + filter.type, { headers: headers }).pipe(map((response: any) => response.json()));
+    return this.http.get(environment.apiUrl + 'products?limit=' + limit + '&page=' + page + '&search=' + filter.text + '&type=' + filter.type, { headers: headers }).pipe(map((response: any) => response.json()));
   }
 
   getProductTypes() {
