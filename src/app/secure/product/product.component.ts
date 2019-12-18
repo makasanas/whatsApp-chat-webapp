@@ -4,6 +4,7 @@ import { ProductService } from './product.service';
 import { SecureService } from "./../secure.service";
 import { CommonService } from 'src/app/common/common.service';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-product',
@@ -30,7 +31,10 @@ export class ProductComponent implements OnInit {
 	public exceedLimit = false;
 	public shopUrl;
 	public products: any = [];
+	public producttypes: any = [];
 	public planError: boolean = false;
+	public dataLoading: boolean = false;
+	public pageType: string = 'products';
 
 	constructor(
 		private productService: ProductService,
@@ -41,7 +45,8 @@ export class ProductComponent implements OnInit {
 	) {
 		this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
 		this.filters = this.formBuilder.group({
-			title: [''],
+			type: [''],
+			text: ['']
 		});
 	}
 
@@ -50,23 +55,43 @@ export class ProductComponent implements OnInit {
 		this.secureService.sendRoute(this.secureService.getUser());
 		this.shopUrl = localStorage.getItem('shopUrl')
 		this.user = this.secureService.getUser();
-		this.getProducts();
+		this.getProducts(this.page);
+		this.getProductTypes();
+		this.filters.controls.text.valueChanges.pipe(debounceTime(100)).subscribe(newValue => this.filter());
+		this.filters.controls.type.valueChanges.pipe(debounceTime(100)).subscribe(newValue => this.filter());
 	}
 
-	getProducts() {
-		this.loading = true;
-		this.productService.getProduct().subscribe((res) => {
-			this.loading = false;
+	getProducts(event) {
+		this.dataLoading = true;
+		this.productService.getProduct(event.limit, event.offset + 1).subscribe((res) => {
 			console.log(res.data);
-			this.products = res.data.products;
-			this.page.count = res.data.count;
+			this.products = res.data.result.product;
+			this.page.count = res.data.result.count;
+			this.page.count = res.data.result.count;
+			this.dataLoading = false;
+			this.page.offset = event.offset;
 			console.log(this.products);
-			this.products.length == 0 ? this.newMessage("No Products Found") : '';
-			this.router.navigate(['/settings'], { queryParams: { activeTab: 'sync' } });
+			if (this.products.length == 0) {
+				this.newMessage("No Products Found");
+			}
+			if (!res.data.count.all) {
+				this.router.navigate(['/settings'], { queryParams: { activeTab: 'sync' } });
+			}
 		}, err => {
 			this.loading = false;
 		});
 	}
+
+
+	getProductTypes() {
+		this.productService.getProductTypes().subscribe((res) => {
+			this.producttypes = res.data.product_type;
+			this.filters.controls.type.setValue('all');
+		}, err => {
+			console.log(err);
+		});
+	}
+
 
 	syncProduct() {
 		this.productService.syncProducts().subscribe((res) => {
@@ -142,7 +167,7 @@ export class ProductComponent implements OnInit {
 
 	getByPage(event) {
 		this.page = event;
-		this.getProducts();
+		this.getProducts(event);
 	}
 
 	changeBoolean(variable: string, value: boolean) {
@@ -151,6 +176,28 @@ export class ProductComponent implements OnInit {
 
 	newMessage(msg: string) {
 		this.commonService.changeNoDataMsg(msg);
+	}
+
+	filter(event) {
+		this.dataLoading = true;
+		this.productService.searchProduct({ limit: 10, page: 1 }, this.filters.value).subscribe((res) => {
+			this.products = res.data.result.product;
+			this.page.count = res.data.result.count;
+			this.page.count = res.data.result.count;
+			this.dataLoading = false;
+			this.page.offset = 1;
+			console.log(this.products);
+			if (this.products.length == 0) {
+				let msg = "No results found";
+				this.newMessage(msg);
+			}
+			if (!res.data.count.all) {
+				this.router.navigate(['/settings'], { queryParams: { activeTab: 'sync' } });
+			}
+
+		}, err => {
+			console.log(err);
+		});
 	}
 
 

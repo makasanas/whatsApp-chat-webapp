@@ -1476,6 +1476,10 @@ blockquote {
   span {
     font-size: 14px;
     margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 }
 
@@ -1591,6 +1595,7 @@ blockquote {
   .input {
     width: 100%;
     flex-grow: 10;
+    margin-bottom: 0px;
 
     input {
       width: 100%;
@@ -1646,6 +1651,9 @@ blockquote {
         border: none;
         height: 100%;
         padding: 10px 35px 10px 20px;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
       }
 
       .icon {
