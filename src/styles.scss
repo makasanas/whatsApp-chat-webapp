@@ -1668,3 +1668,22 @@ blockquote {
   }
 
 }
+
+/*Table Page Loading Animation*/
+.is-loading-page {
+  .datatable-body {
+    &:after {
+      content: url(assets/loading.svg);
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #6d6d6d66;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+  }
+}

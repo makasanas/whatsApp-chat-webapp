@@ -6,111 +6,113 @@ $brand-hover-color: #276996;
   height: 100%;
 }
 
-.pricing {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  // margin: 60px 0;
-  flex-wrap: wrap;
-  height: 100%;
+// .pricing {
 
-  @media screen and (max-width: 1365px) {
-    justify-content: flex-start;
-  }
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   // margin: 60px 0;
+//   flex-wrap: wrap;
+//   height: 100%;
+//   display: none;
 
-  @media screen and (max-width: 1199px) {
-    justify-content: space-around;
-  }
+//   @media screen and (max-width: 1365px) {
+//     justify-content: flex-start;
+//   }
 
-  @media screen and (max-width: 979px) {
-    margin: 30px 0;
-  }
+//   @media screen and (max-width: 1199px) {
+//     justify-content: space-around;
+//   }
 
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    flex-wrap: initial;
-  }
+//   @media screen and (max-width: 979px) {
+//     margin: 30px 0;
+//   }
 
-  .pricing-card {
-    width: calc(20% - 10px);
-    min-width: 265px;
-    background: #fff;
-    border: 1px solid #cdd4e3;
-    border-top: 3px solid $brand-color;
-    border-radius: 5px;
-    margin: 20px 0;
-    position: relative;
-    transition: all 0.2s;
-    text-align: center;
+//   @media screen and (max-width: 767px) {
+//     flex-direction: column;
+//     flex-wrap: initial;
+//   }
 
-    @media screen and (max-width: 1365px) {
-      margin-right: 20px;
-      margin-top: 0px;
-    }
+//   .pricing-card {
+//     width: calc(20% - 10px);
+//     min-width: 265px;
+//     background: #fff;
+//     border: 1px solid #cdd4e3;
+//     border-top: 3px solid $brand-color;
+//     border-radius: 5px;
+//     margin: 20px 0;
+//     position: relative;
+//     transition: all 0.2s;
+//     text-align: center;
 
-    @media screen and (max-width: 1199px) {
-      margin: 0px;
-      width: calc(50% - 20px);
-      margin-bottom: 20px;
-    }
+//     @media screen and (max-width: 1365px) {
+//       margin-right: 20px;
+//       margin-top: 0px;
+//     }
 
-    @media screen and (max-width: 767px) {
-      width: 100%;
-      max-width: 360px;
-    }
+//     @media screen and (max-width: 1199px) {
+//       margin: 0px;
+//       width: calc(50% - 20px);
+//       margin-bottom: 20px;
+//     }
 
-    .pricing-heading {
-      padding: 10px 0;
+//     @media screen and (max-width: 767px) {
+//       width: 100%;
+//       max-width: 360px;
+//     }
 
-      h2 {
-        color: $brand-color;
-        margin: 0 15px;
-        font-size: 26px;
-        padding: 15px 0;
-        border-bottom: 1px solid #efeeee;
-      }
-    }
+//     .pricing-heading {
+//       padding: 10px 0;
 
-    &:hover {
-      box-shadow: 0px 2px 20px #00000020;
-      transform: scale(1.01);
-    }
+//       h2 {
+//         color: $brand-color;
+//         margin: 0 15px;
+//         font-size: 26px;
+//         padding: 15px 0;
+//         border-bottom: 1px solid #efeeee;
+//       }
+//     }
 
-    &.active {
-      box-shadow: 0px 2px 20px #00000020;
-      border-top: 3px solid $brand-color;
-      transform: scale(1.2);
-      z-index: 10;
-      text-align: center;
+//     &:hover {
+//       box-shadow: 0px 2px 20px #00000020;
+//       transform: scale(1.01);
+//     }
 
-      .pricing-heading {
-        background: $brand-color;
-        padding: 18px 0;
+//     &.active {
+//       box-shadow: 0px 2px 20px #00000020;
+//       border-top: 3px solid $brand-color;
+//       transform: scale(1.2);
+//       z-index: 10;
+//       text-align: center;
 
-        h2 {
-          color: white;
-          border: none;
-        }
-      }
+//       .pricing-heading {
+//         background: $brand-color;
+//         padding: 18px 0;
 
-      .pricing-info {
-        padding: 30px 15px;
+//         h2 {
+//           color: white;
+//           border: none;
+//         }
+//       }
 
-        .days-left {
-          display: block;
-        }
+//       .pricing-info {
+//         padding: 30px 15px;
 
-        .next-payment {
-          display: block;
-        }
-      }
+//         .days-left {
+//           display: block;
+//         }
 
-      .upgrade-btn {
-        margin-bottom: 25px;
-      }
-    }
-  }
-}
+//         .next-payment {
+//           display: block;
+//         }
+//       }
+
+//       .upgrade-btn {
+//         margin-bottom: 25px;
+//       }
+//     }
+//   }
+// }
 
 .pricing-info {
   padding: 20px 15px;
@@ -164,17 +166,21 @@ $brand-hover-color: #276996;
 
     .feature {
       display: flex;
-      align-items: center;
       margin: 15px 0;
       margin-left: 20px;
+      align-items: flex-start;
 
       img {
         margin-right: 6px;
         width: 15px;
+        margin-top: 3px;
       }
 
       p {
-        white-space: nowrap;
+        font-size: 14px;
+        word-spacing: 0.5px;
+        color: #5f7c8a;
+        text-align: left;
 
         @media screen and (max-width: 979px) {
           text-align: left;
@@ -234,4 +240,90 @@ $brand-hover-color: #276996;
   position: relative;
   height: calc(100vh - 40px);
   width: 100%;
+}
+
+.pricing_new {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 0px;
+  justify-content: space-between;
+
+  .pricing-lable {
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    margin-left: -50px;
+
+    span {
+      font-weight: normal;
+    }
+  }
+
+  .pricing-card {
+    width: 25%;
+    position: relative;
+    transition: all 0.2s;
+    text-align: center;
+
+    @media screen and (max-width: 1365px) {
+      margin: 0px;
+      width: calc(50% - 20px);
+      margin-bottom: 20px;
+      margin: 0 auto 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto 20px;
+    }
+
+    .pricing-heading {
+      padding: 10px 0;
+
+      h2 {
+        color: #607D8B;
+        margin: 0 15px;
+        font-size: 26px;
+        padding: 15px 0;
+        border-bottom: 1px solid #efeeee;
+      }
+    }
+
+    &.active {
+      box-shadow: 0px 2px 20px #00000020;
+      z-index: 10;
+      text-align: center;
+      background: #fff;
+
+      @media screen and (max-width: 1365px) {
+        border: none;
+      }
+
+      .pricing-heading {
+        h2 {
+          color: $brand-color;
+          border-color: $brand-color;
+        }
+      }
+
+      .pricing-info {
+        padding: 30px 15px;
+
+        .days-left {
+          display: block;
+        }
+
+        .next-payment {
+          display: block;
+        }
+      }
+
+      .upgrade-btn {
+        margin-bottom: 25px;
+      }
+    }
+  }
 }

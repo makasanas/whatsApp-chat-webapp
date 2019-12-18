@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from './product.service';
 import { SecureService } from "./../secure.service";
 import { CommonService } from 'src/app/common/common.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-product',
@@ -35,7 +36,8 @@ export class ProductComponent implements OnInit {
 		private productService: ProductService,
 		private formBuilder: FormBuilder,
 		private secureService: SecureService,
-		private commonService: CommonService
+		private commonService: CommonService,
+		private router: Router
 	) {
 		this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
 		this.filters = this.formBuilder.group({
@@ -59,7 +61,8 @@ export class ProductComponent implements OnInit {
 			this.products = res.data.products;
 			this.page.count = res.data.count;
 			console.log(this.products);
-			this.products.length == 0 ? this.newMessage("No Products Found"): '';
+			this.products.length == 0 ? this.newMessage("No Products Found") : '';
+			this.router.navigate(['/settings'], { queryParams: { activeTab: 'sync' } });
 		}, err => {
 			this.loading = false;
 		});

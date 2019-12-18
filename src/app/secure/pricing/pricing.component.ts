@@ -9,7 +9,7 @@ import { SecureService } from "./../secure.service";
   styleUrls: ['./pricing.component.scss']
 })
 export class PricingComponent implements OnInit {
-  public planName: String;
+  public planData: Object;
   public planPrice: number;
   public loading: boolean = false;
   public recurring_application_charge: any = {};
@@ -34,10 +34,10 @@ export class PricingComponent implements OnInit {
       let plan: any = {}
       if (count < 1000) {
         plan['name'] = "Basic";
-        plan['price'] = 4.99;
+        plan['price'] = 9.99;
       } else if (count > 1000 && count < 2000) {
         plan['name'] = "Silver";
-        plan['price'] = 9.99;
+        plan['price'] = 19.99;
       } else if (count > 2000 && count < 10000) {
         plan['name'] = "Gold";
         plan['price'] = 14.99;
@@ -56,7 +56,7 @@ export class PricingComponent implements OnInit {
     this.pricingService.getPlan().subscribe((res) => {
       console.log(res.data);
       this.loading = false;
-      this.planName = res.data.planName;
+      this.planData = res.data;
     }, err => {
     });
   }

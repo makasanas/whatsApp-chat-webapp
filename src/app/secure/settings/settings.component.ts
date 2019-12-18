@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from './settings.service';
 import { SecureService } from '../secure.service';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -36,14 +37,26 @@ export class SettingsComponent implements OnInit {
     products: false
   };
   public appForm: FormGroup;
+  public activeTab: string;
 
-  constructor(private settingsService: SettingsService, private secureService: SecureService, private fb: FormBuilder) {
+  constructor(
+    private settingsService: SettingsService,
+    private secureService: SecureService,
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.appForm = this.fb.group({
       "appEnabled": new FormControl("false")
     });
+
   }
 
+
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.tabs.activeTab = params['activeTab'] ? params['activeTab'] : 'details';
+
+    });
     this.getPlan();
     this.getUser();
     this.getSyncData();
