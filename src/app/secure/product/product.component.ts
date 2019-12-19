@@ -216,6 +216,7 @@ export class ProductComponent implements OnInit {
 			}
 
 		}, err => {
+			this.dataLoading = false;
 			console.log(err);
 		});
 	}
