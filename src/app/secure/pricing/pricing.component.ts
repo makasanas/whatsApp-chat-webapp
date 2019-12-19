@@ -33,7 +33,7 @@ export class PricingComponent implements OnInit {
     let dt1 = new Date(this.trial['start']);
     // let dt2 = new Date("2019-12-23T00:00:00.000Z");
     // let dt1 = new Date("2019-12-15T00:00:00.000Z");
-    this.trial['days'] = this.freeTrialDays - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) > 0 ? 7 - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) : 0;
+    this.trial['days'] = this.trial['days'] - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) > 0 ? 7 - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) : 0;
   }
 
   checkPlan() {
@@ -77,7 +77,7 @@ export class PricingComponent implements OnInit {
   acceptPlan(planName, planPrice) {
     this.recurringCharge.recurring_application_charge.name = planName;
     this.recurringCharge.recurring_application_charge.price = planPrice;
-    this.recurringCharge.recurring_application_charge.trial_days = 7;
+    this.recurringCharge.recurring_application_charge.trial_days = this.trial['days'];
     this.recurringCharge.recurring_application_charge.return_url = window.location.origin + "/app/activeplan";
     if (localStorage.getItem('shopUrl') == 'dev-srore.myshopify.com' || localStorage.getItem('shopUrl') == 'webrex-test-store.myshopify.com') {
       this.recurringCharge.recurring_application_charge.test = true;
