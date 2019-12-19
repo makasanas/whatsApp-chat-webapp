@@ -40,12 +40,29 @@
 </form>
 
 <div class="content">
+
   <div class="table-responsive" *ngIf="products.length != 0 && !loading">
     <ngx-datatable class="material new-styled" [rows]="products" [rowClass]="getRowClass" [columns]="columns"
       [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'"
       [limit]="page.limit" [offset]="page.offset" [count]="page.count" (page)="filter($event)"
       [ngClass]="{'is-loading-page' : dataLoading}">
-      <ngx-datatable-column [resizeable]="false" [width]="300" [canAutoResize]="false">
+      <ngx-datatable-column [resizeable]="false" [width]="55" [canAutoResize]="false">
+        <ng-template ngx-datatable-header-template>
+          <input type="checkbox" [checked]="allSelected" (change)="selectAll($event.currentTarget.checked)" />
+        </ng-template>
+        <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
+          <input type="checkbox" *ngIf="!row.descriptions" [checked]="row.isSelected"
+            (change)="onSelect($event, row, rowIndex)" />
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="70" [canAutoResize]="false" [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <img *ngIf="row.shopifyData.image" src={{row.shopifyData.image.src}} alt="!">
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [canAutoResize]="true">
         <ng-template let-column="column" ngx-datatable-header-template>
           Title
         </ng-template>
@@ -57,51 +74,13 @@
           </span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false" [width]="200">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          Scan Count
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <span>{{row.seoScanCount}}</span>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [resizeable]="false" [canAutoResize]="true" [width]="150">
-        <ng-template let-column="column" class="text-left" ngx-datatable-header-template>
-          Seo Issues
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <span *ngIf="row.seoScan">
-            <div class="issues" *ngIf="row.seoScan.errCount">
-              <div class="issue" *ngIf="row.seoScan.errCount.error > 0 ">
-                <span class="indicator risk1"></span>
-                <span class="text">
-                  <span>{{row.seoScan.errCount.error}}</span>
-                  <span *ngIf="row.seoScan.errCount.error == 1 "> Error</span>
-                  <span *ngIf="row.seoScan.errCount.error > 1 "> Errors</span>
-                </span>
-              </div>
-              <div class="issue" *ngIf="row.seoScan.errCount.warning > 0 ">
-                <span class="indicator risk2"></span>
-                <span class="text">
-                  <span>{{row.seoScan.errCount.warning}}</span>
-                  <span *ngIf="row.seoScan.errCount.warning == 1 "> Warning</span>
-                  <span *ngIf="row.seoScan.errCount.warning  > 1 "> Warnings</span>
-                </span>
-              </div>
-            </div>
-          </span>
-        </ng-template>
-      </ngx-datatable-column>
       <ngx-datatable-column [resizeable]="false" [width]="150" [canAutoResize]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           Actions
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <div class="secondary-btn" *ngIf="row.seoScan">
-            <button (click)="learnMoreOnIssue(row)">Details</button>
-          </div>
-          <div *ngIf="!row.seoScan">
-            <span>Not scanned yet</span>
+          <div class="secondary-btn">
+            <button class="btn btn-sm" (click)="productDetails(row)">Details</button>
           </div>
         </ng-template>
       </ngx-datatable-column>

@@ -34,6 +34,7 @@ export class ProductComponent implements OnInit {
 	public planError: boolean = false;
 	public dataLoading: boolean = false;
 	public pageType: string = 'products';
+	public link = '';
 
 	constructor(
 		private productService: ProductService,
@@ -70,6 +71,12 @@ export class ProductComponent implements OnInit {
 			this.dataLoading = false;
 			this.loading = false;
 			this.page.offset = event.offset;
+			this.products.forEach(product => {
+				if (!product.added) {
+					product['isSelected'] = false;
+				}
+			})
+			console.log(this.products);
 			if (this.products.length == 0) {
 				this.newMessage("No Products Found");
 			}
@@ -114,13 +121,13 @@ export class ProductComponent implements OnInit {
 		this.selected = [];
 		if (event) {
 			this.allSelected = true;
-			this.productlist.forEach(product => {
+			this.products.forEach(product => {
 				product['isSelected'] = true;
 				this.selected.push(product);
 			})
 		} else {
 			this.allSelected = false;
-			this.productlist.forEach(product => {
+			this.products.forEach(product => {
 				product['isSelected'] = false;
 				this.selected = [];
 
@@ -130,10 +137,10 @@ export class ProductComponent implements OnInit {
 
 	onSelect(event, selected, rowIndex) {
 		if (event.currentTarget.checked) {
-			this.productlist[rowIndex]['isSelected'] = true;
+			this.products[rowIndex]['isSelected'] = true;
 			this.selected.push(selected);
 
-			var productlistCount = this.productlist.filter(function (product) {
+			var productlistCount = this.products.filter(function (product) {
 				return !product.added && !product.queue;
 			}).length;
 
@@ -143,10 +150,14 @@ export class ProductComponent implements OnInit {
 
 		} else {
 			let index = this.selected.findIndex(item => { return item.id == selected.id; });
-			this.productlist[rowIndex]['isSelected'] = false;
+			this.products[rowIndex]['isSelected'] = false;
 			this.selected.splice(index, 1);
 			this.allSelected = false;
 		}
+	}
+
+	productDetails(product) {
+		console.log(product);
 	}
 
 	sync() {
@@ -187,7 +198,11 @@ export class ProductComponent implements OnInit {
 			this.page.count = res.data.result.count;
 			this.dataLoading = false;
 			this.page.offset = 0;
-
+			this.products.forEach(product => {
+				if (!product.added) {
+					product['isSelected'] = false;
+				}
+			})
 			if (this.products.length == 0) {
 				let msg = "No results found";
 				this.newMessage(msg);
@@ -198,6 +213,34 @@ export class ProductComponent implements OnInit {
 
 		}, err => {
 			console.log(err);
+		});
+	}
+
+	pageLimit() {
+		//this.getProduct(this.page, this.query);
+		localStorage.setItem('pageLimit', this.page.limit.toString());
+		this.query = this.serialize(this.filters.value) + "&newquery=true&limit=" + this.page.limit;
+		this.getProductByLink(this.query);
+
+	}
+
+	getProductByLink(link) {
+		console.log(link);
+		this.loading = true;
+		this.link = link;
+		console.log(this.page);
+		this.productService.getProduct({}, this.page).subscribe((res) => {
+			console.log(res.data);
+			// this.loading = false;
+			// this.page.count = res.data.count || res.data.count == 0? res.data.count : this.page.count;
+			// this.productlist = res.data.products;
+			// this.selected = [];
+			// this.allSelected = false;
+			// this.generatedProduct = res.data.productCount;
+			// this.totalProduct = res.data.count || res.data.count == 0? res.data.count : this.page.count;
+			// this.pagination = res.data.pagination ? res.data.pagination : {};
+		}, err => {
+			this.loading = false;
 		});
 	}
 

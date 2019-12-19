@@ -364,6 +364,10 @@ ngx-datatable {
     font-weight: 400;
     background-color: #f5f5f5;
     color: $brand-color;
+
+    &:last-child {
+      justify-content: center;
+    }
   }
 
   &.ngx-datatable.material .datatable-body .datatable-body-row {
@@ -403,6 +407,103 @@ ngx-datatable {
       }
     }
   }
+}
+
+.product-table {
+
+  .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell,
+  .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+    &:first-child {
+      padding-left: 10px;
+      padding-top: 0px;
+    }
+  }
+}
+
+.ngx-datatable {
+  &.material {
+    &.new-styled {
+      .datatable-body {
+        .datatable-body-row {
+          .datatable-body-cell {
+            &:first-child {
+              justify-content: flex-start;
+            }
+
+            a {
+              font-weight: 100;
+              color: #000;
+
+              &:hover {
+                color: $brand-hover-color;
+              }
+            }
+          }
+        }
+      }
+
+      .datatable-header {
+        .datatable-header-inner {
+          .datatable-header-cell {
+            &:first-child {
+              justify-content: flex-start;
+
+              .datatable-header-cell-template-wrap {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ngx-datatable.material .datatable-header {
+  border-bottom: none;
+}
+
+.ngx-datatable.material {
+  box-shadow: none;
+}
+
+.product-table-img {
+  width: 40px;
+  margin: 0 auto;
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  font-weight: 500;
+  color: #343a57;
+  font-size: 14px;
+  padding-top: 15px;
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+  display: flex;
+  align-items: inherit;
+  justify-content: flex-start;
+  text-align: left;
+
+  &:first-child {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:nth-child(2) {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:last-child {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+ngx-datatable {
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .dropdown {
