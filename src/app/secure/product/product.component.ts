@@ -84,7 +84,13 @@ export class ProductComponent implements OnInit {
 
 	getProductTypes() {
 		this.productService.getProductTypes().subscribe((res) => {
-			this.producttypes = res.data.product_type;
+			console.log(res.data);
+			this.producttypes = !res.data ? null : res.data.product_type;
+			// if (!res.data) {
+			// 	setTimeout(() => {
+			// 		this.getProductTypes();
+			// 	}, 5000);
+			// }
 			this.filters.controls.type.setValue('all');
 		}, err => {
 			console.log(err);

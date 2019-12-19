@@ -28,7 +28,7 @@ export class PricingComponent implements OnInit {
   }
 
   checkTrial() {
-    console.log(this.trial);
+    // console.log(this.trial);
     let dt2 = new Date();
     let dt1 = new Date(this.trial['start']);
     // let dt2 = new Date("2019-12-23T00:00:00.000Z");
@@ -38,9 +38,9 @@ export class PricingComponent implements OnInit {
 
   checkPlan() {
     this.loading = true;
-    console.log(this.user);
-    this.trial['days'] = this.user.trial_days;
-    this.trial['start'] = this.user.trial_start;
+    // console.log(this.user);
+    this.trial['days'] = !this.user.trial_days ? this.freeTrialDays : this.user.trial_days;
+    this.trial['start'] = !this.user.trial_start ? new Date() : this.user.trial_start;
     this.checkTrial();
     if (!this.user.recurringPlanType || this.user.recurringPlanType === 'Free') {
       let count = this.user.productCount;
@@ -88,7 +88,7 @@ export class PricingComponent implements OnInit {
       var installUrl = res.data.recurring_application_charge.confirmation_url;
       document.location.href = installUrl;
     }, err => {
-      // console.log(err);
+      console.log(err);
     });
   }
 
@@ -97,7 +97,7 @@ export class PricingComponent implements OnInit {
       // console.log(res)
       this.getPlan();
     }, err => {
-      // console.log(err);
+      console.log(err);
     });
   }
 }
