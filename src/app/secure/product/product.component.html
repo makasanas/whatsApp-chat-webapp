@@ -24,7 +24,7 @@
   <div class="input">
     <input type="text" formControlName="text">
   </div>
-  <div class="button" (click)="filter();">
+  <div class="button">
     <div class="icon">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
         x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
@@ -42,10 +42,9 @@
 <div class="content">
 
   <div class="table-responsive" *ngIf="products.length != 0 && !loading">
-    <ngx-datatable class="material new-styled" [rows]="products" [rowClass]="getRowClass" [columns]="columns"
-      [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'"
-      [limit]="page.limit" [offset]="page.offset" [count]="page.count" (page)="filter($event)"
-      [ngClass]="{'is-loading-page' : dataLoading}">
+    <ngx-datatable class="material new-styled" [rows]="products" [rowClass]="getRowClass" [headerHeight]="50"
+      [footerHeight]="50" [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'" [limit]="page.limit"
+      [offset]="page.offset" [count]="page.count" (page)="filter($event)" [ngClass]="{'is-loading-page' : dataLoading}">
       <ngx-datatable-column [resizeable]="false" [width]="55" [canAutoResize]="false">
         <ng-template ngx-datatable-header-template>
           <input type="checkbox" [checked]="allSelected" (change)="selectAll($event.currentTarget.checked)" />

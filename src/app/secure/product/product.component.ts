@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from './product.service';
 import { SecureService } from "./../secure.service";
@@ -167,6 +167,10 @@ export class ProductComponent implements OnInit {
 		}, err => {
 			this.loading = false;
 		});
+	}
+
+	onSidebarChange() {
+		window.dispatchEvent(new Event('resize'));
 	}
 
 	serialize = function (obj) {

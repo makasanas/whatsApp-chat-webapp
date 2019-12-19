@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { SecureService } from '../../secure/secure.service';
@@ -11,11 +11,15 @@ import { SecureService } from '../../secure/secure.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() sidebarBehaviour = new EventEmitter<boolean>();
+
   public storeName: string = "Dev Store";
   public menu: any = {
     header: false
   };
   public appForm: FormGroup;
+  public fullSidebar: boolean = false;
+
 
   constructor(private router: Router, private fb: FormBuilder, private secureService: SecureService) {
     this.router.events.subscribe((ev) => {
@@ -62,4 +66,10 @@ export class HeaderComponent implements OnInit {
       console.log(err);
     });
   }
+
+  changeSidebar() {
+    this.fullSidebar = !this.fullSidebar;
+    this.sidebarBehaviour.emit(this.fullSidebar);
+  }
+
 }

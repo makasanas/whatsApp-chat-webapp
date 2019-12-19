@@ -16,6 +16,7 @@ export class SecureComponent implements OnInit {
   public user = false;
   public fetchUser = false;
   public userData;
+  public fullSidebar: boolean = false;
 
   constructor(private router: Router, private secureService: SecureService, private renderer: Renderer2) {
     this.secureService.checkToken().subscribe((res) => {
@@ -78,5 +79,13 @@ export class SecureComponent implements OnInit {
   }
 
   setUser() {
+  }
+
+  changeSidebar(event) {
+    this.fullSidebar = event;
+    setTimeout(() => {
+      console.log('asdfasd');
+      window.dispatchEvent(new Event('resize'));
+    }, 500);
   }
 }

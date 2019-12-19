@@ -9,7 +9,9 @@ import { SecureService } from "./../secure.service";
   styleUrls: ['./pricing.component.scss']
 })
 export class PricingComponent implements OnInit {
-  public planData: Object;
+  public planData: Object = {
+    planName: ''
+  };
   public planPrice: number;
   public loading: boolean = false;
   public recurring_application_charge: any = {};
@@ -18,7 +20,10 @@ export class PricingComponent implements OnInit {
     }
   };
   public user: any;
-  public trial: Object = {};
+  public trial: Object = {
+    days: 0,
+    nextMonthStartDate: new Date
+  };
   public freeTrialDays: number = 7;
   constructor(private pricingService: PricingService, private secureService: SecureService, private router: Router, ) { }
 

@@ -17,8 +17,20 @@ export class SettingsComponent implements OnInit {
   // public storeName: String;
   // public emailID: String;
   // public phone: String;
-  public storeData: Object = {};
-  public syncData: Object = {};
+  public storeData: Object = {
+    storeName: '',
+    shopUrl: '',
+    email: '',
+    phone: '',
+    currency: '',
+    country_name: '',
+    recurringPlanName: '',
+
+
+  };
+  public syncData: Object = {
+    productSync: null,
+  };
   public loading = false;
   public planError: boolean = false;
   public tabs = {

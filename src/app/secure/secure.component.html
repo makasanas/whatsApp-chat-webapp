@@ -1,10 +1,10 @@
-<div *ngIf="user && fetchUser">
+<div *ngIf="user && fetchUser" class="secure-board" [ngClass]="{'full-sidebar':fullSidebar}">
     <app-sidebar></app-sidebar>
     <div class="mobile-logo">
         <img src="assets/logo-color.png">
     </div>
     <div class="header-container">
-        <app-header></app-header>
+        <app-header (sidebarBehaviour)="changeSidebar($event);"></app-header>
     </div>
     <div class="content">
         <router-outlet></router-outlet>

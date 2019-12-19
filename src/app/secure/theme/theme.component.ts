@@ -8,17 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemeComponent implements OnInit {
   public popupActive = false;
-  public notification: any={
-    "success":true,
-    "info":true,
-    "danger":true,
-    "warning":true
+  public notification: any = {
+    "success": true,
+    "info": true,
+    "danger": true,
+    "warning": true
   }
   // public testtab:any={
   //   "tab1":true,
   //   "tab2":false,
   //   "tab3":false
   // }
+
+  public syncProcess: boolean = false;
+  public listIssues: any = null;
 
   public tabs = {
     list: [
@@ -47,7 +50,7 @@ export class ThemeComponent implements OnInit {
     this.popupActive = !this.popupActive;
   }
 
-  resetForm(){
+  resetForm() {
     this.changePopup();
   }
 
@@ -55,7 +58,7 @@ export class ThemeComponent implements OnInit {
     this.tabs.activeTab = tab;
   }
 
-  closeNotification(alert,link){
-    this[alert][link]=false;
+  closeNotification(alert, link) {
+    this[alert][link] = false;
   }
 }
