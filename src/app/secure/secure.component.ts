@@ -17,7 +17,7 @@ export class SecureComponent implements OnInit {
   public fetchUser = false;
   public userData;
 
-  constructor(private router: Router, private secureService: SecureService,  private renderer: Renderer2) {
+  constructor(private router: Router, private secureService: SecureService, private renderer: Renderer2) {
     this.secureService.checkToken().subscribe((res) => {
       this.user = true;
       this.getUser();
@@ -44,25 +44,25 @@ export class SecureComponent implements OnInit {
       console.log(err);
     });
   }
- 
 
-  loadChat(){ 
+
+  loadChat() {
     this.userData = this.secureService.getUser();
 
-    if (!this.userData.admin && this.userData.domain != 'dev-srore.myshopify.com' ) {
+    if (!this.userData.admin && this.userData.domain != 'dev-srore.myshopify.com') {
       window.$crisp = []; window.CRISP_WEBSITE_ID = "e709e725-c026-4052-a8f4-377bb9b15f96";
       this.addJsToElement('https://client.crisp.chat/l.js').onload = () => {
-        $crisp.push(["set", "user:email", [this.userData.email]]);
-        $crisp.push(["set", "user:nickname", [this.userData.storeName]]);
-        $crisp.push(["set", "user:phone", [this.userData.phone]]);
-        $crisp.push(["set", "session:segments", [[this.userData.storeName, this.userData.credit, this.userData.shopUrl], false]])
+        window.$crisp.push(["set", "user:email", [this.userData.email]]);
+        window.$crisp.push(["set", "user:nickname", [this.userData.storeName]]);
+        window.$crisp.push(["set", "user:phone", [this.userData.phone]]);
+        window.$crisp.push(["set", "session:segments", [[this.userData.recurringPlanName, this.userData.shopUrl, this.userData.productCount,], false]])
 
-        $crisp.push(["set", "session:data", [[
-          ['shopUrl', this.userData.shopUrl],
-          ['App Plan', this.userData.recurringPlanName],
-          ['Credit', this.userData.credit],
-          ['Shopify Plan', this.userData.plan_display_name]
-        ]]])
+        // window.$crisp.push(["set", "session:data", [[
+        //   ['shopUrl', this.userData.shopUrl],
+        //   ['App Plan', this.userData.recurringPlanName],
+        //   ['Credit', this.userData.credit],
+        //   ['Shopify Plan', this.userData.plan_display_name]
+        // ]]])
         console.log($crisp);
       }
     }
