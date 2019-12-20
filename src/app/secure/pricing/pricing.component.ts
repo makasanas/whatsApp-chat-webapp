@@ -77,13 +77,15 @@ export class PricingComponent implements OnInit {
     // let dt2 = new Date("2019-12-20T00:00:00.000Z");
     // let dt1 = new Date("2019-12-15T00:00:00.000Z");
     // console.log(this.trial['days'], Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)), this.freeTrialDays);
-    this.trial['days'] = this.trial['days'] - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) > 0 ? this.freeTrialDays - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) : 0;
+    let tmpDays = this.trial['days'] - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
+    // console.log("tmpDays", tmpDays);
+    this.trial['days'] = tmpDays > 0 ? tmpDays : 0;
   }
 
   checkPlan() {
     this.loading = true;
     // console.log(this.user);
-    this.trial['days'] = !this.user.trial_days ? this.freeTrialDays : this.user.trial_days;
+    this.trial['days'] = this.user.trial_days ? this.user.trial_days : this.freeTrialDays;
     this.trial['start'] = !this.user.trial_start ? new Date() : this.user.trial_start;
     this.checkTrial();
     if (!this.user.recurringPlanType || this.user.recurringPlanType === 'Free') {
@@ -104,7 +106,7 @@ export class PricingComponent implements OnInit {
       }
       this.acceptPlan(plan.name, plan.price);
       this.pricingPlans.activePlan = plan.name;
-      console.log(this.pricingPlans);
+      // console.log(this.pricingPlans);
     } else {
       this.getPlan();
     }
@@ -113,12 +115,12 @@ export class PricingComponent implements OnInit {
   getPlan() {
     this.loading = true;
     this.pricingService.getPlan().subscribe((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       this.loading = false;
       this.planData = res.data;
       this.pricingPlans.activePlan = res.data.planName;
       this.pricingPlans.activePlanIndex = this.pricingPlans.plans.findIndex(p => p.name == this.pricingPlans.activePlan);
-      console.log(this.pricingPlans);
+      // console.log(this.pricingPlans);
     }, err => {
     });
   }
