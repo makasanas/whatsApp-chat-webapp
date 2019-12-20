@@ -24,7 +24,45 @@ export class PricingComponent implements OnInit {
     days: 0,
     nextMonthStartDate: new Date
   };
-  public freeTrialDays: number = 7;
+  public freeTrialDays: number = 14;
+  public pricingPlans: any = {
+    plans: [
+      {
+        name: 'Basic',
+        price: 9.99,
+        features: [
+          "14-day free trial",
+          "UP TO 500 PRODUCTS"
+        ]
+      },
+      {
+        name: 'Silver',
+        price: 19.99,
+        features: [
+          "14-day free trial",
+          "500-1000 PRODUCTS"
+        ]
+      },
+      {
+        name: 'Gold',
+        price: 29.99,
+        features: [
+          "14-day free trial",
+          "1000-5000 PRODUCTS"
+        ]
+      },
+      {
+        name: 'Platinum',
+        price: 49.99,
+        features: [
+          "14-day free trial",
+          "Unlimited Products"
+        ]
+      }
+    ],
+    activePlan: '',
+    activePlanIndex: 0
+  };
   constructor(private pricingService: PricingService, private secureService: SecureService, private router: Router, ) { }
 
   ngOnInit() {
@@ -36,9 +74,10 @@ export class PricingComponent implements OnInit {
     // console.log(this.trial);
     let dt2 = new Date();
     let dt1 = new Date(this.trial['start']);
-    // let dt2 = new Date("2019-12-23T00:00:00.000Z");
+    // let dt2 = new Date("2019-12-20T00:00:00.000Z");
     // let dt1 = new Date("2019-12-15T00:00:00.000Z");
-    this.trial['days'] = this.trial['days'] - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) > 0 ? 7 - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) : 0;
+    // console.log(this.trial['days'], Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)), this.freeTrialDays);
+    this.trial['days'] = this.trial['days'] - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) > 0 ? this.freeTrialDays - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)) : 0;
   }
 
   checkPlan() {
@@ -64,6 +103,8 @@ export class PricingComponent implements OnInit {
         plan['price'] = 19.99;
       }
       this.acceptPlan(plan.name, plan.price);
+      this.pricingPlans.activePlan = plan.name;
+      console.log(this.pricingPlans);
     } else {
       this.getPlan();
     }
@@ -75,6 +116,9 @@ export class PricingComponent implements OnInit {
       console.log(res.data);
       this.loading = false;
       this.planData = res.data;
+      this.pricingPlans.activePlan = res.data.planName;
+      this.pricingPlans.activePlanIndex = this.pricingPlans.plans.findIndex(p => p.name == this.pricingPlans.activePlan);
+      console.log(this.pricingPlans);
     }, err => {
     });
   }

@@ -14,7 +14,13 @@ export class ActivePlanComponent implements OnInit {
   public planID: any;
   public loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private activePlanService: ActivePlanService, private secureService: SecureService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private activePlanService: ActivePlanService,
+    private secureService: SecureService) {
+
+  }
 
   ngOnInit() {
     this.loading = true;
@@ -23,6 +29,7 @@ export class ActivePlanComponent implements OnInit {
       this.secureService.fetchUser().subscribe((res) => {
         this.secureService.setUser(res.data);
         this.loading = false;
+        this.router.navigate([], { queryParams: { page: null } });
       }, err => {
         console.log(err);
       });
