@@ -81,7 +81,17 @@ export class PricingComponent implements OnInit {
   checkPlan() {
     this.loading = true;
     // console.log(this.user);
-    this.trial['days'] = this.user.trial_days ? this.user.trial_days : this.freeTrialDays;
+    console.log(this.user.trial_days);
+    console.log(this.freeTrialDays);
+    // this.trial['days'] = this.user.trial_days ? this.user.trial_days : this.freeTrialDays;
+    if (this.user) {
+      if (Object.keys(this.user).indexOf('trial_days') == -1) {
+        this.trial['days'] = this.freeTrialDays;
+      } else {
+        this.trial['days'] = this.user.trial_days;
+      }
+    }
+    console.log(this.trial['days']);
     this.trial['start'] = !this.user.trial_start ? new Date() : this.user.trial_start;
     this.checkTrial();
     if (!this.user.recurringPlanType || this.user.recurringPlanType === 'Free') {
