@@ -4,116 +4,6 @@
   </div>
   <div *ngIf="!loading">
     <p class="light-noficication">Choose the best plan according to your products count.</p>
-    <!-- <div class="pricing_new">
-      <div [ngClass]="planData.planName == 'Basic' ? 'pricing-card active' : 'pricing-card'">
-        <div class="pricing-heading">
-          <h2>Basic</h2>
-        </div>
-        <div class="pricing-info">
-          <span class="days-left">{{trial.days}} days trial left</span>
-          <label class="pricing-lable">
-            $9.99<span>/Month</span>
-          </label>
-          <div class="pricing-features-list">
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p>14-day free trial</p>
-            </div>
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p>UP TO 500 PRODUCTS</p>
-            </div>
-          </div>
-          <div class="pricing-btn">
-            <button
-              *ngIf="planData.planName != 'Basic' && planData.planName != 'Silver' && planData.planName != 'Gold' && planData.planName != 'Platinum'"
-              (click)="acceptPlan('Basic' , 4.99)">Upgrade</button>
-          </div>
-          <span class="next-payment">Next Payment : {{planData.nextMonthStartDate | date : 'mediumDate'}}</span>
-        </div>
-      </div>
-      <div [ngClass]="planData.planName == 'Silver' ? 'pricing-card active' : 'pricing-card'">
-        <div class="pricing-heading">
-          <h2>Silver</h2>
-        </div>
-        <div class="pricing-info">
-          <span class="days-left">{{trial.days}} days trial left</span>
-          <label class="pricing-lable">
-            $19.99<span>/Month</span>
-          </label>
-          <div class="pricing-features-list">
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p>14-day free trial</p>
-            </div>
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p> 500-1000 PRODUCTS</p>
-            </div>
-
-          </div>
-          <div class="pricing-btn">
-            <button
-              *ngIf="planData.planName != 'Silver' && planData.planName != 'Gold' && planData.planName != 'Platinum'"
-              (click)="acceptPlan('Silver' , 9.99)">Upgrade</button>
-          </div>
-
-          <span class="next-payment">Next Payment : {{planData.nextMonthStartDate | date : 'mediumDate'}}</span>
-        </div>
-      </div>
-      <div [ngClass]="planData.planName == 'Gold' ? 'pricing-card active' : 'pricing-card'">
-        <div class=" pricing-heading">
-          <h2>Gold</h2>
-        </div>
-        <div class="pricing-info">
-          <span class="days-left">{{trial.days}} days trial left</span>
-          <label class="pricing-lable">
-            $29.99<span>/Month</span>
-          </label>
-          <div class="pricing-features-list">
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p>14-day free trial</p>
-            </div>
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p> 1000-5000 PRODUCTS</p>
-            </div>
-          </div>
-          <div class="pricing-btn">
-            <button *ngIf="planData.planName != 'Gold' && planData.planName != 'Platinum'"
-              (click)="acceptPlan('Gold' , 14.99)">Upgrade</button>
-          </div>
-
-          <span class="next-payment">Next Payment : {{planData.nextMonthStartDate | date : 'mediumDate'}}</span>
-        </div>
-      </div>
-      <div [ngClass]="planData.planName == 'Platinum' ? 'pricing-card active' : 'pricing-card'">
-        <div class="pricing-heading">
-          <h2>Platinum</h2>
-        </div>
-        <div class="pricing-info">
-          <span class="days-left">{{trial.days}} days trial left</span>
-          <label class="pricing-lable">
-            $49.99<span>/Month</span>
-          </label>
-          <div class="pricing-features-list">
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p>14-day free trial</p>
-            </div>
-            <div class="feature">
-              <img src="assets/rightmark.svg">
-              <p> Unlimited</p>
-            </div>
-          </div>
-          <div class="pricing-btn">
-            <button *ngIf="planData.planName != 'Platinum'" (click)="acceptPlan('Platinum' , 19.99)">Upgrade</button>
-          </div>
-          <span class="next-payment">Next Payment : {{planData.nextMonthStartDate | date : 'mediumDate'}}</span>
-        </div>
-      </div>
-    </div> -->
     <div class="pricing_new">
       <div *ngFor="let item of pricingPlans.plans; let i = index;"
         [ngClass]="planData.planName == item.name ? 'pricing-card active' : 'pricing-card'">
@@ -126,6 +16,10 @@
             ${{item.price}}<span>/Month</span>
           </label>
           <div class="pricing-features-list">
+            <div class="feature">
+              <img src="assets/rightmark.svg">
+              <p>{{trial.days}}-day free trial</p>
+            </div>
             <div class="feature" *ngFor="let feature of item.features">
               <img src="assets/rightmark.svg">
               <p>{{feature}}</p>

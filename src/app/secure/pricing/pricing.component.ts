@@ -31,7 +31,6 @@ export class PricingComponent implements OnInit {
         name: 'Basic',
         price: 9.99,
         features: [
-          "14-day free trial",
           "UP TO 500 PRODUCTS"
         ]
       },
@@ -39,7 +38,6 @@ export class PricingComponent implements OnInit {
         name: 'Silver',
         price: 19.99,
         features: [
-          "14-day free trial",
           "500-1000 PRODUCTS"
         ]
       },
@@ -47,7 +45,6 @@ export class PricingComponent implements OnInit {
         name: 'Gold',
         price: 29.99,
         features: [
-          "14-day free trial",
           "1000-5000 PRODUCTS"
         ]
       },
@@ -55,7 +52,6 @@ export class PricingComponent implements OnInit {
         name: 'Platinum',
         price: 49.99,
         features: [
-          "14-day free trial",
           "Unlimited Products"
         ]
       }
