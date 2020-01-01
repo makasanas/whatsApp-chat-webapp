@@ -5,4 +5,3 @@ export const environment = {
   apiUrl: "http://localhost:3000/",
   store: "http://dev-srore.myshopify.com"
 };
-

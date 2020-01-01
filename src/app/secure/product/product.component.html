@@ -106,3 +106,19 @@
     </div>
   </div>
 </div>
+
+
+<div class="overlay msg-overlay" [ngClass]="{active: smallPopup.status == true}">
+  <div class="popup msg-popup" *ngIf="smallPopup.status == true">
+    <h3>{{smallPopup.title}}</h3>
+    <a class="close" (click)="changeBoolean('smallPopup.status',false);">&times;</a>
+    <div class="content">
+      {{smallPopup.text}}
+    </div>
+    <div class="flex align-items-center justify-content-center">
+      <button class="btn" [routerLink]="['/pricing']">
+        <span>Goto Pricing</span>
+      </button>
+    </div>
+  </div>
+</div>

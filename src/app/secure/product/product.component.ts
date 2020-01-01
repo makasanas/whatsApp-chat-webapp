@@ -35,6 +35,11 @@ export class ProductComponent implements OnInit {
 	public dataLoading: boolean = false;
 	public pageType: string = 'products';
 	public link = '';
+	public smallPopup: any = {
+		status: false,
+		title: 'Change Title',
+		text: 'Are you sure to change tile'
+	};
 
 	constructor(
 		private productService: ProductService,
@@ -188,7 +193,27 @@ export class ProductComponent implements OnInit {
 	}
 
 	changeBoolean(variable: string, value: boolean) {
-		this[variable] = value;
+		console.log(variable);
+		if (variable.includes(".")) {
+			this.getObjectSelector(variable, '');
+		} else {
+			this[variable] = value;
+		}
+	}
+
+	getObjectSelector(o, s) {
+		s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+		s = s.replace(/^\./, '');           // strip a leading dot
+		var a = s.split('.');
+		for (var i = 0, n = a.length; i < n; ++i) {
+			var k = a[i];
+			if (k in o) {
+				o = o[k];
+			} else {
+				return;
+			}
+		}
+		return o;
 	}
 
 	newMessage(msg: string) {
