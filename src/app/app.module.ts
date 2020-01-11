@@ -44,6 +44,7 @@ import { FaqsComponent } from './secure/faqs/faqs.component';
 import { ThemeComponent } from './secure/theme/theme.component';
 import { HeaderComponent } from './common/header/header.component';
 import { NoDataComponent } from './common/no-data/no-data.component';
+import { NiceDateFormatPipe } from './common/niceDateFormatPipe';
 
 
 let config = new AuthServiceConfig([
@@ -74,7 +75,8 @@ export function provideConfig() {
     FaqsComponent,
     ThemeComponent,
     HeaderComponent,
-    NoDataComponent
+    NoDataComponent,
+    NiceDateFormatPipe
   ],
   imports: [
     BrowserModule,
