@@ -21,7 +21,7 @@ export class PricingComponent implements OnInit {
   };
   public user: any;
   public trial: Object = {
-    days: 0,
+    days: 14,
     nextMonthStartDate: new Date
   };
   public freeTrialDays: number = 14;
@@ -29,28 +29,28 @@ export class PricingComponent implements OnInit {
     plans: [
       {
         name: 'Basic',
-        price: 9.99,
+        price: 4.99,
         features: [
           "UP TO 500 PRODUCTS"
         ]
       },
       {
         name: 'Silver',
-        price: 19.99,
+        price: 9.99,
         features: [
           "500-1000 PRODUCTS"
         ]
       },
       {
         name: 'Gold',
-        price: 29.99,
+        price: 14.99,
         features: [
           "1000-5000 PRODUCTS"
         ]
       },
       {
         name: 'Platinum',
-        price: 49.99,
+        price: 19.99,
         features: [
           "Unlimited Products"
         ]
@@ -67,43 +67,40 @@ export class PricingComponent implements OnInit {
   }
 
   checkTrial() {
-    // console.log(this.trial);
     let dt2 = new Date();
     let dt1 = new Date(this.trial['start']);
-    // let dt2 = new Date("2019-12-20T00:00:00.000Z");
-    // let dt1 = new Date("2019-12-15T00:00:00.000Z");
-    // console.log(this.trial['days'], Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24)), this.freeTrialDays);
     let tmpDays = this.trial['days'] - Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
-    // console.log("tmpDays", tmpDays);
     this.trial['days'] = tmpDays > 0 ? tmpDays : 0;
   }
 
   checkPlan() {
     this.loading = true;
-    // console.log(this.user);
-    console.log(this.user.trial_days);
-    console.log(this.freeTrialDays);
-    // this.trial['days'] = this.user.trial_days ? this.user.trial_days : this.freeTrialDays;
+
     if (this.user) {
       if (Object.keys(this.user).indexOf('trial_days') == -1) {
         this.trial['days'] = this.freeTrialDays;
       } else {
-        this.trial['days'] = this.user.trial_days;
+        if(this.user.trial_days != null){
+          this.trial['days'] = this.user.trial_days;
+        }else{
+          this.trial['days'] = this.freeTrialDays;
+        }
       }
     }
+
     console.log(this.trial['days']);
     this.trial['start'] = !this.user.trial_start ? new Date() : this.user.trial_start;
     this.checkTrial();
     if (!this.user.recurringPlanType || this.user.recurringPlanType === 'Free') {
       let count = this.user.productCount;
       let plan: any = {}
-      if (count < 1000) {
+      if (count <= 500) {
         plan['name'] = "Basic";
-        plan['price'] = 9.99;
-      } else if (count > 1000 && count < 2000) {
+        plan['price'] = 4.99;
+      } else if (count > 500 && count <= 1000) {
         plan['name'] = "Silver";
-        plan['price'] = 19.99;
-      } else if (count > 2000 && count < 10000) {
+        plan['price'] = 9.99;
+      } else if (count > 1000 && count <= 5000) {
         plan['name'] = "Gold";
         plan['price'] = 14.99;
       } else {
