@@ -9,7 +9,7 @@ import { SecureService } from "./../secure.service";
   styleUrls: ['./pricing.component.scss']
 })
 export class PricingComponent implements OnInit {
-  public planData: Object = {
+  public planData: any = {
     planName: ''
   };
   public planPrice: number;
@@ -20,7 +20,7 @@ export class PricingComponent implements OnInit {
     }
   };
   public user: any;
-  public trial: Object = {
+  public trial: any = {
     days: 14,
     nextMonthStartDate: new Date
   };

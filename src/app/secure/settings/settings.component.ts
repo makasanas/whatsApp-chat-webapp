@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
   // public storeName: String;
   // public emailID: String;
   // public phone: String;
-  public storeData: Object = {
+  public storeData: any = {
     storeName: '',
     shopUrl: '',
     email: '',
@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
 
 
   };
-  public syncData: Object = {
+  public syncData: any = {
     productSync: null,
   };
   public loading = false;

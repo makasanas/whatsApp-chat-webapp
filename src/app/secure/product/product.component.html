@@ -42,7 +42,7 @@
 <div class="content">
 
   <div class="table-responsive" *ngIf="products.length != 0 && !loading">
-    <ngx-datatable class="material new-styled" [rows]="products" [rowClass]="getRowClass" [headerHeight]="50"
+    <ngx-datatable class="material new-styled" [rows]="products"  [headerHeight]="50"
       [footerHeight]="50" [externalPaging]="true" [rowHeight]="'auto'" [columnMode]="'force'" [limit]="page.limit"
       [offset]="page.offset" [count]="page.count" (page)="filter($event)" [ngClass]="{'is-loading-page' : dataLoading}">
       <ngx-datatable-column [resizeable]="false" [width]="55" [canAutoResize]="false">
