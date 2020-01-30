@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --base-href /app/  --port 4200",
-    "build": "ng build --prod --no-delete-output-path --aot --base-href /app/",
+    "build": "ng build --prod --no-delete-output-path --aot --base-href /app/ && gzip-all \"dist/shopify-starter-angular/*.*\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
