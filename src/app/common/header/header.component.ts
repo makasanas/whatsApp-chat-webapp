@@ -13,12 +13,13 @@ export class HeaderComponent implements OnInit {
 
   @Output() sidebarBehaviour = new EventEmitter<boolean>();
 
-  public storeName: string = "Dev Store";
+  public storeName: string;
   public menu: any = {
     header: false
   };
   public appForm: FormGroup;
   public fullSidebar: boolean = false;
+  public user: any;
 
 
   constructor(private router: Router, private fb: FormBuilder, private secureService: SecureService) {
@@ -34,6 +35,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.getAppStatus();
+    this.user = this.secureService.getUser();
+    // this.storeName = this.user.storeName;
   }
 
   changeMenu(name) {

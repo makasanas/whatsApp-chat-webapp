@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="right">
-            <div class="store-details">
+            <div class="store-details" *ngIf="storeName.length > 0">
                 <div class="d-flex-center menu-title" (click)="changeMenu('header');">
                     <!-- <div class="store-icon">
                         <div class="image">
