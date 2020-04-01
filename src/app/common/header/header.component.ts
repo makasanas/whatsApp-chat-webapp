@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() sidebarBehaviour = new EventEmitter<boolean>();
 
-  public storeName: string;
+  public storeName: string = "";
   public menu: any = {
     header: false
   };
