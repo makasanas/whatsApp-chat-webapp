@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PricingService } from './pricing.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecureService } from "./../secure.service";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pricing',
@@ -80,9 +81,9 @@ export class PricingComponent implements OnInit {
       if (Object.keys(this.user).indexOf('trial_days') == -1) {
         this.trial['days'] = this.freeTrialDays;
       } else {
-        if(this.user.trial_days != null){
+        if (this.user.trial_days != null) {
           this.trial['days'] = this.user.trial_days;
-        }else{
+        } else {
           this.trial['days'] = this.freeTrialDays;
         }
       }
@@ -136,7 +137,7 @@ export class PricingComponent implements OnInit {
     if (localStorage.getItem('shopUrl') == 'dev-srore.myshopify.com' || localStorage.getItem('shopUrl') == 'webrex-test-store.myshopify.com') {
       this.recurringCharge.recurring_application_charge.test = true;
     } else {
-      this.recurringCharge.recurring_application_charge.test = true;
+      this.recurringCharge.recurring_application_charge.test = environment.testCharge;
     }
     this.pricingService.acceptPlan(this.recurringCharge).subscribe((res) => {
       var installUrl = res.data.recurring_application_charge.confirmation_url;

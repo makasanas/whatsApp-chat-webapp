@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { SecureService } from "./secure.service";
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { environment } from './../../environments/environment';
 declare var $crisp;
 declare global {
   interface Window { $crisp: any; CRISP_WEBSITE_ID: any; }
@@ -16,7 +17,7 @@ export class SecureComponent implements OnInit {
   public user = false;
   public fetchUser = false;
   public userData;
-  public fullSidebar: boolean = false;
+  public fullSidebar: boolean = true;
 
   constructor(private router: Router, private secureService: SecureService, private renderer: Renderer2) {
     this.secureService.checkToken().subscribe((res) => {
@@ -51,7 +52,7 @@ export class SecureComponent implements OnInit {
     this.userData = this.secureService.getUser();
 
     if (!this.userData.admin && this.userData.domain != 'dev-srore.myshopify.com') {
-      window.$crisp = []; window.CRISP_WEBSITE_ID = "e709e725-c026-4052-a8f4-377bb9b15f96";
+      window.$crisp = []; window.CRISP_WEBSITE_ID = environment.crispId;
       this.addJsToElement('https://client.crisp.chat/l.js').onload = () => {
         window.$crisp.push(["set", "user:email", [this.userData.email]]);
         window.$crisp.push(["set", "user:nickname", [this.userData.storeName]]);
