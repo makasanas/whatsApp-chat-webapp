@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  appId: "0c436ac2893fdf35e9a4d8924f6c5aaa",
+  appId: "69d905edbaf07871f7ba034521f9dd26",
   appScope: "read_products,write_products,read_product_listings",
   apiUrl: "https://shopping-feed-api.webrexstudio.com/",
   store: "",
