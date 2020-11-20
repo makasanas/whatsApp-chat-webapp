@@ -45,6 +45,13 @@ import { ThemeComponent } from './secure/theme/theme.component';
 import { HeaderComponent } from './common/header/header.component';
 import { NoDataComponent } from './common/no-data/no-data.component';
 import { NiceDateFormatPipe } from './common/niceDateFormatPipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatInputModule} from '@angular/material/input';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {HttpClientModule} from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
 
 
 let config = new AuthServiceConfig([
@@ -87,7 +94,14 @@ export function provideConfig() {
     ChartsModule,
     NgxDatatableModule,
     NgbModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatCheckboxModule,
+    MatInputModule,
+    CdkTreeModule,
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [
     AuthService,

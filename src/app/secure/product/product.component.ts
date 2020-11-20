@@ -5,6 +5,8 @@ import { SecureService } from "./../secure.service";
 import { CommonService } from 'src/app/common/common.service';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+
 
 @Component({
 	selector: 'app-product',
@@ -12,12 +14,30 @@ import { debounceTime } from 'rxjs/operators';
 	styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
+	formdata : FormGroup;
+	more : boolean = false;
+	insta : boolean = false;
+	setting : boolean = false;
+	color : any;
+    movies = [
+		'WhatsUp',
+		
+	  ];
 
+	  drop(event: CdkDragDrop<string[]>) {
+		moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+	  }
 	
-	constructor() {}
+	constructor(private Formbuild: FormBuilder) {
+		this.formdata= this.Formbuild.group({
+			color: ':#1BD741'
+		  })
+	}
 
 
 	ngOnInit() {
+		console.log(this.formdata.value)
+
 	}
 
 	
