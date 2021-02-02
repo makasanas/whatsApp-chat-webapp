@@ -47,11 +47,10 @@ import { NoDataComponent } from './common/no-data/no-data.component';
 import { NiceDateFormatPipe } from './common/niceDateFormatPipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatInputModule} from '@angular/material/input';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {HttpClientModule} from '@angular/common/http';
-import {MatIconModule} from '@angular/material/icon';
+import { ProductNewComponent } from './secure/product-new/product-new.component';
+import { SvgComponent } from './secure/product/svg/svg.component';
 
 
 let config = new AuthServiceConfig([
@@ -83,7 +82,9 @@ export function provideConfig() {
     ThemeComponent,
     HeaderComponent,
     NoDataComponent,
-    NiceDateFormatPipe
+    NiceDateFormatPipe,
+    ProductNewComponent,
+    SvgComponent
   ],
   imports: [
     BrowserModule,
@@ -97,11 +98,8 @@ export function provideConfig() {
     SocialLoginModule,
     BrowserAnimationsModule,
     DragDropModule,
-    MatCheckboxModule,
-    MatInputModule,
     CdkTreeModule,
     HttpClientModule,
-    MatIconModule
   ],
   providers: [
     AuthService,

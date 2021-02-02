@@ -5,11 +5,16 @@ import { ActivePlanComponent } from './active-plan/active-plan.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
 import { FaqsComponent } from './faqs/faqs.component';
+import { ProductNewComponent } from './product-new/product-new.component';
 
 export const SECURE_ROUTES: Routes = [
     {
         path: 'product',
         component: ProductComponent
+    },
+    {
+        path: 'product-new',
+        component: ProductNewComponent
     },
     {
         path: 'pricing',

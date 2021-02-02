@@ -8,229 +8,455 @@
             <a>UPGRADE NOW</a>
         </div>
     </div>
-    <div class="container">
-        <div class="cht-setting">
-            <div class="channels">
-                <div class="name">
-                    <h2>Name</h2>
-                    <input type="text" name="text" placeholder="Your Chaty Name">
-                </div>
-                <div class="head">
-                    <div class="step">
-                        <h1>Step 1:</h1>
-                        <h2>Choose your channels</h2>
-                    </div>
-                    <div class="addicon">
-                        <ul>
-                            <li (click)="this.more = !this.more">
-                                <a>
-                                    <!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
-                                    <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                    <!DOCTYPE svg
-                                        PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                        viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;"
-                                        xml:space="preserve">
-                                        <g>
-                                            <rect x="0" y="0" style="fill:#1BD741;" width="455.731" height="455.731" />
-                                            <g>
-                                                <path style="fill:#FFFFFF;"
-                                                    d="M68.494,387.41l22.323-79.284c-14.355-24.387-21.913-52.134-21.913-80.638
-                                                    c0-87.765,71.402-159.167,159.167-159.167s159.166,71.402,159.166,159.167c0,87.765-71.401,159.167-159.166,159.167
-                                                    c-27.347,0-54.125-7-77.814-20.292L68.494,387.41z M154.437,337.406l4.872,2.975c20.654,12.609,44.432,19.274,68.762,19.274
-                                                    c72.877,0,132.166-59.29,132.166-132.167S300.948,95.321,228.071,95.321S95.904,154.611,95.904,227.488
-                                                    c0,25.393,7.217,50.052,20.869,71.311l3.281,5.109l-12.855,45.658L154.437,337.406z" />
-                                                <path style="fill:#FFFFFF;"
-                                                    d="M183.359,153.407l-10.328-0.563c-3.244-0.177-6.426,0.907-8.878,3.037
-                                                    c-5.007,4.348-13.013,12.754-15.472,23.708c-3.667,16.333,2,36.333,16.667,56.333c14.667,20,42,52,90.333,65.667
-                                                    c15.575,4.404,27.827,1.435,37.28-4.612c7.487-4.789,12.648-12.476,14.508-21.166l1.649-7.702c0.524-2.448-0.719-4.932-2.993-5.98
-                                                    l-34.905-16.089c-2.266-1.044-4.953-0.384-6.477,1.591l-13.703,17.764c-1.035,1.342-2.807,1.874-4.407,1.312
-                                                    c-9.384-3.298-40.818-16.463-58.066-49.687c-0.748-1.441-0.562-3.19,0.499-4.419l13.096-15.15
-                                                    c1.338-1.547,1.676-3.722,0.872-5.602l-15.046-35.201C187.187,154.774,185.392,153.518,183.359,153.407z" />
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li (click)="this.insta = !this.insta">
-                                <a>
-                                    <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <linearGradient id="SVGID_1_"
-                                            gradientTransform="matrix(0 -1.982 -1.844 0 -132.522 -51.077)"
-                                            gradientUnits="userSpaceOnUse" x1="-37.106" x2="-26.555" y1="-72.705"
-                                            y2="-84.047">
-                                            <stop offset="0" stop-color="#fd5" />
-                                            <stop offset=".5" stop-color="#ff543e" />
-                                            <stop offset="1" stop-color="#c837ab" />
-                                        </linearGradient>
-                                        <path
-                                            d="m1.5 1.633c-1.886 1.959-1.5 4.04-1.5 10.362 0 5.25-.916 10.513 3.878 11.752 1.497.385 14.761.385 16.256-.002 1.996-.515 3.62-2.134 3.842-4.957.031-.394.031-13.185-.001-13.587-.236-3.007-2.087-4.74-4.526-5.091-.559-.081-.671-.105-3.539-.11-10.173.005-12.403-.448-14.41 1.633z"
-                                            fill="url(#SVGID_1_)" />
-                                        <path
-                                            d="m11.998 3.139c-3.631 0-7.079-.323-8.396 3.057-.544 1.396-.465 3.209-.465 5.805 0 2.278-.073 4.419.465 5.804 1.314 3.382 4.79 3.058 8.394 3.058 3.477 0 7.062.362 8.395-3.058.545-1.41.465-3.196.465-5.804 0-3.462.191-5.697-1.488-7.375-1.7-1.7-3.999-1.487-7.374-1.487zm-.794 1.597c7.574-.012 8.538-.854 8.006 10.843-.189 4.137-3.339 3.683-7.211 3.683-7.06 0-7.263-.202-7.263-7.265 0-7.145.56-7.257 6.468-7.263zm5.524 1.471c-.587 0-1.063.476-1.063 1.063s.476 1.063 1.063 1.063 1.063-.476 1.063-1.063-.476-1.063-1.063-1.063zm-4.73 1.243c-2.513 0-4.55 2.038-4.55 4.551s2.037 4.55 4.55 4.55 4.549-2.037 4.549-4.55-2.036-4.551-4.549-4.551zm0 1.597c3.905 0 3.91 5.908 0 5.908-3.904 0-3.91-5.908 0-5.908z"
-                                            fill="#fff" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div id="whatsapp" class="mian-setting" [ngClass]="this.more ? 'show' : 'hide'">
-                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let movie of movies" cdkDrag>
-                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                        <div class="whatsapp-icon">
-                            <!-- <h1>{{movie}}</h1> -->
-                            <div class="move-icon">
-                                <mat-icon>drag_indicator</mat-icon>
+    <form [formGroup]="signupForm">
+        <div class="container">
+            <div class="division">
+                <div class="cht-setting">
+                    <div class="channels">
+                        <div class="name">
+                            <h2>Name</h2>
+                            <input type="text" name="text" placeholder="Your Chaty Name">
+                        </div>
+                        <div class="head">
+                            <div class="step">
+                                <h1>Step 1:</h1>
+                                <h2>Choose your channels</h2>
                             </div>
-                            <div class="png">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                            viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;"
-                                            xml:space="preserve">
-                                            <g>
-                                                <rect x="0" y="0" style="fill:#1BD741;" width="455.731" height="455.731" [ngStyle]="{'fill':formdata.value.color}" />
-                                                <g>
-                                                    <path style="fill:#FFFFFF;" 
-                                                        d="M68.494,387.41l22.323-79.284c-14.355-24.387-21.913-52.134-21.913-80.638
+                            <div class="addicon">
+                                <div class="division">
+                                    <div class="icon" *ngFor="let chat of availabalechat;let i = index"
+                                        (click)="addProvider(chat.name)">
+                                        <!-- <img [src]="chat.icon" alt=""> -->
+                                        <div class="icon-svg" *ngIf="chat.icon == 'whatsapp'">
+                                            <svg height="682pt" viewBox="-23 -21 682 682.66669" width="682pt"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="m544.386719 93.007812c-59.875-59.945312-139.503907-92.9726558-224.335938-93.007812-174.804687 0-317.070312 142.261719-317.140625 317.113281-.023437 55.894531 14.578125 110.457031 42.332032 158.550781l-44.992188 164.335938 168.121094-44.101562c46.324218 25.269531 98.476562 38.585937 151.550781 38.601562h.132813c174.785156 0 317.066406-142.273438 317.132812-317.132812.035156-84.742188-32.921875-164.417969-92.800781-224.359376zm-224.335938 487.933594h-.109375c-47.296875-.019531-93.683594-12.730468-134.160156-36.742187l-9.621094-5.714844-99.765625 26.171875 26.628907-97.269531-6.269532-9.972657c-26.386718-41.96875-40.320312-90.476562-40.296875-140.28125.054688-145.332031 118.304688-263.570312 263.699219-263.570312 70.40625.023438 136.589844 27.476562 186.355469 77.300781s77.15625 116.050781 77.132812 186.484375c-.0625 145.34375-118.304687 263.59375-263.59375 263.59375zm144.585938-197.417968c-7.921875-3.96875-46.882813-23.132813-54.148438-25.78125-7.257812-2.644532-12.546875-3.960938-17.824219 3.96875-5.285156 7.929687-20.46875 25.78125-25.09375 31.066406-4.625 5.289062-9.242187 5.953125-17.167968 1.984375-7.925782-3.964844-33.457032-12.335938-63.726563-39.332031-23.554687-21.011719-39.457031-46.960938-44.082031-54.890626-4.617188-7.9375-.039062-11.8125 3.476562-16.171874 8.578126-10.652344 17.167969-21.820313 19.808594-27.105469 2.644532-5.289063 1.320313-9.917969-.664062-13.882813-1.976563-3.964844-17.824219-42.96875-24.425782-58.839844-6.4375-15.445312-12.964843-13.359374-17.832031-13.601562-4.617187-.230469-9.902343-.277344-15.1875-.277344-5.28125 0-13.867187 1.980469-21.132812 9.917969-7.261719 7.933594-27.730469 27.101563-27.730469 66.105469s28.394531 76.683594 32.355469 81.972656c3.960937 5.289062 55.878906 85.328125 135.367187 119.648438 18.90625 8.171874 33.664063 13.042968 45.175782 16.695312 18.984374 6.03125 36.253906 5.179688 49.910156 3.140625 15.226562-2.277344 46.878906-19.171875 53.488281-37.679687 6.601563-18.511719 6.601563-34.375 4.617187-37.683594-1.976562-3.304688-7.261718-5.285156-15.183593-9.253906zm0 0"
+                                                    fill-rule="evenodd" /></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li (click)="onCLick(0)">
+                                        <a>
+                                            <!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
+                                            <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                            <!-- <!DOCTYPE svg
+                                                PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> -->
+                                            <!-- <div>
+                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    viewBox="0 0 455.731 455.731"
+                                                    style="enable-background:new 0 0 455.731 455.731;"
+                                                    xml:space="preserve">
+                                                    <g>
+                                                        <rect x="0" y="0" style="fill:#1BD741;" width="455.731"
+                                                            height="455.731" />
+                                                        <g>
+                                                            <path style="fill:#FFFFFF;"
+                                                                d="M68.494,387.41l22.323-79.284c-14.355-24.387-21.913-52.134-21.913-80.638
                                                         c0-87.765,71.402-159.167,159.167-159.167s159.166,71.402,159.166,159.167c0,87.765-71.401,159.167-159.166,159.167
                                                         c-27.347,0-54.125-7-77.814-20.292L68.494,387.41z M154.437,337.406l4.872,2.975c20.654,12.609,44.432,19.274,68.762,19.274
                                                         c72.877,0,132.166-59.29,132.166-132.167S300.948,95.321,228.071,95.321S95.904,154.611,95.904,227.488
                                                         c0,25.393,7.217,50.052,20.869,71.311l3.281,5.109l-12.855,45.658L154.437,337.406z" />
-                                                    <path style="fill:#FFFFFF;"
-                                                        d="M183.359,153.407l-10.328-0.563c-3.244-0.177-6.426,0.907-8.878,3.037
+                                                            <path style="fill:#FFFFFF;"
+                                                                d="M183.359,153.407l-10.328-0.563c-3.244-0.177-6.426,0.907-8.878,3.037
                                                         c-5.007,4.348-13.013,12.754-15.472,23.708c-3.667,16.333,2,36.333,16.667,56.333c14.667,20,42,52,90.333,65.667
                                                         c15.575,4.404,27.827,1.435,37.28-4.612c7.487-4.789,12.648-12.476,14.508-21.166l1.649-7.702c0.524-2.448-0.719-4.932-2.993-5.98
                                                         l-34.905-16.089c-2.266-1.044-4.953-0.384-6.477,1.591l-13.703,17.764c-1.035,1.342-2.807,1.874-4.407,1.312
                                                         c-9.384-3.298-40.818-16.463-58.066-49.687c-0.748-1.441-0.562-3.19,0.499-4.419l13.096-15.15
                                                         c1.338-1.547,1.676-3.722,0.872-5.602l-15.046-35.201C187.187,154.774,185.392,153.518,183.359,153.407z" />
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </div> -->
+                                        </a>
+                                    </li>
+                                    <!-- <li (click)="onCLick(1)">
+                                        <a>
+                                            <div>
+                                                <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <linearGradient id="SVGID_1_"
+                                                        gradientTransform="matrix(0 -1.982 -1.844 0 -132.522 -51.077)"
+                                                        gradientUnits="userSpaceOnUse" x1="-37.106" x2="-26.555"
+                                                        y1="-72.705" y2="-84.047">
+                                                        <stop offset="0" stop-color="#fd5" />
+                                                        <stop offset=".5" stop-color="#ff543e" />
+                                                        <stop offset="1" stop-color="#c837ab" />
+                                                    </linearGradient>
+                                                    <path
+                                                        d="m1.5 1.633c-1.886 1.959-1.5 4.04-1.5 10.362 0 5.25-.916 10.513 3.878 11.752 1.497.385 14.761.385 16.256-.002 1.996-.515 3.62-2.134 3.842-4.957.031-.394.031-13.185-.001-13.587-.236-3.007-2.087-4.74-4.526-5.091-.559-.081-.671-.105-3.539-.11-10.173.005-12.403-.448-14.41 1.633z"
+                                                        fill="url(#SVGID_1_)" />
+                                                    <path
+                                                        d="m11.998 3.139c-3.631 0-7.079-.323-8.396 3.057-.544 1.396-.465 3.209-.465 5.805 0 2.278-.073 4.419.465 5.804 1.314 3.382 4.79 3.058 8.394 3.058 3.477 0 7.062.362 8.395-3.058.545-1.41.465-3.196.465-5.804 0-3.462.191-5.697-1.488-7.375-1.7-1.7-3.999-1.487-7.374-1.487zm-.794 1.597c7.574-.012 8.538-.854 8.006 10.843-.189 4.137-3.339 3.683-7.211 3.683-7.06 0-7.263-.202-7.263-7.265 0-7.145.56-7.257 6.468-7.263zm5.524 1.471c-.587 0-1.063.476-1.063 1.063s.476 1.063 1.063 1.063 1.063-.476 1.063-1.063-.476-1.063-1.063-1.063zm-4.73 1.243c-2.513 0-4.55 2.038-4.55 4.551s2.037 4.55 4.55 4.55 4.549-2.037 4.549-4.55-2.036-4.551-4.549-4.551zm0 1.597c3.905 0 3.91 5.908 0 5.908-3.904 0-3.91-5.908 0-5.908z"
+                                                        fill="#fff" />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-icon">
+                        <div class="main-provider" formArrayName="providers">
+                            <div class="group additionServer"
+                                *ngFor="let server of signupForm.controls.providers.controls; let i=index"
+                                [ngClass]="availabalechat[i].setting ? 'add' : 'remove'">
+                                <div [formGroupName]="i">
+                                    <div class="enter-data">
+                                        <div class="tooltip">
+                                            <!-- <img [src]="server.controls.icon.value" alt=""> -->
+                                            <!-- <div class="icon-svg" *ngIf="server.controls.icon.value == 'whatsapp'">
+                                                <svg height="682pt" viewBox="-23 -21 682 682.66669" width="682pt"
+                                                    xmlns="http://www.w3.org/2000/svg"  [ngStyle]="{'fill':server.controls.fill.value}">
+                                                    <path
+                                                        d="m544.386719 93.007812c-59.875-59.945312-139.503907-92.9726558-224.335938-93.007812-174.804687 0-317.070312 142.261719-317.140625 317.113281-.023437 55.894531 14.578125 110.457031 42.332032 158.550781l-44.992188 164.335938 168.121094-44.101562c46.324218 25.269531 98.476562 38.585937 151.550781 38.601562h.132813c174.785156 0 317.066406-142.273438 317.132812-317.132812.035156-84.742188-32.921875-164.417969-92.800781-224.359376zm-224.335938 487.933594h-.109375c-47.296875-.019531-93.683594-12.730468-134.160156-36.742187l-9.621094-5.714844-99.765625 26.171875 26.628907-97.269531-6.269532-9.972657c-26.386718-41.96875-40.320312-90.476562-40.296875-140.28125.054688-145.332031 118.304688-263.570312 263.699219-263.570312 70.40625.023438 136.589844 27.476562 186.355469 77.300781s77.15625 116.050781 77.132812 186.484375c-.0625 145.34375-118.304687 263.59375-263.59375 263.59375zm144.585938-197.417968c-7.921875-3.96875-46.882813-23.132813-54.148438-25.78125-7.257812-2.644532-12.546875-3.960938-17.824219 3.96875-5.285156 7.929687-20.46875 25.78125-25.09375 31.066406-4.625 5.289062-9.242187 5.953125-17.167968 1.984375-7.925782-3.964844-33.457032-12.335938-63.726563-39.332031-23.554687-21.011719-39.457031-46.960938-44.082031-54.890626-4.617188-7.9375-.039062-11.8125 3.476562-16.171874 8.578126-10.652344 17.167969-21.820313 19.808594-27.105469 2.644532-5.289063 1.320313-9.917969-.664062-13.882813-1.976563-3.964844-17.824219-42.96875-24.425782-58.839844-6.4375-15.445312-12.964843-13.359374-17.832031-13.601562-4.617187-.230469-9.902343-.277344-15.1875-.277344-5.28125 0-13.867187 1.980469-21.132812 9.917969-7.261719 7.933594-27.730469 27.101563-27.730469 66.105469s28.394531 76.683594 32.355469 81.972656c3.960937 5.289062 55.878906 85.328125 135.367187 119.648438 18.90625 8.171874 33.664063 13.042968 45.175782 16.695312 18.984374 6.03125 36.253906 5.179688 49.910156 3.140625 15.226562-2.277344 46.878906-19.171875 53.488281-37.679687 6.601563-18.511719 6.601563-34.375 4.617187-37.683594-1.976562-3.304688-7.261718-5.285156-15.183593-9.253906zm0 0"
+                                                        fill-rule="evenodd" /></svg>
+                                            </div> -->
+                                            <app-svg [icon]=server.controls.icon.value></app-svg>
+                                            <span class="tooltiptext tooltip-top">{{server.controls.tooltip.value}}
+                                            </span>
+                                        </div>
+                                        <div class="details-box">
+                                            <input type="text" formControlName="name" class="hidden" />
+                                            <label>{{server.controls.label.value}}</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <div class="form-check form-check-inline">
+                                                <input type="checkbox" id="genderMale" class="form-check-input"
+                                                    formControlName="desktop" value="right">
+                                                <label class="form-check-label" for="genderMale">Desktop</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="checkbox" id="genderFemale" class="form-check-input"
+                                                    formControlName="mobile" value="left">
+                                                <label class="form-check-label" for="genderFeMale">Mobile</label>
+                                            </div>
+                                        </div>
+                                        <div class="setting" (click)="addSetting(i)">
+                                            <!-- <mat-icon>settings</mat-icon> -->
+                                            <h2>Settings</h2>
+                                        </div>
+                                        <!-- <button class="btn" >
+                                            Remove this provider
+                                        </button> -->
+                                        <div class="close" (click)="removeProvider(i,server.controls.name.value)">
+                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                viewBox="0 0 511.76 511.76"
+                                                style="enable-background:new 0 0 511.76 511.76;" xml:space="preserve">
+                                                <g>
+                                                    <g>
+                                                        <path d="M436.896,74.869c-99.84-99.819-262.208-99.819-362.048,0c-99.797,99.819-99.797,262.229,0,362.048
+			                                   c49.92,49.899,115.477,74.837,181.035,74.837s131.093-24.939,181.013-74.837C536.715,337.099,536.715,174.688,436.896,74.869z
+			                                    M361.461,331.317c8.341,8.341,8.341,21.824,0,30.165c-4.16,4.16-9.621,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
+			                                   l-75.413-75.435l-75.392,75.413c-4.181,4.16-9.643,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
+			                                   c-8.341-8.341-8.341-21.845,0-30.165l75.392-75.413l-75.413-75.413c-8.341-8.341-8.341-21.845,0-30.165
+			                                   c8.32-8.341,21.824-8.341,30.165,0l75.413,75.413l75.413-75.413c8.341-8.341,21.824-8.341,30.165,0
+			                                   c8.341,8.32,8.341,21.824,0,30.165l-75.413,75.413L361.461,331.317z" />
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="hover-text">
+                                        <h3>On Hover Text</h3>
+                                        <input type="text" formControlName="tooltip"
+                                            value={{server.controls.tooltip.value}}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div id="whatsapp" class="mian-setting" [ngClass]="this.more ? 'show' : 'hide'" formArrayName="provider">
+                        <div cdkDropList class="example-list">
+                            <div class="example-box" *ngFor="let server of signupForm.controls.provider.controls; let i=index"
+                                [ngClass]="this.setting ? 'add' : 'remove'">
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                <div class="whatsapp-icon">
+                                    <div class="move-icon">
+                                        <mat-icon>drag_indicator</mat-icon>
+                                    </div>
+                                    <div class="png">
+                                        <div matTooltipClass="custom-tooltip" mat-raised-button
+                                            matTooltip={{formdata.value.hoverwhatsapp}}
+                                            aria-label="Button that displays a tooltip when focused or hovered over"
+                                            matTooltipPosition="above">
+                                            <img [src]="url ? url :movie.image " height="200"
+                                                [ngStyle]="{'fill':formdata.value.color}">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="example">
+                                        <div class="single-input">
+                                            <div class="input">
+                                                <input type="text" formControlName="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox">
+                                        <div class="check-container">
+                                            <input type="checkbox" formControlName="desktop">
+                                            <span>Desktop</span>
+                                        </div>
+                                        <div class="check-container">
+                                            <input type="checkbox" formControlName="mobile">
+                                            <span>Mobile</span>
+                                        </div>
+                                    </div>
+                                    <div class="setting" (click)="this.setting = !this.setting">
+                                        <mat-icon>settings</mat-icon>
+                                        <h2>Settings</h2>
+                                    </div>
+                                    <div class="close" let i=index (click)="deleteRow(i)">
+                                        <mat-icon>cancel</mat-icon>
+                                    </div>
+                                    <div class="help-title">
+                                        <a>
+                                            <div class=" tooltip">How do i use this ?
+                                                <span class="tooltiptext tooltip-top">Button that displays a tooltip
+                                                    when focused or hovered over</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="down-item" [formGroup]='formdata'
+                                    [ngClass]="this.setting ? 'show' : 'hide'">
+                                    <div class="edit">
+                                        <div class="item-1">
+                                            <h1>Icon Appearance</h1>
+                                            <div class="colorpicker">
+                                                <input type="color" name="" id="" [style.background-color]="color"
+                                                    formControlName='color'>
+                                            </div>
+                                            <label class="custom-file-upload" (change)="onSelectFile($event)">
+                                                <input type="file" />
+                                                <div class="upload_button">
+                                                    <mat-icon>backup</mat-icon>
+                                                    <h2>Custom Image</h2>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="item-2">
+                                            <h1>On Hover Text</h1>
+                                            <input type="text" name="text" formControlName='hoverwhatsapp'
+                                                value={{movie.hovertext}}>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div id="close">
+                        <div class="example-list">
+                            <div class="example-box">
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                <div class="whatsapp-icon">
+                                    <div class="move-icon">
+                                        <!-- <mat-icon>drag_indicator</mat-icon> -->
+                                    </div>
+                                    <div class="png">
+                                        <svg height="329pt" viewBox="0 0 329.26933 329" width="329pt"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+                                        </svg>
+                                    </div>
+                                    <div class="main-example">
+                                        <div class="close-example" [ngClass]="this.cancel ? 'add' : 'remove'">
+                                            <input type="text" name="text">
+                                            <div class="label-input">
+                                                On hover Close button text
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="close-setting" (click)="this.cancel = !this.cancel">
+                                        <svg enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24"
+                                            width="512" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m22.683 9.394-1.88-.239c-.155-.477-.346-.937-.569-1.374l1.161-1.495c.47-.605.415-1.459-.122-1.979l-1.575-1.575c-.525-.542-1.379-.596-1.985-.127l-1.493 1.161c-.437-.223-.897-.414-1.375-.569l-.239-1.877c-.09-.753-.729-1.32-1.486-1.32h-2.24c-.757 0-1.396.567-1.486 1.317l-.239 1.88c-.478.155-.938.345-1.375.569l-1.494-1.161c-.604-.469-1.458-.415-1.979.122l-1.575 1.574c-.542.526-.597 1.38-.127 1.986l1.161 1.494c-.224.437-.414.897-.569 1.374l-1.877.239c-.753.09-1.32.729-1.32 1.486v2.24c0 .757.567 1.396 1.317 1.486l1.88.239c.155.477.346.937.569 1.374l-1.161 1.495c-.47.605-.415 1.459.122 1.979l1.575 1.575c.526.541 1.379.595 1.985.126l1.494-1.161c.437.224.897.415 1.374.569l.239 1.876c.09.755.729 1.322 1.486 1.322h2.24c.757 0 1.396-.567 1.486-1.317l.239-1.88c.477-.155.937-.346 1.374-.569l1.495 1.161c.605.47 1.459.415 1.979-.122l1.575-1.575c.542-.526.597-1.379.127-1.985l-1.161-1.494c.224-.437.415-.897.569-1.374l1.876-.239c.753-.09 1.32-.729 1.32-1.486v-2.24c.001-.757-.566-1.396-1.316-1.486zm-10.683 7.606c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z" />
+                                        </svg>
+                                        <h2>Settings</h2>
+                                    </div>
+                                    <div class="close-cancel" [ngClass]="this.cancel ? 'add' : 'remove'"
+                                        (click)="this.cancel = !this.cancel">
+                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 511.76 511.76" style="enable-background:new 0 0 511.76 511.76;"
+                                            xml:space="preserve">
+                                            <g>
+                                                <g>
+                                                    <path d="M436.896,74.869c-99.84-99.819-262.208-99.819-362.048,0c-99.797,99.819-99.797,262.229,0,362.048
+			                                   c49.92,49.899,115.477,74.837,181.035,74.837s131.093-24.939,181.013-74.837C536.715,337.099,536.715,174.688,436.896,74.869z
+			                                    M361.461,331.317c8.341,8.341,8.341,21.824,0,30.165c-4.16,4.16-9.621,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
+			                                   l-75.413-75.435l-75.392,75.413c-4.181,4.16-9.643,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
+			                                   c-8.341-8.341-8.341-21.845,0-30.165l75.392-75.413l-75.413-75.413c-8.341-8.341-8.341-21.845,0-30.165
+			                                   c8.32-8.341,21.824-8.341,30.165,0l75.413,75.413l75.413-75.413c8.341-8.341,21.824-8.341,30.165,0
+			                                   c8.341,8.32,8.341,21.824,0,30.165l-75.413,75.413L361.461,331.317z" />
                                                 </g>
                                             </g>
                                         </svg>
-                            </div>
-                            <div class="example">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>For example: 1507854875</mat-label>
-                                    <input matInput>
-                                  </mat-form-field>
-                            </div>
-                            <div class="checkbox">
-                                <section class="example-section">
-                                    <mat-checkbox class="example-margin">Desktop</mat-checkbox>
-                                </section>
-                                <section class="example-section">
-                                    <mat-checkbox class="example-margin">Mobile</mat-checkbox>
-                                </section>
-                            </div>
-                            <div class="setting" (click)="this.setting = !this.setting">
-                                <mat-icon>settings</mat-icon>
-                                <h2>Settings</h2>
-                            </div>
-                            <div class="close">
-                                <mat-icon>cancel</mat-icon>
-                            </div>
-                            <div class="help-title">
-                                <a href="">How do i use this ?</a>
-                            </div>
-                        </div>
-                        <div class="down-item" [formGroup]='formdata' [ngClass]="this.setting ? 'show' : 'hide'">
-                            <div class="edit">
-                                <div class="item-1">
-                                    <h1>Icon Appearance</h1>
-                                    <div class="colorpicker">
-                                        <input type="color" name="" id=""  [style.background-color]="color" formControlName='color'>
                                     </div>
-                                    <button>
-                                        <mat-icon>backup</mat-icon>
-                                        <h2>Custom Image</h2>
-                                    </button>
                                 </div>
-                                <div class="item-2">
-                                    <h1>On Hover Text</h1>
-                                    <input type="text" name="text">
-                                </div>
-                                <!-- <div class="item-3">
-                                    <h1>Pre Set Message</h1>
-                                    <input type="text" name="text">
-                                </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="instagram" class="mian-setting" [ngClass]="this.insta ? 'show' : 'hide'">
-                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let movie of movies" cdkDrag>
-                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                        <div class="instagram-icon">
-                            <!-- <h1>{{movie}}</h1> -->
-                            <div class="move-icon">
-                                <mat-icon>drag_indicator</mat-icon>
+                <div class="Customize-icon">
+                    <div class="heading">
+                        <h1>Step 2:</h1>
+                        <h2>Customize your widget</h2>
+                    </div>
+                    <div class="position">
+                        <h2>Position</h2>
+                        <div class="custom-control">
+                            <label>
+                                <input type="radio" value="left" formControlName="position">
+                                <span>Left</span>
+                            </label>
+                            <label>
+                                <input type="radio" value="right" formControlName="position">
+                                <span>Right</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="custom-position">
+                        <div class="single-input" *ngIf="signupForm.controls.position.value == 'left'">
+                            <div class="input">
+                                <label>Left*</label>
+                                <input type="number" formControlName="left">
                             </div>
-                            <div class="png">
-                                <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <linearGradient id="SVGID_1_"
-                                            gradientTransform="matrix(0 -1.982 -1.844 0 -132.522 -51.077)"
-                                            gradientUnits="userSpaceOnUse" x1="-37.106" x2="-26.555" y1="-72.705"
-                                            y2="-84.047">
-                                            <stop offset="0" stop-color="#fd5" />
-                                            <stop offset=".5" stop-color="#ff543e" />
-                                            <stop offset="1" stop-color="#c837ab" />
-                                        </linearGradient>
+                        </div>
+                        <div class="single-input" *ngIf="signupForm.controls.position.value == 'right'">
+                            <div class="input">
+                                <label>Right*</label>
+                                <input type="number" formControlName="right">
+                            </div>
+                        </div>
+                        <div class="single-input">
+                            <div class="input">
+                                <label>Bottom*</label>
+                                <input type="number" formControlName="bottom">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="color-chose">
+                        <h2>Color:</h2>
+                        <mat-accordion>
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="color-round"
+                                            [ngStyle]="{'background-color': customizedata.value.pikcolor ? customizedata.value.pikcolor : xcolor.color}">
+                                        </div>
+                                        {{xcolor.name}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="color-picker">
+                                    <div class="purple-color" *ngFor="let datas of ccolor"
+                                        [ngStyle]="{'background-color': datas.color}" (click)="onColor(datas,'more')">
+                                    </div>
+                                </div>
+                                <div class="custom-color">
+                                    <label>Custom color</label>
+                                    <input type="color" [style.background-color]="color" formControlName='pikcolor'>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div> -->
+                </div>
+                <div class="submit-btn">
+                    <button (click)="onSubmit()">Submit</button>
+                </div>
+            </div>
+            <div class="Preview">
+                <h2>Preview:</h2>
+                <div class="body_Preview" [ngClass]="{'active':isMobile}">
+                    <div class="page-header">
+                        <div class="nav">
+                            <div class="circle"></div>
+                            <div class="circle1"></div>
+                            <div class="circle2"></div>
+                        </div>
+                    </div>
+                    <div class="page-body">
+                        <div *ngIf="signupForm.value.position == 'left'" class="img {{signupForm.value.position}}"
+                            [ngStyle]="{'left.px': signupForm.value.left,'bottom.px': signupForm.value.bottom}">
+                            <div class="msg-img">
+                                <div *ngFor="let server of signupForm.value.providers; ">
+                                    <!-- <img [src]="server.icon" height="200"> -->
+                                    <app-svg [icon]=server.icon></app-svg>
+                                </div>
+                                <!-- <svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="1.313 0.2629999999999768 509.637 509.636">
+                                    <g fill="none">
+                                        <circle cx="256.263" cy="254.95" fill="#1a73e8" r="254.687" />
                                         <path
-                                            d="m1.5 1.633c-1.886 1.959-1.5 4.04-1.5 10.362 0 5.25-.916 10.513 3.878 11.752 1.497.385 14.761.385 16.256-.002 1.996-.515 3.62-2.134 3.842-4.957.031-.394.031-13.185-.001-13.587-.236-3.007-2.087-4.74-4.526-5.091-.559-.081-.671-.105-3.539-.11-10.173.005-12.403-.448-14.41 1.633z"
-                                            fill="url(#SVGID_1_)" />
+                                            d="M348.948 364.964H175.393c-24.681 0-46.211-18.642-46.211-43.323v-.263 14.441c0 24.682 21.53 46.212 46.21 46.212h173.556c24.943 0 46.211-21.793 46.211-46.212v-14.44c0 24.68-21.53 43.585-46.211 43.585zM128.919 240.509v-19.693l-32.295-53.3c-1.838-2.888-2.626-5.514-2.363-8.14v22.58c0 2.101.787 4.202 2.1 6.565z"
+                                            fill="#185abc" />
                                         <path
-                                            d="m11.998 3.139c-3.631 0-7.079-.323-8.396 3.057-.544 1.396-.465 3.209-.465 5.805 0 2.278-.073 4.419.465 5.804 1.314 3.382 4.79 3.058 8.394 3.058 3.477 0 7.062.362 8.395-3.058.545-1.41.465-3.196.465-5.804 0-3.462.191-5.697-1.488-7.375-1.7-1.7-3.999-1.487-7.374-1.487zm-.794 1.597c7.574-.012 8.538-.854 8.006 10.843-.189 4.137-3.339 3.683-7.211 3.683-7.06 0-7.263-.202-7.263-7.265 0-7.145.56-7.257 6.468-7.263zm5.524 1.471c-.587 0-1.063.476-1.063 1.063s.476 1.063 1.063 1.063 1.063-.476 1.063-1.063-.476-1.063-1.063-1.063zm-4.73 1.243c-2.513 0-4.55 2.038-4.55 4.551s2.037 4.55 4.55 4.55 4.549-2.037 4.549-4.55-2.036-4.551-4.549-4.551zm0 1.597c3.905 0 3.91 5.908 0 5.908-3.904 0-3.91-5.908 0-5.908z"
+                                            d="M348.948 150.712H105.813c-9.715 0-15.228 8.402-8.664 17.329l31.77 55.138v98.462c0 25.206 18.38 46.211 43.323 46.211h176.443c24.944 0 46.211-21.267 46.211-46.211V197.186c.263-25.207-21.005-46.474-45.948-46.474z"
                                             fill="#fff" />
+                                        <g fill="#8ab4f8">
+                                            <path
+                                                d="M346.06 220.291H178.28c-7.352 0-14.441-4.463-14.441-11.553 0-7.089 7.09-11.552 14.441-11.552h167.778c7.352 0 14.442 4.463 14.442 11.552 0 7.09-7.09 11.553-14.442 11.553zM346.06 266.503H178.28c-7.352 0-14.441-4.464-14.441-11.553 0-7.09 7.09-11.553 14.441-11.553h167.778c7.352 0 14.442 4.464 14.442 11.553s-7.09 11.553-14.442 11.553zM299.586 312.976H178.018c-7.351 0-14.44-4.463-14.44-11.552s7.089-11.553 14.44-11.553h121.568c7.351 0 14.44 4.463 14.44 11.553s-7.089 11.552-14.44 11.552z" />
+                                        </g>
+                                        <path
+                                            d="M510.95 253.637c-.525 111.59-73.256 206.375-173.555 239.984-25.469 8.664-52.776 13.128-81.132 13.128-140.21 0-253.9-113.165-254.688-253.112v1.575c0 140.735 113.953 254.687 254.688 254.687 28.356 0 55.663-4.726 81.132-13.128C438.219 462.901 510.95 367.59 510.95 255.212z"
+                                            fill="#185abc" />
+                                        <path
+                                            d="M337.132 13.39C311.664 4.727 284.357.264 256 .264 115.266.263 1.313 114.215 1.313 254.95v1.575C2.1 116.578 115.79 3.413 256 3.413c28.357 0 55.664 4.726 81.132 13.129 100.562 33.608 173.03 128.393 173.555 239.983v-1.575c.263-112.378-72.468-207.688-173.555-241.56z"
+                                            fill="#8ab4f8" />
+                                    </g>
+                                </svg> -->
+                            </div>
+                        </div>
+                        <div *ngIf="signupForm.value.position == 'right'" class="img {{signupForm.value.position}}"
+                            [ngStyle]="{'right.px': signupForm.value.right,'bottom.px': signupForm.value.bottom}">
+                            <div class="msg-img">
+                                <div *ngFor="let server of signupForm.value.providers; ">
+                                    <img [src]="server.icon" height="200">
+                                </div>
+                                <svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="1.313 0.2629999999999768 509.637 509.636">
+                                    <g fill="none">
+                                        <circle cx="256.263" cy="254.95" fill="#1a73e8" r="254.687" />
+                                        <path
+                                            d="M348.948 364.964H175.393c-24.681 0-46.211-18.642-46.211-43.323v-.263 14.441c0 24.682 21.53 46.212 46.21 46.212h173.556c24.943 0 46.211-21.793 46.211-46.212v-14.44c0 24.68-21.53 43.585-46.211 43.585zM128.919 240.509v-19.693l-32.295-53.3c-1.838-2.888-2.626-5.514-2.363-8.14v22.58c0 2.101.787 4.202 2.1 6.565z"
+                                            fill="#185abc" />
+                                        <path
+                                            d="M348.948 150.712H105.813c-9.715 0-15.228 8.402-8.664 17.329l31.77 55.138v98.462c0 25.206 18.38 46.211 43.323 46.211h176.443c24.944 0 46.211-21.267 46.211-46.211V197.186c.263-25.207-21.005-46.474-45.948-46.474z"
+                                            fill="#fff" />
+                                        <g fill="#8ab4f8">
+                                            <path
+                                                d="M346.06 220.291H178.28c-7.352 0-14.441-4.463-14.441-11.553 0-7.089 7.09-11.552 14.441-11.552h167.778c7.352 0 14.442 4.463 14.442 11.552 0 7.09-7.09 11.553-14.442 11.553zM346.06 266.503H178.28c-7.352 0-14.441-4.464-14.441-11.553 0-7.09 7.09-11.553 14.441-11.553h167.778c7.352 0 14.442 4.464 14.442 11.553s-7.09 11.553-14.442 11.553zM299.586 312.976H178.018c-7.351 0-14.44-4.463-14.44-11.552s7.089-11.553 14.44-11.553h121.568c7.351 0 14.44 4.463 14.44 11.553s-7.089 11.552-14.44 11.552z" />
+                                        </g>
+                                        <path
+                                            d="M510.95 253.637c-.525 111.59-73.256 206.375-173.555 239.984-25.469 8.664-52.776 13.128-81.132 13.128-140.21 0-253.9-113.165-254.688-253.112v1.575c0 140.735 113.953 254.687 254.688 254.687 28.356 0 55.663-4.726 81.132-13.128C438.219 462.901 510.95 367.59 510.95 255.212z"
+                                            fill="#185abc" />
+                                        <path
+                                            d="M337.132 13.39C311.664 4.727 284.357.264 256 .264 115.266.263 1.313 114.215 1.313 254.95v1.575C2.1 116.578 115.79 3.413 256 3.413c28.357 0 55.664 4.726 81.132 13.129 100.562 33.608 173.03 128.393 173.555 239.983v-1.575c.263-112.378-72.468-207.688-173.555-241.56z"
+                                            fill="#8ab4f8" />
+                                    </g>
                                 </svg>
                             </div>
-                            <div class="example">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>For example: 1507854875</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                            </div>
-                            <div class="checkbox">
-                                <section class="example-section">
-                                    <mat-checkbox class="example-margin">Desktop</mat-checkbox>
-                                </section>
-                                <section class="example-section">
-                                    <mat-checkbox class="example-margin">Mobile</mat-checkbox>
-                                </section>
-                            </div>
-                            <div class="setting">
-                                <mat-icon>settings</mat-icon>
-                                <h2>Settings</h2>
-                            </div>
-                            <div class="close">
-                                <mat-icon>cancel</mat-icon>
-                            </div>
-                            <div class="help-title">
-                                <a href="">How do i use this ?</a>
-                            </div>
                         </div>
+                    </div>
+                </div>
+                <div class="preview_button">
+                    <div *ngIf="isMobile" class="prview-button-container">
+                        <button (click)="changePreview()">Desktop</button>
+                        <button class="active">Mobile</button>
+                    </div>
+                    <div *ngIf="!isMobile" class="prview-button-container">
+                        <button class="active">Desktop</button>
+                        <button (click)="changePreview()">Mobile</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="Preview">
-            <h2>Preview:</h2>
-            <div class="page-header">
-                <div class="nav">
-                    <div class="circle"></div>
-                    <div class="circle1"></div>
-                    <div class="circle2"></div>
-                </div>
-            </div>
-            <div class="page-body">
-
-            </div>
-        </div>
-    </div>
+    </form>
 </div>

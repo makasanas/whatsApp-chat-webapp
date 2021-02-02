@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="division">
+    <div class="icon" *ngFor="let chat of availabalechat;let i = index" (click)="addProvider(chat.name)">
+      <img [src]="chat.icon" alt="">
+    </div>
+  </div>
+</div>
+<form [formGroup]="signupForm">
+  <div class="main">
+    <div formArrayName="provider">
+      <div class="group additionServer" *ngFor="let server of signupForm.controls.provider.controls; let i=index">
+        <div [formGroupName]="i">
+          <input type="text" formControlName="name" class="hidden" />
+          <label>{{server.controls.label.value}}</label>
+          <div class=" tooltip">
+            <img [src]="server.controls.icon.value" alt="">
+            <span class="tooltiptext tooltip-top">{{server.controls.tooltip.value}}</span>
+          </div>
+          <input type="text" formControlName="tooltip" value={{server.controls.tooltip.value}}>
+        </div>
+        <button class="btn" (click)="removeProvider(i,server.controls.name. value)">
+          Remove this provider
+        </button>
+      </div>
+    </div>
+    <div class="form-group-gender" formGroupName="position">
+      <div class="form-check form-check-inline">
+        <input type="radio" id="genderMale" class="form-check-input" formControlName="right" value="right">
+        <label class="form-check-label" for="genderMale">Right</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" id="genderFemale" class="form-check-input" formControlName="left" value="left">
+        <label class="form-check-label" for="genderFeMale">Left</label>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="onSubmit()">Submit</button>
+</form>
+<div id="1" >Good Morning</div>
+<button (click)="onChange(id=1)">Change</button>
+<div id="2" >Good Morning</div>
+<button (click)="onChange(id=2)">Change</button>
+<div id="3" >Good Morning</div>
+<button (click)="onChange(id=3)">Change</button>
