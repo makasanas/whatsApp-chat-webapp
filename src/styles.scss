@@ -2,8 +2,10 @@
 // @import '~bootstrap/dist/css/bootstrap.min.css';
 
 @import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/index.css";
 @import "~@swimlane/ngx-datatable/themes/material.css";
 @import "~@swimlane/ngx-datatable/assets/icons.css";
+@import '~animate.css/animate.min';
 
 $brand-color: #3e82b0;
 $brand-hover-color: #276996;
@@ -2143,5 +2145,49 @@ blockquote {
   }
 
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// .msg-img {
+//   .icon-svg {
+//     height: 30px !important;
+//     width: 30px !important;
+//     // margin-bottom: 5px;
+//     margin: 0 0 3px 0 !important;
+//     svg {
+//       height: 30px !important;
+//       width: 30px !important;
+//       border-radius: 50px;
+//     margin: 0 !important;
+//     }
+//   }
+// }
+
+// div:not(.page-body) {
+//   .icon-svg {
+//     height: 20px !important;
+//     width: 20px !important;
+//   }
+// }
+
+.page-body{
+  .preview-icon{
+    .icons{
+      .icon-svg {
+        margin: 0 0 5px 0 !important;
+    
+        svg {
+          margin: 0 0 5px 0 !important;
+        }
+    }
+    }
+  }
+}

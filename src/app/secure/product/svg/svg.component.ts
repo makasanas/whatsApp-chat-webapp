@@ -7,6 +7,10 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class SvgComponent implements OnInit {
   @Input() icon: string;
+  @Input() fill: string;
+  @Input() size: Object;
+  
+
   constructor() { }
 
   ngOnInit() {

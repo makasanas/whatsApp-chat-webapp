@@ -15,7 +15,7 @@
                     <div class="channels">
                         <div class="name">
                             <h2>Name</h2>
-                            <input type="text" name="text" placeholder="Your Chaty Name">
+                            <input type="text" name="text" placeholder="Your Chaty Name" formControlName="chatyName">
                         </div>
                         <div class="head">
                             <div class="step">
@@ -24,105 +24,85 @@
                             </div>
                             <div class="addicon">
                                 <div class="division">
-                                    <div class="icon" *ngFor="let chat of availabalechat;let i = index"
-                                        (click)="addProvider(chat.name)">
+                                    <div class="icon" *ngFor="let chat of availabalechat;let i = index">
                                         <!-- <img [src]="chat.icon" alt=""> -->
-                                        <div class="icon-svg" *ngIf="chat.icon == 'whatsapp'">
-                                            <svg height="682pt" viewBox="-23 -21 682 682.66669" width="682pt"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m544.386719 93.007812c-59.875-59.945312-139.503907-92.9726558-224.335938-93.007812-174.804687 0-317.070312 142.261719-317.140625 317.113281-.023437 55.894531 14.578125 110.457031 42.332032 158.550781l-44.992188 164.335938 168.121094-44.101562c46.324218 25.269531 98.476562 38.585937 151.550781 38.601562h.132813c174.785156 0 317.066406-142.273438 317.132812-317.132812.035156-84.742188-32.921875-164.417969-92.800781-224.359376zm-224.335938 487.933594h-.109375c-47.296875-.019531-93.683594-12.730468-134.160156-36.742187l-9.621094-5.714844-99.765625 26.171875 26.628907-97.269531-6.269532-9.972657c-26.386718-41.96875-40.320312-90.476562-40.296875-140.28125.054688-145.332031 118.304688-263.570312 263.699219-263.570312 70.40625.023438 136.589844 27.476562 186.355469 77.300781s77.15625 116.050781 77.132812 186.484375c-.0625 145.34375-118.304687 263.59375-263.59375 263.59375zm144.585938-197.417968c-7.921875-3.96875-46.882813-23.132813-54.148438-25.78125-7.257812-2.644532-12.546875-3.960938-17.824219 3.96875-5.285156 7.929687-20.46875 25.78125-25.09375 31.066406-4.625 5.289062-9.242187 5.953125-17.167968 1.984375-7.925782-3.964844-33.457032-12.335938-63.726563-39.332031-23.554687-21.011719-39.457031-46.960938-44.082031-54.890626-4.617188-7.9375-.039062-11.8125 3.476562-16.171874 8.578126-10.652344 17.167969-21.820313 19.808594-27.105469 2.644532-5.289063 1.320313-9.917969-.664062-13.882813-1.976563-3.964844-17.824219-42.96875-24.425782-58.839844-6.4375-15.445312-12.964843-13.359374-17.832031-13.601562-4.617187-.230469-9.902343-.277344-15.1875-.277344-5.28125 0-13.867187 1.980469-21.132812 9.917969-7.261719 7.933594-27.730469 27.101563-27.730469 66.105469s28.394531 76.683594 32.355469 81.972656c3.960937 5.289062 55.878906 85.328125 135.367187 119.648438 18.90625 8.171874 33.664063 13.042968 45.175782 16.695312 18.984374 6.03125 36.253906 5.179688 49.910156 3.140625 15.226562-2.277344 46.878906-19.171875 53.488281-37.679687 6.601563-18.511719 6.601563-34.375 4.617187-37.683594-1.976562-3.304688-7.261718-5.285156-15.183593-9.253906zm0 0"
-                                                    fill-rule="evenodd" /></svg>
+                                        <div *ngIf="!chat.added" (click)="addProvider(chat)" class="icon-svg"
+                                            [ngClass]="chat.added==true ? 'hover-change-color' : 'hover-notchange-color'">
+                                            <app-svg [icon]=chat.icon [fill]=chat.fill></app-svg>
+                                        </div>
+                                        <div *ngIf="chat.added" (click)="removeProvider(i,chat.icon)" class="icon-svg"
+                                            [ngClass]="chat.added==true ? 'hover-change-color' : 'hover-notchange-color'">
+                                            <app-svg [icon]=chat.icon [fill]=chat.fill></app-svg>
                                         </div>
                                     </div>
                                 </div>
-                                <ul>
-                                    <li (click)="onCLick(0)">
-                                        <a>
-                                            <!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
-                                            <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                            <!-- <!DOCTYPE svg
-                                                PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> -->
-                                            <!-- <div>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                    viewBox="0 0 455.731 455.731"
-                                                    style="enable-background:new 0 0 455.731 455.731;"
-                                                    xml:space="preserve">
-                                                    <g>
-                                                        <rect x="0" y="0" style="fill:#1BD741;" width="455.731"
-                                                            height="455.731" />
-                                                        <g>
-                                                            <path style="fill:#FFFFFF;"
-                                                                d="M68.494,387.41l22.323-79.284c-14.355-24.387-21.913-52.134-21.913-80.638
-                                                        c0-87.765,71.402-159.167,159.167-159.167s159.166,71.402,159.166,159.167c0,87.765-71.401,159.167-159.166,159.167
-                                                        c-27.347,0-54.125-7-77.814-20.292L68.494,387.41z M154.437,337.406l4.872,2.975c20.654,12.609,44.432,19.274,68.762,19.274
-                                                        c72.877,0,132.166-59.29,132.166-132.167S300.948,95.321,228.071,95.321S95.904,154.611,95.904,227.488
-                                                        c0,25.393,7.217,50.052,20.869,71.311l3.281,5.109l-12.855,45.658L154.437,337.406z" />
-                                                            <path style="fill:#FFFFFF;"
-                                                                d="M183.359,153.407l-10.328-0.563c-3.244-0.177-6.426,0.907-8.878,3.037
-                                                        c-5.007,4.348-13.013,12.754-15.472,23.708c-3.667,16.333,2,36.333,16.667,56.333c14.667,20,42,52,90.333,65.667
-                                                        c15.575,4.404,27.827,1.435,37.28-4.612c7.487-4.789,12.648-12.476,14.508-21.166l1.649-7.702c0.524-2.448-0.719-4.932-2.993-5.98
-                                                        l-34.905-16.089c-2.266-1.044-4.953-0.384-6.477,1.591l-13.703,17.764c-1.035,1.342-2.807,1.874-4.407,1.312
-                                                        c-9.384-3.298-40.818-16.463-58.066-49.687c-0.748-1.441-0.562-3.19,0.499-4.419l13.096-15.15
-                                                        c1.338-1.547,1.676-3.722,0.872-5.602l-15.046-35.201C187.187,154.774,185.392,153.518,183.359,153.407z" />
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </div> -->
-                                        </a>
-                                    </li>
-                                    <!-- <li (click)="onCLick(1)">
-                                        <a>
-                                            <div>
-                                                <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <linearGradient id="SVGID_1_"
-                                                        gradientTransform="matrix(0 -1.982 -1.844 0 -132.522 -51.077)"
-                                                        gradientUnits="userSpaceOnUse" x1="-37.106" x2="-26.555"
-                                                        y1="-72.705" y2="-84.047">
-                                                        <stop offset="0" stop-color="#fd5" />
-                                                        <stop offset=".5" stop-color="#ff543e" />
-                                                        <stop offset="1" stop-color="#c837ab" />
-                                                    </linearGradient>
-                                                    <path
-                                                        d="m1.5 1.633c-1.886 1.959-1.5 4.04-1.5 10.362 0 5.25-.916 10.513 3.878 11.752 1.497.385 14.761.385 16.256-.002 1.996-.515 3.62-2.134 3.842-4.957.031-.394.031-13.185-.001-13.587-.236-3.007-2.087-4.74-4.526-5.091-.559-.081-.671-.105-3.539-.11-10.173.005-12.403-.448-14.41 1.633z"
-                                                        fill="url(#SVGID_1_)" />
-                                                    <path
-                                                        d="m11.998 3.139c-3.631 0-7.079-.323-8.396 3.057-.544 1.396-.465 3.209-.465 5.805 0 2.278-.073 4.419.465 5.804 1.314 3.382 4.79 3.058 8.394 3.058 3.477 0 7.062.362 8.395-3.058.545-1.41.465-3.196.465-5.804 0-3.462.191-5.697-1.488-7.375-1.7-1.7-3.999-1.487-7.374-1.487zm-.794 1.597c7.574-.012 8.538-.854 8.006 10.843-.189 4.137-3.339 3.683-7.211 3.683-7.06 0-7.263-.202-7.263-7.265 0-7.145.56-7.257 6.468-7.263zm5.524 1.471c-.587 0-1.063.476-1.063 1.063s.476 1.063 1.063 1.063 1.063-.476 1.063-1.063-.476-1.063-1.063-1.063zm-4.73 1.243c-2.513 0-4.55 2.038-4.55 4.551s2.037 4.55 4.55 4.55 4.549-2.037 4.549-4.55-2.036-4.551-4.549-4.551zm0 1.597c3.905 0 3.91 5.908 0 5.908-3.904 0-3.91-5.908 0-5.908z"
-                                                        fill="#fff" />
-                                                </svg>
-                                            </div>
-                                        </a>
-                                    </li> -->
-                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="main-icon">
                         <div class="main-provider" formArrayName="providers">
-                            <div class="group additionServer"
-                                *ngFor="let server of signupForm.controls.providers.controls; let i=index"
-                                [ngClass]="availabalechat[i].setting ? 'add' : 'remove'">
-                                <div [formGroupName]="i">
+                            <div class="providers"
+                                *ngFor="let provider of signupForm.controls.providers.controls; let i=index">
+                                <div class="close" (click)="removeProvider(i,provider.controls.icon.value)">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.76 511.76" style="enable-background:new 0 0 511.76 511.76;"
+                                        xml:space="preserve">
+                                        <g>
+                                            <g>
+                                                <path d="M436.896,74.869c-99.84-99.819-262.208-99.819-362.048,0c-99.797,99.819-99.797,262.229,0,362.048
+                                           c49.92,49.899,115.477,74.837,181.035,74.837s131.093-24.939,181.013-74.837C536.715,337.099,536.715,174.688,436.896,74.869z
+                                            M361.461,331.317c8.341,8.341,8.341,21.824,0,30.165c-4.16,4.16-9.621,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
+                                           l-75.413-75.435l-75.392,75.413c-4.181,4.16-9.643,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
+                                           c-8.341-8.341-8.341-21.845,0-30.165l75.392-75.413l-75.413-75.413c-8.341-8.341-8.341-21.845,0-30.165
+                                           c8.32-8.341,21.824-8.341,30.165,0l75.413,75.413l75.413-75.413c8.341-8.341,21.824-8.341,30.165,0
+                                           c8.341,8.32,8.341,21.824,0,30.165l-75.413,75.413L361.461,331.317z" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div [formGroupName]="i" class="group"
+                                    [ngClass]="availabalechat[i].setting ? 'add' : 'remove'">
                                     <div class="enter-data">
+                                        <div class="move-icon">
+                                            <svg width="10px" height="16px" viewBox="0 0 10 16" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <title>drag_indicator</title>
+                                                <desc>Created with Sketch.</desc>
+                                                <g id="Icons" stroke="none" stroke-width="1" fill="none"
+                                                    fill-rule="evenodd">
+                                                    <g id="Outlined" transform="translate(-617.000000, -246.000000)">
+                                                        <g id="Action" transform="translate(100.000000, 100.000000)">
+                                                            <g id="Outlined-/-Action-/-drag_indicator"
+                                                                transform="translate(510.000000, 142.000000)">
+                                                                <g>
+                                                                    <polygon id="Path" points="0 0 24 0 24 24 0 24">
+                                                                    </polygon>
+                                                                    <path
+                                                                        d="M11,18 C11,19.1 10.1,20 9,20 C7.9,20 7,19.1 7,18 C7,16.9 7.9,16 9,16 C10.1,16 11,16.9 11,18 Z M9,10 C7.9,10 7,10.9 7,12 C7,13.1 7.9,14 9,14 C10.1,14 11,13.1 11,12 C11,10.9 10.1,10 9,10 Z M9,4 C7.9,4 7,4.9 7,6 C7,7.1 7.9,8 9,8 C10.1,8 11,7.1 11,6 C11,4.9 10.1,4 9,4 Z M15,8 C16.1,8 17,7.1 17,6 C17,4.9 16.1,4 15,4 C13.9,4 13,4.9 13,6 C13,7.1 13.9,8 15,8 Z M15,10 C13.9,10 13,10.9 13,12 C13,13.1 13.9,14 15,14 C16.1,14 17,13.1 17,12 C17,10.9 16.1,10 15,10 Z M15,16 C13.9,16 13,16.9 13,18 C13,19.1 13.9,20 15,20 C16.1,20 17,19.1 17,18 C17,16.9 16.1,16 15,16 Z"
+                                                                        id="🔹-Icon-Color" fill="#1D1D1D"></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </div>
                                         <div class="tooltip">
-                                            <!-- <img [src]="server.controls.icon.value" alt=""> -->
-                                            <!-- <div class="icon-svg" *ngIf="server.controls.icon.value == 'whatsapp'">
-                                                <svg height="682pt" viewBox="-23 -21 682 682.66669" width="682pt"
-                                                    xmlns="http://www.w3.org/2000/svg"  [ngStyle]="{'fill':server.controls.fill.value}">
-                                                    <path
-                                                        d="m544.386719 93.007812c-59.875-59.945312-139.503907-92.9726558-224.335938-93.007812-174.804687 0-317.070312 142.261719-317.140625 317.113281-.023437 55.894531 14.578125 110.457031 42.332032 158.550781l-44.992188 164.335938 168.121094-44.101562c46.324218 25.269531 98.476562 38.585937 151.550781 38.601562h.132813c174.785156 0 317.066406-142.273438 317.132812-317.132812.035156-84.742188-32.921875-164.417969-92.800781-224.359376zm-224.335938 487.933594h-.109375c-47.296875-.019531-93.683594-12.730468-134.160156-36.742187l-9.621094-5.714844-99.765625 26.171875 26.628907-97.269531-6.269532-9.972657c-26.386718-41.96875-40.320312-90.476562-40.296875-140.28125.054688-145.332031 118.304688-263.570312 263.699219-263.570312 70.40625.023438 136.589844 27.476562 186.355469 77.300781s77.15625 116.050781 77.132812 186.484375c-.0625 145.34375-118.304687 263.59375-263.59375 263.59375zm144.585938-197.417968c-7.921875-3.96875-46.882813-23.132813-54.148438-25.78125-7.257812-2.644532-12.546875-3.960938-17.824219 3.96875-5.285156 7.929687-20.46875 25.78125-25.09375 31.066406-4.625 5.289062-9.242187 5.953125-17.167968 1.984375-7.925782-3.964844-33.457032-12.335938-63.726563-39.332031-23.554687-21.011719-39.457031-46.960938-44.082031-54.890626-4.617188-7.9375-.039062-11.8125 3.476562-16.171874 8.578126-10.652344 17.167969-21.820313 19.808594-27.105469 2.644532-5.289063 1.320313-9.917969-.664062-13.882813-1.976563-3.964844-17.824219-42.96875-24.425782-58.839844-6.4375-15.445312-12.964843-13.359374-17.832031-13.601562-4.617187-.230469-9.902343-.277344-15.1875-.277344-5.28125 0-13.867187 1.980469-21.132812 9.917969-7.261719 7.933594-27.730469 27.101563-27.730469 66.105469s28.394531 76.683594 32.355469 81.972656c3.960937 5.289062 55.878906 85.328125 135.367187 119.648438 18.90625 8.171874 33.664063 13.042968 45.175782 16.695312 18.984374 6.03125 36.253906 5.179688 49.910156 3.140625 15.226562-2.277344 46.878906-19.171875 53.488281-37.679687 6.601563-18.511719 6.601563-34.375 4.617187-37.683594-1.976562-3.304688-7.261718-5.285156-15.183593-9.253906zm0 0"
-                                                        fill-rule="evenodd" /></svg>
-                                            </div> -->
-                                            <app-svg [icon]=server.controls.icon.value></app-svg>
-                                            <span class="tooltiptext tooltip-top">{{server.controls.tooltip.value}}
+                                            <app-svg [icon]=provider.controls.icon.value
+                                                [fill]=provider.controls.fill.value></app-svg>
+                                            <span class="tooltiptext tooltip-top">{{provider.controls.tooltip.value}}
                                             </span>
                                         </div>
                                         <div class="details-box">
                                             <input type="text" formControlName="name" class="hidden" />
-                                            <label>{{server.controls.label.value}}</label>
+                                            <div
+                                                *ngIf="(provider.get('name').dirty || provider.get('name').touched) && provider.get('name').errors">
+                                                <div class="required" *ngIf="provider.get('name').errors.required">
+                                                    required*</div>
+                                            </div>
+                                            <label>{{provider.controls.label.value}}</label>
                                         </div>
                                         <div class="checkbox">
                                             <div class="form-check form-check-inline">
@@ -137,40 +117,28 @@
                                             </div>
                                         </div>
                                         <div class="setting" (click)="addSetting(i)">
-                                            <!-- <mat-icon>settings</mat-icon> -->
-                                            <h2>Settings</h2>
-                                        </div>
-                                        <!-- <button class="btn" >
-                                            Remove this provider
-                                        </button> -->
-                                        <div class="close" (click)="removeProvider(i,server.controls.name.value)">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                viewBox="0 0 511.76 511.76"
-                                                style="enable-background:new 0 0 511.76 511.76;" xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path d="M436.896,74.869c-99.84-99.819-262.208-99.819-362.048,0c-99.797,99.819-99.797,262.229,0,362.048
-			                                   c49.92,49.899,115.477,74.837,181.035,74.837s131.093-24.939,181.013-74.837C536.715,337.099,536.715,174.688,436.896,74.869z
-			                                    M361.461,331.317c8.341,8.341,8.341,21.824,0,30.165c-4.16,4.16-9.621,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
-			                                   l-75.413-75.435l-75.392,75.413c-4.181,4.16-9.643,6.251-15.083,6.251c-5.461,0-10.923-2.091-15.083-6.251
-			                                   c-8.341-8.341-8.341-21.845,0-30.165l75.392-75.413l-75.413-75.413c-8.341-8.341-8.341-21.845,0-30.165
-			                                   c8.32-8.341,21.824-8.341,30.165,0l75.413,75.413l75.413-75.413c8.341-8.341,21.824-8.341,30.165,0
-			                                   c8.341,8.32,8.341,21.824,0,30.165l-75.413,75.413L361.461,331.317z" />
-                                                    </g>
-                                                </g>
+                                            <svg enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24"
+                                                width="512" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="m22.683 9.394-1.88-.239c-.155-.477-.346-.937-.569-1.374l1.161-1.495c.47-.605.415-1.459-.122-1.979l-1.575-1.575c-.525-.542-1.379-.596-1.985-.127l-1.493 1.161c-.437-.223-.897-.414-1.375-.569l-.239-1.877c-.09-.753-.729-1.32-1.486-1.32h-2.24c-.757 0-1.396.567-1.486 1.317l-.239 1.88c-.478.155-.938.345-1.375.569l-1.494-1.161c-.604-.469-1.458-.415-1.979.122l-1.575 1.574c-.542.526-.597 1.38-.127 1.986l1.161 1.494c-.224.437-.414.897-.569 1.374l-1.877.239c-.753.09-1.32.729-1.32 1.486v2.24c0 .757.567 1.396 1.317 1.486l1.88.239c.155.477.346.937.569 1.374l-1.161 1.495c-.47.605-.415 1.459.122 1.979l1.575 1.575c.526.541 1.379.595 1.985.126l1.494-1.161c.437.224.897.415 1.374.569l.239 1.876c.09.755.729 1.322 1.486 1.322h2.24c.757 0 1.396-.567 1.486-1.317l.239-1.88c.477-.155.937-.346 1.374-.569l1.495 1.161c.605.47 1.459.415 1.979-.122l1.575-1.575c.542-.526.597-1.379.127-1.985l-1.161-1.494c.224-.437.415-.897.569-1.374l1.876-.239c.753-.09 1.32-.729 1.32-1.486v-2.24c.001-.757-.566-1.396-1.316-1.486zm-10.683 7.606c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z" />
                                             </svg>
+                                            <h2>Settings</h2>
                                         </div>
                                     </div>
                                     <div class="hover-text">
                                         <h3>On Hover Text</h3>
                                         <input type="text" formControlName="tooltip"
-                                            value={{server.controls.tooltip.value}}>
+                                            value={{provider.controls.tooltip.value}}>
+                                    </div>
+                                    <div class="pickColor">
+                                        <h3>Icon Appearance</h3>
+                                        <input type="color" formControlName="fill" [style.background-color]="color">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- delete Class this div -->
                     <!-- <div id="whatsapp" class="mian-setting" [ngClass]="this.more ? 'show' : 'hide'" formArrayName="provider">
                         <div cdkDropList class="example-list">
                             <div class="example-box" *ngFor="let server of signupForm.controls.provider.controls; let i=index"
@@ -250,13 +218,36 @@
                             </div>
                         </div>
                     </div> -->
-                    <div id="close">
+                    <div id="close"
+                        [style.display]="signupForm.controls.providers.value.length <= 1 ? 'none' : 'block'">
                         <div class="example-list">
                             <div class="example-box">
                                 <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
                                 <div class="whatsapp-icon">
                                     <div class="move-icon">
-                                        <!-- <mat-icon>drag_indicator</mat-icon> -->
+                                        <svg width="10px" height="16px" viewBox="0 0 10 16" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <title>drag_indicator</title>
+                                            <desc>Created with Sketch.</desc>
+                                            <g id="Icons" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="Outlined" transform="translate(-617.000000, -246.000000)">
+                                                    <g id="Action" transform="translate(100.000000, 100.000000)">
+                                                        <g id="Outlined-/-Action-/-drag_indicator"
+                                                            transform="translate(510.000000, 142.000000)">
+                                                            <g>
+                                                                <polygon id="Path" points="0 0 24 0 24 24 0 24">
+                                                                </polygon>
+                                                                <path
+                                                                    d="M11,18 C11,19.1 10.1,20 9,20 C7.9,20 7,19.1 7,18 C7,16.9 7.9,16 9,16 C10.1,16 11,16.9 11,18 Z M9,10 C7.9,10 7,10.9 7,12 C7,13.1 7.9,14 9,14 C10.1,14 11,13.1 11,12 C11,10.9 10.1,10 9,10 Z M9,4 C7.9,4 7,4.9 7,6 C7,7.1 7.9,8 9,8 C10.1,8 11,7.1 11,6 C11,4.9 10.1,4 9,4 Z M15,8 C16.1,8 17,7.1 17,6 C17,4.9 16.1,4 15,4 C13.9,4 13,4.9 13,6 C13,7.1 13.9,8 15,8 Z M15,10 C13.9,10 13,10.9 13,12 C13,13.1 13.9,14 15,14 C16.1,14 17,13.1 17,12 C17,10.9 16.1,10 15,10 Z M15,16 C13.9,16 13,16.9 13,18 C13,19.1 13.9,20 15,20 C16.1,20 17,19.1 17,18 C17,16.9 16.1,16 15,16 Z"
+                                                                    id="🔹-Icon-Color" fill="#1D1D1D"></path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
                                     </div>
                                     <div class="png">
                                         <svg height="329pt" viewBox="0 0 329.26933 329" width="329pt"
@@ -310,15 +301,48 @@
                         <h1>Step 2:</h1>
                         <h2>Customize your widget</h2>
                     </div>
+                    <div class="color-chose">
+                        <h2>Color:</h2>
+                        <div class="custom-color" [ngClass]="this.previewColor ? 'addColor' : 'removeColor'" (click)="showPreview()">
+                            <div class="arrows" >
+                                <svg [ngClass]="this.previewColor ? 'rotate' : 'removeRotate'" version="1.1" id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" width="451.846px" height="451.847px" viewBox="0 0 451.846 451.847"
+                                    style="enable-background:new 0 0 451.846 451.847;" xml:space="preserve">
+                                    <g>
+                                        <path
+                                            d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+                                       L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+                                       c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="choice-color">
+                                <div class="selected-color"
+                                    [ngStyle]="{'background-color': signupForm.value.colorValue}">
+                                </div>
+                                <span> {{signupForm.value.colorName}}</span>
+                            </div>
+                            <div class="colorPreview">
+                                <div class="color-round" *ngFor="let color of colors; let i = index"
+                                    [ngStyle]="{'background-color': color.colorValue}" (click)="changeColor(color)">
+                                </div>
+                            </div>
+                            <div class="customPickcolor">
+                                <span>Custom:</span>
+                                <input type="color" value="custom" formControlName="colorValue">
+                            </div>
+                        </div>
+                    </div>
                     <div class="position">
                         <h2>Position</h2>
                         <div class="custom-control">
                             <label>
-                                <input type="radio" value="left" formControlName="position">
+                                <input type="radio" value="left" formControlName="position" (change)="setPostions()">
                                 <span>Left</span>
                             </label>
                             <label>
-                                <input type="radio" value="right" formControlName="position">
+                                <input type="radio" value="right" formControlName="position" (change)="setPostions()">
                                 <span>Right</span>
                             </label>
                         </div>
@@ -327,46 +351,242 @@
                         <div class="single-input" *ngIf="signupForm.controls.position.value == 'left'">
                             <div class="input">
                                 <label>Left*</label>
-                                <input type="number" formControlName="left">
+                                <input type="number" formControlName="left" (change)="setPostions()">
                             </div>
                         </div>
                         <div class="single-input" *ngIf="signupForm.controls.position.value == 'right'">
                             <div class="input">
                                 <label>Right*</label>
-                                <input type="number" formControlName="right">
+                                <input type="number" formControlName="right" (change)="setPostions()">
                             </div>
                         </div>
                         <div class="single-input">
                             <div class="input">
                                 <label>Bottom*</label>
-                                <input type="number" formControlName="bottom">
+                                <input type="number" formControlName="bottom" (change)="setPostions()">
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="color-chose">
-                        <h2>Color:</h2>
-                        <mat-accordion>
-                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        <div class="color-round"
-                                            [ngStyle]="{'background-color': customizedata.value.pikcolor ? customizedata.value.pikcolor : xcolor.color}">
+                    <div class="preview-tooltip">
+                        <h2>Call to action:</h2>
+                        <textarea name="text" id="" cols="30" rows="5" formControlName="tooltipText"></textarea>
+                    </div>
+                    <div class="Preview-tooltip-color">
+                        <div class="text-color">
+                            <h2>Call to action text color:</h2>
+                            <input type="color" formControlName="tooltipTextcolor">
+                        </div>
+                        <div class="tooltip-background">
+                            <h2>Call to action background:</h2>
+                            <input type="color" formControlName="tooltipBackgroundcolor">
+                        </div>
+                    </div>
+                    <div class="Attention-effect">
+                        <h2>Attention effect:</h2>
+                        <div>
+                            <select formControlName="animationName">
+                                <option *ngFor="let animation of animations; let i = index" [value]="animation.value">
+                                    {{animation.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="togglebtn">
+                        <div class="pending-switch">
+                            <h2> Pending messages:</h2>
+                            <div class="switch-btn">
+                                <div class="switch">
+                                    <input type="checkbox" id="switch01" (click)="pendingMsg()" /><label
+                                        for="switch01">Toggle</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panding-input-area"
+                            [ngClass]="signupForm.controls.Previewpendingmsg.value ? 'span':'notspan' ">
+                            <div class="panding-number">
+                                <h2>Number of messages:</h2>
+                                <input type="number" formControlName="pendingNumber" min="1">
+                            </div>
+                            <div class="number-color">
+                                <h2>Number Color:</h2>
+                                <input type="color" formControlName="pendingNumberColor">
+                            </div>
+                            <div class="panding-background-color">
+                                <h2>Background color:</h2>
+                                <input type="color" formControlName="pendingMsgcolor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="change-msgicon">
+                        <h2>Widget icon:</h2>
+                        <div class="msg-radio">
+                            <label class="icon-radio" *ngFor="let msg of msgIcons; let i = index">
+                                <div class="chose-msgicon" *ngIf="i == 0">
+                                    <svg version="1.1" id="ch" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="-496 507.7 54 54" style="enable-background:new -496 507.7 54 54;"
+                                        xml:space="preserve">
+                                        <style type="text/css">
+                                            .st1 {
+                                                fill: #FFFFFF;
+                                            }
+
+                                            .st0 {
+                                                fill: #808080;
+                                            }
+                                        </style>
+                                        <g>
+                                            <circle cx="-469" cy="534.7" r="27" fill="#a886cd"></circle>
+                                        </g>
+                                        <path class="st1"
+                                            d="M-459.9,523.7h-20.3c-1.9,0-3.4,1.5-3.4,3.4v15.3c0,1.9,1.5,3.4,3.4,3.4h11.4l5.9,4.9c0.2,0.2,0.3,0.2,0.5,0.2 h0.3c0.3-0.2,0.5-0.5,0.5-0.8v-4.2h1.7c1.9,0,3.4-1.5,3.4-3.4v-15.3C-456.5,525.2-458,523.7-459.9,523.7z">
+                                        </path>
+                                        <path class="st0"
+                                            d="M-477.7,530.5h11.9c0.5,0,0.8,0.4,0.8,0.8l0,0c0,0.5-0.4,0.8-0.8,0.8h-11.9c-0.5,0-0.8-0.4-0.8-0.8l0,0C-478.6,530.8-478.2,530.5-477.7,530.5z">
+                                        </path>
+                                        <path class="st0"
+                                            d="M-477.7,533.5h7.9c0.5,0,0.8,0.4,0.8,0.8l0,0c0,0.5-0.4,0.8-0.8,0.8h-7.9c-0.5,0-0.8-0.4-0.8-0.8l0,0C-478.6,533.9-478.2,533.5-477.7,533.5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="chose-msgicon" *ngIf="i == 1">
+                                    <svg version="1.1" id="smile" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="-496.8 507.1 54 54" style="enable-background:new -496.8 507.1 54 54;"
+                                        xml:space="preserve">
+                                        <style type="text/css">
+                                            .st1 {
+                                                fill: #FFFFFF;
+                                            }
+
+                                            .st2 {
+                                                fill: none;
+                                                stroke: #808080;
+                                                stroke-width: 1.5;
+                                                stroke-linecap: round;
+                                                stroke-linejoin: round;
+                                            }
+                                        </style>
+                                        <g>
+                                            <circle cx="-469.8" cy="534.1" r="27" fill="#a886cd"></circle>
+                                        </g>
+                                        <path class="st1"
+                                            d="M-459.5,523.5H-482c-2.1,0-3.7,1.7-3.7,3.7v13.1c0,2.1,1.7,3.7,3.7,3.7h19.3l5.4,5.4c0.2,0.2,0.4,0.2,0.7,0.2c0.2,0,0.2,0,0.4,0c0.4-0.2,0.6-0.6,0.6-0.9v-21.5C-455.8,525.2-457.5,523.5-459.5,523.5z">
+                                        </path>
+                                        <path class="st2" d="M-476.5,537.3c2.5,1.1,8.5,2.1,13-2.7"></path>
+                                        <path class="st2" d="M-460.8,534.5c-0.1-1.2-0.8-3.4-3.3-2.8"></path>
+                                    </svg>
+                                </div>
+                                <div class="chose-msgicon" *ngIf="i == 2">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="-496.9 507.1 54 54" style="enable-background:new -496.9 507.1 54 54;"
+                                        xml:space="preserve">
+                                        <style type="text/css">
+                                            .st1 {
+                                                fill: #FFFFFF;
+                                            }
+                                        </style>
+                                        <g>
+                                            <circle cx="-469.9" cy="534.1" r="27" fill="#a886cd"></circle>
+                                        </g>
+                                        <path class="st1"
+                                            d="M-472.6,522.1h5.3c3,0,6,1.2,8.1,3.4c2.1,2.1,3.4,5.1,3.4,8.1c0,6-4.6,11-10.6,11.5v4.4c0,0.4-0.2,0.7-0.5,0.9 c-0.2,0-0.2,0-0.4,0c-0.2,0-0.5-0.2-0.7-0.4l-4.6-5c-3,0-6-1.2-8.1-3.4s-3.4-5.1-3.4-8.1C-484.1,527.2-478.9,522.1-472.6,522.1z M-462.9,535.3c1.1,0,1.8-0.7,1.8-1.8c0-1.1-0.7-1.8-1.8-1.8c-1.1,0-1.8,0.7-1.8,1.8C-464.6,534.6-463.9,535.3-462.9,535.3z M-469.9,535.3c1.1,0,1.8-0.7,1.8-1.8c0-1.1-0.7-1.8-1.8-1.8c-1.1,0-1.8,0.7-1.8,1.8C-471.7,534.6-471,535.3-469.9,535.3z M-477,535.3c1.1,0,1.8-0.7,1.8-1.8c0-1.1-0.7-1.8-1.8-1.8c-1.1,0-1.8,0.7-1.8,1.8C-478.8,534.6-478.1,535.3-477,535.3z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="chose-msgicon" *ngIf="i == 3">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="-496 507.1 54 54" style="enable-background:new -496 507.1 54 54;"
+                                        xml:space="preserve">
+                                        <style type="text/css">
+                                            .st1 {
+                                                fill: #FFFFFF;
+                                            }
+                                        </style>
+                                        <g>
+                                            <circle cx="-469" cy="534.1" r="27" fill="#a886cd"></circle>
+                                        </g>
+                                        <path class="st1"
+                                            d="M-464.6,527.7h-15.6c-1.9,0-3.5,1.6-3.5,3.5v10.4c0,1.9,1.6,3.5,3.5,3.5h12.6l5,5c0.2,0.2,0.3,0.2,0.7,0.2 c0.2,0,0.2,0,0.3,0c0.3-0.2,0.5-0.5,0.5-0.9v-18.2C-461.1,529.3-462.7,527.7-464.6,527.7z">
+                                        </path>
+                                        <path class="st1"
+                                            d="M-459.4,522.5H-475c-1.9,0-3.5,1.6-3.5,3.5h13.9c2.9,0,5.2,2.3,5.2,5.2v11.6l1.9,1.9c0.2,0.2,0.3,0.2,0.7,0.2 c0.2,0,0.2,0,0.3,0c0.3-0.2,0.5-0.5,0.5-0.9v-18C-455.9,524.1-457.5,522.5-459.4,522.5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <input type="radio" [value]="msg" formControlName="magIcon">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="widget-size">
+                        <h2>Widget size:</h2>
+                        <input formControlName="size" type="number" min="40" max="99">
+                        <span>px</span>
+                    </div>
+                    <div class="custom-css">
+                        <h2>Custom css:</h2>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="triggers">
+                    <div class="heading">
+                        <h1>Step 3:</h1>
+                        <h2>Triggers and targeting</h2>
+                    </div>
+                    <div class="icon-view">
+                        <h2>Icons view:</h2>
+                        <select formControlName="iconView">
+                            <option value="vertical"> Vertical mode</option>
+                            <option value="horizontal"> Horizontal mode</option>
+                        </select>
+                    </div>
+                    <div class="default-state">
+                        <h2>Default state:</h2>
+                        <select formControlName="defaultState">
+                            <option value="click">Click to open</option>
+                            <option value="hover">Hover to open</option>
+                            <option value="default">Opened by Default</option>
+                        </select>
+                    </div>
+                    <div class="trigger">
+                        <h2>Trigger:</h2>
+                        <div class="trigger-time">
+                            <div class="time-delay border">
+                                <div class="togglebtn">
+                                    <div class="switch-btn">
+                                        <div class="switch">
+                                            <input type="checkbox" id="switch02" formControlName="secondBtn" /><label
+                                                for="switch02">Toggle</label>
                                         </div>
-                                        {{xcolor.name}}
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="color-picker">
-                                    <div class="purple-color" *ngFor="let datas of ccolor"
-                                        [ngStyle]="{'background-color': datas.color}" (click)="onColor(datas,'more')">
                                     </div>
+                                    <h2>Toggle Buttons</h2>
                                 </div>
-                                <div class="custom-color">
-                                    <label>Custom color</label>
-                                    <input type="color" [style.background-color]="color" formControlName='pikcolor'>
+                                <div class="trigger-second">
+                                    <span>Display after</span>
+                                    <input type="number" [disabled]='signupForm.controls.secondBtn.value == false'>
+                                    <span>seconds on the page</span>
                                 </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div> -->
+                            </div>
+                            <div class="time-delay">
+                                <div class="togglebtn">
+                                    <div class="switch-btn">
+                                        <div class="switch">
+                                            <input type="checkbox" id="switch03"
+                                                formControlName="PercentageBtn" /><label for="switch03">Toggle</label>
+                                        </div>
+                                    </div>
+                                    <h2>Toggle Buttons</h2>
+                                </div>
+                                <div class="trigger-second">
+                                    <span>Display after</span>
+                                    <input type="number" [disabled]='signupForm.controls.PercentageBtn.value == false'>
+                                    <span>% on page</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="submit-btn">
                     <button (click)="onSubmit()">Submit</button>
@@ -383,65 +603,151 @@
                         </div>
                     </div>
                     <div class="page-body">
-                        <div *ngIf="signupForm.value.position == 'left'" class="img {{signupForm.value.position}}"
-                            [ngStyle]="{'left.px': signupForm.value.left,'bottom.px': signupForm.value.bottom}">
-                            <div class="msg-img">
-                                <div *ngFor="let server of signupForm.value.providers; ">
-                                    <!-- <img [src]="server.icon" height="200"> -->
-                                    <app-svg [icon]=server.icon></app-svg>
+                        <div class="img {{signupForm.value.position}}" [ngClass]="{
+                                'click':signupForm.value.defaultState == 'click',
+                                'hover':signupForm.value.defaultState == 'hover',
+                                'default':signupForm.value.defaultState == 'default',
+                                'active':isListActive
+                            }" [style.bottom]="chatPositions.bottom" [style.left]="chatPositions.left"
+                            [style.right]="chatPositions.right">
+                            <div class="msg-img" [ngClass]="signupForm.value.iconView ">
+                                <div class="preview-icon" [ngClass]="signupForm.value.iconView">
+                                    <div class="icons" *ngFor="let server of signupForm.value.providers;">
+                                        <app-svg [icon]=server.icon [fill]=server.fill
+                                            [size]="signupForm.controls.size.value"></app-svg>
+                                    </div>
                                 </div>
-                                <!-- <svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="1.313 0.2629999999999768 509.637 509.636">
-                                    <g fill="none">
-                                        <circle cx="256.263" cy="254.95" fill="#1a73e8" r="254.687" />
-                                        <path
-                                            d="M348.948 364.964H175.393c-24.681 0-46.211-18.642-46.211-43.323v-.263 14.441c0 24.682 21.53 46.212 46.21 46.212h173.556c24.943 0 46.211-21.793 46.211-46.212v-14.44c0 24.68-21.53 43.585-46.211 43.585zM128.919 240.509v-19.693l-32.295-53.3c-1.838-2.888-2.626-5.514-2.363-8.14v22.58c0 2.101.787 4.202 2.1 6.565z"
-                                            fill="#185abc" />
-                                        <path
-                                            d="M348.948 150.712H105.813c-9.715 0-15.228 8.402-8.664 17.329l31.77 55.138v98.462c0 25.206 18.38 46.211 43.323 46.211h176.443c24.944 0 46.211-21.267 46.211-46.211V197.186c.263-25.207-21.005-46.474-45.948-46.474z"
-                                            fill="#fff" />
-                                        <g fill="#8ab4f8">
+                                <div class="hover-icon" (click)="changeListStatus();"
+                                    [style.display]="signupForm.controls.providers.value.length <= 1 ? 'none' : 'block'">
+
+                                    <div class="animation"
+                                        [ngStyle]="{'height': signupForm.value.size + 'px', 'width': signupForm.value.size + 'px'}"
+                                        class="animate__animated animate__infinite"
+                                        [ngClass]="signupForm.controls.animationName.value">
+                                        <div class="pending-msg">
+                                            <span
+                                                [ngClass]="signupForm.controls.Previewpendingmsg.value ? 'span':'notspan' "
+                                                [ngStyle]="{'color':signupForm.value.pendingNumberColor,'background-color':signupForm.value.pendingMsgcolor}">
+                                                {{signupForm.value.pendingNumber}}</span>
+                                        </div>
+                                        <svg *ngIf="signupForm.controls.magIcon.value == 'icon1'"
+                                            [ngClass]="this.SetEffect ? 'animate__zoomIn' : 'removeRotate'"
+                                            version="1.1" id="ch" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="-496 507.7 54 54" style="enable-background:new -496 507.7 54 54;"
+                                            xml:space="preserve">
+                                            <style type="text/css">
+                                                .st1 {
+                                                    fill: #FFFFFF;
+                                                }
+
+                                                .st0 {
+                                                    fill: #808080;
+                                                }
+                                            </style>
+                                            <g>
+                                                <circle cx="-469" cy="534.7" r="27" fill="#a886cd"
+                                                    [ngStyle]="{'fill': signupForm.value.colorValue}"></circle>
+                                            </g>
+                                            <path class="st1"
+                                                d="M-459.9,523.7h-20.3c-1.9,0-3.4,1.5-3.4,3.4v15.3c0,1.9,1.5,3.4,3.4,3.4h11.4l5.9,4.9c0.2,0.2,0.3,0.2,0.5,0.2 h0.3c0.3-0.2,0.5-0.5,0.5-0.8v-4.2h1.7c1.9,0,3.4-1.5,3.4-3.4v-15.3C-456.5,525.2-458,523.7-459.9,523.7z">
+                                            </path>
+                                            <path class="st0"
+                                                d="M-477.7,530.5h11.9c0.5,0,0.8,0.4,0.8,0.8l0,0c0,0.5-0.4,0.8-0.8,0.8h-11.9c-0.5,0-0.8-0.4-0.8-0.8l0,0C-478.6,530.8-478.2,530.5-477.7,530.5z">
+                                            </path>
+                                            <path class="st0"
+                                                d="M-477.7,533.5h7.9c0.5,0,0.8,0.4,0.8,0.8l0,0c0,0.5-0.4,0.8-0.8,0.8h-7.9c-0.5,0-0.8-0.4-0.8-0.8l0,0C-478.6,533.9-478.2,533.5-477.7,533.5z">
+                                            </path>
+                                        </svg>
+                                        <svg *ngIf="signupForm.controls.magIcon.value == 'icon2'" version="1.1"
+                                            id="smile" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="-496.8 507.1 54 54"
+                                            style="enable-background:new -496.8 507.1 54 54;" xml:space="preserve">
+                                            <style type="text/css">
+                                                .st1 {
+                                                    fill: #FFFFFF;
+                                                }
+
+                                                .st2 {
+                                                    fill: none;
+                                                    stroke: #808080;
+                                                    stroke-width: 1.5;
+                                                    stroke-linecap: round;
+                                                    stroke-linejoin: round;
+                                                }
+                                            </style>
+                                            <g>
+                                                <circle cx="-469.8" cy="534.1" r="27" fill="#a886cd"
+                                                    [ngStyle]="{'fill': signupForm.value.colorValue}"></circle>
+                                            </g>
+                                            <path class="st1"
+                                                d="M-459.5,523.5H-482c-2.1,0-3.7,1.7-3.7,3.7v13.1c0,2.1,1.7,3.7,3.7,3.7h19.3l5.4,5.4c0.2,0.2,0.4,0.2,0.7,0.2c0.2,0,0.2,0,0.4,0c0.4-0.2,0.6-0.6,0.6-0.9v-21.5C-455.8,525.2-457.5,523.5-459.5,523.5z">
+                                            </path>
+                                            <path class="st2" d="M-476.5,537.3c2.5,1.1,8.5,2.1,13-2.7"></path>
+                                            <path class="st2" d="M-460.8,534.5c-0.1-1.2-0.8-3.4-3.3-2.8"></path>
+                                        </svg>
+                                        <svg *ngIf="signupForm.controls.magIcon.value == 'icon3'" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="-496.9 507.1 54 54"
+                                            style="enable-background:new -496.9 507.1 54 54;" xml:space="preserve">
+                                            <style type="text/css">
+                                                .st1 {
+                                                    fill: #FFFFFF;
+                                                }
+                                            </style>
+                                            <g>
+                                                <circle cx="-469.9" cy="534.1" r="27" fill="#a886cd"
+                                                    [ngStyle]="{'fill': signupForm.value.colorValue}"></circle>
+                                            </g>
+                                            <path class="st1"
+                                                d="M-472.6,522.1h5.3c3,0,6,1.2,8.1,3.4c2.1,2.1,3.4,5.1,3.4,8.1c0,6-4.6,11-10.6,11.5v4.4c0,0.4-0.2,0.7-0.5,0.9 c-0.2,0-0.2,0-0.4,0c-0.2,0-0.5-0.2-0.7-0.4l-4.6-5c-3,0-6-1.2-8.1-3.4s-3.4-5.1-3.4-8.1C-484.1,527.2-478.9,522.1-472.6,522.1z M-462.9,535.3c1.1,0,1.8-0.7,1.8-1.8c0-1.1-0.7-1.8-1.8-1.8c-1.1,0-1.8,0.7-1.8,1.8C-464.6,534.6-463.9,535.3-462.9,535.3z M-469.9,535.3c1.1,0,1.8-0.7,1.8-1.8c0-1.1-0.7-1.8-1.8-1.8c-1.1,0-1.8,0.7-1.8,1.8C-471.7,534.6-471,535.3-469.9,535.3z M-477,535.3c1.1,0,1.8-0.7,1.8-1.8c0-1.1-0.7-1.8-1.8-1.8c-1.1,0-1.8,0.7-1.8,1.8C-478.8,534.6-478.1,535.3-477,535.3z">
+                                            </path>
+                                        </svg>
+                                        <svg *ngIf="signupForm.controls.magIcon.value == 'icon4'" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="-496 507.1 54 54" style="enable-background:new -496 507.1 54 54;"
+                                            xml:space="preserve">
+                                            <style type="text/css">
+                                                .st1 {
+                                                    fill: #FFFFFF;
+                                                }
+                                            </style>
+                                            <g>
+                                                <circle cx="-469" cy="534.1" r="27" fill="#a886cd"
+                                                    [ngStyle]="{'fill': signupForm.value.colorValue}"></circle>
+                                            </g>
+                                            <path class="st1"
+                                                d="M-464.6,527.7h-15.6c-1.9,0-3.5,1.6-3.5,3.5v10.4c0,1.9,1.6,3.5,3.5,3.5h12.6l5,5c0.2,0.2,0.3,0.2,0.7,0.2 c0.2,0,0.2,0,0.3,0c0.3-0.2,0.5-0.5,0.5-0.9v-18.2C-461.1,529.3-462.7,527.7-464.6,527.7z">
+                                            </path>
+                                            <path class="st1"
+                                                d="M-459.4,522.5H-475c-1.9,0-3.5,1.6-3.5,3.5h13.9c2.9,0,5.2,2.3,5.2,5.2v11.6l1.9,1.9c0.2,0.2,0.3,0.2,0.7,0.2 c0.2,0,0.2,0,0.3,0c0.3-0.2,0.5-0.5,0.5-0.9v-18C-455.9,524.1-457.5,522.5-459.4,522.5z">
+                                            </path>
+                                        </svg>
+
+                                    </div>
+
+                                    <div class="hover-close"
+                                        [ngStyle]="{'height': signupForm.value.size + 'px', 'width': signupForm.value.size + 'px'}">
+                                        <svg height="329pt" viewBox="0 0 329.26933 329" width="329pt"
+                                            [ngStyle]="{'height': signupForm.value.size + 'px', 'width': signupForm.value.size + 'px'}"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path
-                                                d="M346.06 220.291H178.28c-7.352 0-14.441-4.463-14.441-11.553 0-7.089 7.09-11.552 14.441-11.552h167.778c7.352 0 14.442 4.463 14.442 11.552 0 7.09-7.09 11.553-14.442 11.553zM346.06 266.503H178.28c-7.352 0-14.441-4.464-14.441-11.553 0-7.09 7.09-11.553 14.441-11.553h167.778c7.352 0 14.442 4.464 14.442 11.553s-7.09 11.553-14.442 11.553zM299.586 312.976H178.018c-7.351 0-14.44-4.463-14.44-11.552s7.089-11.553 14.44-11.553h121.568c7.351 0 14.44 4.463 14.44 11.553s-7.089 11.552-14.44 11.552z" />
-                                        </g>
-                                        <path
-                                            d="M510.95 253.637c-.525 111.59-73.256 206.375-173.555 239.984-25.469 8.664-52.776 13.128-81.132 13.128-140.21 0-253.9-113.165-254.688-253.112v1.575c0 140.735 113.953 254.687 254.688 254.687 28.356 0 55.663-4.726 81.132-13.128C438.219 462.901 510.95 367.59 510.95 255.212z"
-                                            fill="#185abc" />
-                                        <path
-                                            d="M337.132 13.39C311.664 4.727 284.357.264 256 .264 115.266.263 1.313 114.215 1.313 254.95v1.575C2.1 116.578 115.79 3.413 256 3.413c28.357 0 55.664 4.726 81.132 13.129 100.562 33.608 173.03 128.393 173.555 239.983v-1.575c.263-112.378-72.468-207.688-173.555-241.56z"
-                                            fill="#8ab4f8" />
-                                    </g>
-                                </svg> -->
-                            </div>
-                        </div>
-                        <div *ngIf="signupForm.value.position == 'right'" class="img {{signupForm.value.position}}"
-                            [ngStyle]="{'right.px': signupForm.value.right,'bottom.px': signupForm.value.bottom}">
-                            <div class="msg-img">
-                                <div *ngFor="let server of signupForm.value.providers; ">
-                                    <img [src]="server.icon" height="200">
+                                                d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="tooltip">
+                                        <span class="tooltiptext "
+                                            [ngClass]="signupForm.controls.position.value == 'right' ? 'tooltip-left' : 'tooltip-right' "
+                                            [ngStyle]="{'color': signupForm.value.tooltipTextcolor, 'background-color':signupForm.value.tooltipBackgroundcolor, 'border-color':signupForm.value.tooltipBackgroundcolor}"
+                                            *ngIf="signupForm.value.tooltipText != ''">{{signupForm.value.tooltipText}}</span>
+                                    </div>
+
+
                                 </div>
-                                <svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="1.313 0.2629999999999768 509.637 509.636">
-                                    <g fill="none">
-                                        <circle cx="256.263" cy="254.95" fill="#1a73e8" r="254.687" />
-                                        <path
-                                            d="M348.948 364.964H175.393c-24.681 0-46.211-18.642-46.211-43.323v-.263 14.441c0 24.682 21.53 46.212 46.21 46.212h173.556c24.943 0 46.211-21.793 46.211-46.212v-14.44c0 24.68-21.53 43.585-46.211 43.585zM128.919 240.509v-19.693l-32.295-53.3c-1.838-2.888-2.626-5.514-2.363-8.14v22.58c0 2.101.787 4.202 2.1 6.565z"
-                                            fill="#185abc" />
-                                        <path
-                                            d="M348.948 150.712H105.813c-9.715 0-15.228 8.402-8.664 17.329l31.77 55.138v98.462c0 25.206 18.38 46.211 43.323 46.211h176.443c24.944 0 46.211-21.267 46.211-46.211V197.186c.263-25.207-21.005-46.474-45.948-46.474z"
-                                            fill="#fff" />
-                                        <g fill="#8ab4f8">
-                                            <path
-                                                d="M346.06 220.291H178.28c-7.352 0-14.441-4.463-14.441-11.553 0-7.089 7.09-11.552 14.441-11.552h167.778c7.352 0 14.442 4.463 14.442 11.552 0 7.09-7.09 11.553-14.442 11.553zM346.06 266.503H178.28c-7.352 0-14.441-4.464-14.441-11.553 0-7.09 7.09-11.553 14.441-11.553h167.778c7.352 0 14.442 4.464 14.442 11.553s-7.09 11.553-14.442 11.553zM299.586 312.976H178.018c-7.351 0-14.44-4.463-14.44-11.552s7.089-11.553 14.44-11.553h121.568c7.351 0 14.44 4.463 14.44 11.553s-7.089 11.552-14.44 11.552z" />
-                                        </g>
-                                        <path
-                                            d="M510.95 253.637c-.525 111.59-73.256 206.375-173.555 239.984-25.469 8.664-52.776 13.128-81.132 13.128-140.21 0-253.9-113.165-254.688-253.112v1.575c0 140.735 113.953 254.687 254.688 254.687 28.356 0 55.663-4.726 81.132-13.128C438.219 462.901 510.95 367.59 510.95 255.212z"
-                                            fill="#185abc" />
-                                        <path
-                                            d="M337.132 13.39C311.664 4.727 284.357.264 256 .264 115.266.263 1.313 114.215 1.313 254.95v1.575C2.1 116.578 115.79 3.413 256 3.413c28.357 0 55.664 4.726 81.132 13.129 100.562 33.608 173.03 128.393 173.555 239.983v-1.575c.263-112.378-72.468-207.688-173.555-241.56z"
-                                            fill="#8ab4f8" />
-                                    </g>
-                                </svg>
                             </div>
                         </div>
                     </div>

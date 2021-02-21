@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ProductService } from './product.service';
 import { SecureService } from "./../secure.service";
 import { CommonService } from 'src/app/common/common.service';
@@ -17,86 +17,209 @@ import { FormControl } from '@angular/forms';
 export class ProductComponent implements OnInit {
 	public signupForm: FormGroup;
 	public isMobile: boolean = false;
+	public previewColor: boolean = false;
 	public availabalechat = [
 		{
-			name: 'Whatsapp',
+			name: '',
 			icon: 'whatsapp',
 			label: 'For example: 1507854875',
 			added: false,
 			tooltip: 'Whatsapp',
-			id: '',
+			id: '01',
 			setting: false,
-			fill: 'red'
+			fill: '#1BD741',
 		},
 		{
-			name: 'Instagram',
-			icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png',
-			label: 'For example: 1507854875',
+			name: '',
+			icon: 'instagram',
+			label: 'For example: InstagramUsername',
 			added: false,
-			'tooltip': 'Instagram',
-			setting: false
+			tooltip: 'Instagram',
+			id: '02',
+			setting: false,
+			fill: '',
 		},
 		{
-			name: 'SMS',
-			icon: 'http://simpleicon.com/wp-content/uploads/sms.svg',
-			label: 'For example: 1507854875',
+			name: '',
+			icon: 'sms',
+			label: 'For example: +1507854875',
 			added: false,
-			'tooltip': 'SMS',
-			setting: false
+			tooltip: 'SMS',
+			id: '03',
+			setting: false,
+			fill: '#3e82b0'
 
 		},
 	];
-	public addData = [
+	public msgIcons = ["icon1", "icon2", "icon3", "icon4"]
+	public colors = [
 		{
-			name: 'Whatsapp',
-			label: 'For example: 1507854875',
+			colorName: 'Purple',
+			colorValue: ' #A886CD',
+			id: 0
+		},
+		{
+			colorName: 'Green',
+			colorValue: ' #86CD91',
+			id: 1
+		},
+		{
+			colorName: 'Blue',
+			colorValue: ' #4F6ACA',
+			id: 2
+		},
+		{
+			colorNameme: 'Red',
+			colorValue: ' #FF6060',
+			id: 3
+		},
+		{
+			colorName: 'Black',
+			colorValue: ' #000',
+			id: 4
+		},
+		{
+			colorName: 'Yellow',
+			colorValue: ' #EEF075',
+			id: 5
+		},
+		{
+			colorName: 'Pink',
+			colorValue: ' #FF95EE',
+			id: 6
 		}
+
 	];
+	public animations = [
+		{
+			name: 'Normal',
+			value: ''
+		},
+		{
+			name: 'Pulse',
+			value: 'animate__pulse'
+		},
+		{
+			name: 'Bounce',
+			value: 'animate__bounce'
+		},
+		{
+			name: 'Waggle',
+			value: 'animate__wobble'
+		},
+		{
+			name: 'Spin',
+			value: 'animate__rotateIn'
+		},
+		{
+			name: 'Fade',
+			value: 'animate__flash'
+		},
+		{
+			name: 'HeartBeat',
+			value: 'animate__heartBeat'
+		},
+	]
 	public profileData: Object;
-	public url: String; 
+	public url: String;
+	public chatPositions: any = {
+		bottom: 'initial',
+		left: 'initial',
+		right: 'initial'
+	}
+
+	public isListActive: boolean = true;
 
 	constructor(private Formbuild: FormBuilder, private productService: ProductService) {
 		this.signupForm = this.Formbuild.group({
-			position: new FormControl('right'),
+			position: new FormControl('left'),
+			chatyName: 'Widget-01',
 			left: '10',
 			right: '10',
-			bottom: '15',
+			bottom: '10',
+			colorName: 'Blue',
+			colorValue: '',
+			tooltipText: 'Contact us',
+			tooltipTextcolor: '#000',
+			tooltipBackgroundcolor: '#efefef',
+			magIcon: new FormControl('icon1'),
+			iconvalue: '',
 			providers: this.Formbuild.array([
-			])
+			]),
+			animationName: 'animate__pulse',
+			Previewpendingmsg: new FormControl(false),
+			pendingNumber: '0',
+			pendingNumberColor: '',
+			pendingMsgcolor: '',
+			iconView: 'vertical',
+			defaultState: 'click',
+			secondBtn: new FormControl(false),
+			PercentageBtn: new FormControl(false),
+			size: '10'
 		});
 	}
-	
+
 	ngOnInit() {
 		this.getData();
 	}
+	setPostions() {
+		let position = this.signupForm.controls.position.value;
+		if (position == 'left') {
+			this.chatPositions.right = 'initial';
+			this.chatPositions.left = this.signupForm.controls.left.value + "px"
+			this.chatPositions.bottom = this.signupForm.controls.bottom.value + "px"
+		} else {
+			this.chatPositions.left = 'initial';
+			this.chatPositions.right = this.signupForm.controls.right.value + "px"
+			this.chatPositions.bottom = this.signupForm.controls.bottom.value + "px"
+		}
+	}
+
 	providers() {
 		return this.Formbuild.group({
-			'name': '',
+			'name': ['', Validators.required],
 			'label': '',
 			'tooltip': '',
 			'id': '',
 			'icon': '',
 			'desktop': new FormControl(false),
 			'mobile': new FormControl(false),
-			'fill': 'red'
+			'fill': 'false',
+
 		});
 	}
-	addProvider(name) {
-		let found = this.availabalechat.find(e => e.name == name);
-		if (!found['added']) {
-			found['added'] = true;
+
+	changemsgIcon(msg) {
+		this.signupForm.controls.magIcon.setValue(msg.magIcon);
+	};
+	changeColor(color) {
+		this.signupForm.patchValue(color);
+	};
+
+	changeListStatus() {
+		console.log(this.signupForm.controls.defaultState.value);
+		if (this.signupForm.controls.defaultState.value == 'click') {
+			this.isListActive = !this.isListActive;
+		}
+	}
+
+
+	addProvider(chatData) {
+
+		if (!chatData['added']) {
+			chatData['added'] = true;
 			const control = <FormArray>this.signupForm.controls['providers'];
 			control.push(this.providers());
-			this.signupForm.controls.providers['controls'][this.signupForm.value.providers.length - 1].patchValue(found);
+			this.signupForm.controls.providers['controls'][this.signupForm.value.providers.length - 1].patchValue(chatData);
+			let found = this.availabalechat.find(e => e.icon == chatData.icon);
+			found['added'] = found ? true : false;
+
 		} else {
-			// const control = <FormArray>this.signupForm.controls['providers'];
-			// control.controls.splice(i, 1);
-			// control.value.splice(i, 1); 
 		}
 
 	}
 	removeProvider(i, name) {
-		let found = this.availabalechat.find(e => e.name == name);
+		let found = this.availabalechat.find(e => e.icon == name);
 		found['added'] = false;
 		const control = <FormArray>this.signupForm.controls['providers'];
 		control.controls.splice(i, 1);
@@ -108,6 +231,14 @@ export class ProductComponent implements OnInit {
 	changePreview() {
 		this.isMobile = !this.isMobile;
 	}
+
+	showPreview() {
+		this.previewColor = !this.previewColor;
+	}
+	pendingMsg() {
+		this.signupForm.controls.Previewpendingmsg.setValue(!this.signupForm.controls.Previewpendingmsg.value);
+	}
+
 	onSubmit() {
 		this.productService.addSettings(this.signupForm.value).subscribe((res) => {
 		}, err => {
@@ -115,15 +246,17 @@ export class ProductComponent implements OnInit {
 	}
 	getData() {
 		this.productService.getSetting().subscribe((res) => {
-			res.data.providers.forEach(element => {
-				console.log(element.name)
-				this.addProvider(element.name)
+			res.data.configurations.providers.forEach(element => {
+				this.addProvider(element)
+
 			});
-			this.signupForm.patchValue(res.data);
+			this.signupForm.patchValue(res.data.configurations);
+			this.setPostions();
 		}, err => {
-			console.log(err);
+			// console.log(err);
 		})
 	}
+
 	onSelectFile(event: any) {
 		if (event.target.files && event.target.files[0]) {
 			var reader = new FileReader();
@@ -135,140 +268,5 @@ export class ProductComponent implements OnInit {
 			}
 		}
 	}
-	// formdata: FormGroup;
-	// more: boolean = false;
-	// insta: boolean = false;
-	// setting: boolean = false;
-	// close: boolean = false
-	// cancel: boolean = false
-	// color: any;
-	// url: any;
-	// flag: any;
-	// signupForm: FormGroup;
-	// customizedata: FormGroup;
-	// pikcolor: any;
-	// constructor(private Formbuild: FormBuilder) {
-	// 	this.signupForm = this.Formbuild.group({
-	// 		channels: this.Formbuild.group({
-	// 			image: '',
-	// 			text: '',
-	// 			matlabel: '',
-	// 			desktop: '',
-	// 			mobile: '',
-	// 			hovertext: ''
-	// 		})
-	// 	});
-	// 	this.formdata = this.Formbuild.group({
-	// 		color: ':#1BD741',
-	// 		hoverwhatsapp: 'WhatsApp'
-	// 	});
-	// 	this.customizedata = this.Formbuild.group({
-	// 		pikcolor: '',
-	// 		left: '10',
-	// 		right: '10',
-	// 		side: '10',
-	// 		bottom: '10'
-	// 	});
-	// 	this.flag = 0;
-	// }
-	// movies: any = [
-	// 	{
-	// 		name: 'WhatsUp',
-	// 		image: "https://img.icons8.com/ios/96/000000/whatsapp--v3.png",
-	// 		matlabel: 'For example: 1507854875',
-	// 		help: '',
-	// 		hovertext: 'Whatsapp',
-	// 		id: 0
-	// 	},
-	// 	{
-	// 		image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png",
-	// 		matlabel: 'For example: 1507854875',
-	// 		help: '',
-	// 		hovertext: 'Instagram',
-	// 		id: 1
-	// 	}
-
-	// ];
-	// ccolor = [
-	// 	{
-	// 		name: 'Purple',
-	// 		color: ' #A886CD',
-	// 		id: 0
-	// 	},
-	// 	{
-	// 		name: 'Green',
-	// 		color: ' #86CD91',
-	// 		id: 1
-	// 	},
-	// 	{
-	// 		name: 'Blue',
-	// 		color: ' #4F6ACA',
-	// 		id: 2
-	// 	},
-	// 	{
-	// 		name: 'Red',
-	// 		color: ' #FF6060',
-	// 		id: 3
-	// 	},
-	// 	{
-	// 		name: 'Black',
-	// 		color: ' #000',
-	// 		id: 4
-	// 	},
-	// 	{
-	// 		name: 'Yellow',
-	// 		color: ' #EEF075',
-	// 		id: 5
-	// 	},
-	// 	{
-	// 		name: 'Pink',
-	// 		color: ' #FF95EE',
-	// 		id: 6
-	// 	}
-
-	// ];
-	// xcolor = {
-	// 	name: 'Purple',
-	// 	color: ' #A886CD',
-	// 	id: 0
-	// }
-	// public selectedColor = []
-	// public selectedData = []
-	// drop(event: CdkDragDrop<string[]>) {
-	// 	moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-	// }
-
-
-
-	// onSubmit(){
-	// }
-
-	// onColor(id, data) {
-	// 	this.xcolor = id;
-	// 	this.customizedata.value.pikcolor = undefined;
-	// 	// this.selectedColor.push(this.ccolor[id])
-	// }
-	// onSelectFile(event: any) {
-	// 	if (event.target.files && event.target.files[0]) {
-	// 		var reader = new FileReader();
-
-	// 		reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-	// 		reader.onload = (event: any) => { // called once readAsDataURL is completed
-	// 			this.url = event.target.result;
-	// 		}
-	// 	}
-	// }
-
-	// onCLick(id) {
-	// 	this.more = true
-
-	// 	var found = this.selectedData.find(item => item.id === id);
-	// 	if(!found){
-	// 		this.selectedData.push(this.movies[id])
-	// 	}
-
-
-	// }
 
 }
